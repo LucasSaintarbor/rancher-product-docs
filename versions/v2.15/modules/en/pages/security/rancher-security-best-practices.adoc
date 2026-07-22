@@ -1,6 +1,6 @@
 = {rancher-product-name} Security Best Practices
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-01-15
+:revdate: 2026-07-23
 :page-revdate: {revdate}
 :community-path: reference-guides/rancher-security/rancher-security-best-practices.adoc 
 :product-path: security/rancher-security-best-practices.adoc
@@ -170,3 +170,23 @@ For more information, see:
 * {xref-project-resource-quotas}[Project Resource Quotas]
 * https://owasp.org/API-Security/editions/2023/en/0xa4-lack-of-resources-rate-limiting/[OWASP API Security Top 10 - API4:2019 - Lack of Resources & Rate Limiting]
 * https://cheatsheetseries.owasp.org/cheatsheets/Rate_Limiting_Cheat_Sheet.html[OWASP Cheat Sheet: Rate Limiting]
+
+[#_restrict_access_to_user-data]
+=== Restrict access to user-data
+
+To launch clusters on infrastructure providers, Rancher relies on cloud-init user-data to provide the necessary information to bootstrap each instance. User-data is a parameter defined on the cloud provider for each instance on creation.
+
+Some cloud infrastructure providers expose this user-data to the instance through the "IMDS" (instance metadata service), accessible through a well-known link-local IP address.
+
+Processes in the instance, including pods, can access this metadata depending on the provider and configuration.
+
+In addition, some providers also expose this user-data to provider operators with sufficient access to read information about the instance through the provider console or cli.
+
+Some examples of controls to restrict access to user-data are:
+
+* Define Network Policies to limit access from pods to IMDS.
+* On AWS EC2, require https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html[IMDSv2] and set a hop limit of 1, to limit access from pods to IMDS. Note that this does not prevent access from pods with `hostNetwork`.
+* Define firewall rules to limit access from processes to IMDS.
+* Restrict read access to instance information on the cloud provider API, which can include user-data.
+
+Refer to the provider documentation for further information on how to limit access to IMDS, e.g. on https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-limiting-access.html[AWS].
