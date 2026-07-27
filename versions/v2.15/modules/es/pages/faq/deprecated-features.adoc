@@ -20,7 +20,7 @@ Rancher publicará las funciones obsoletas como parte de las https://github.com/
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
 | https://github.com/rancher/rancher/releases/tag/v2.15.0[2.15.0]
-| 2026-07-28
+| 2026-07-29
 
 
 |===

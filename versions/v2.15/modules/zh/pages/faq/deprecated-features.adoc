@@ -20,7 +20,7 @@ Rancher 将在 GitHub 上发布的 https://github.com/rancher/rancher/releases[�
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
 | https://github.com/rancher/rancher/releases/tag/v2.15.0[2.15.0]
-| 2026-07-28
+| 2026-07-29
 
 
 |===
