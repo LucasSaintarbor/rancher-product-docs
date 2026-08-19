@@ -52,9 +52,13 @@ This centralized user authentication is accomplished using the Rancher authentic
 The account used to enable the external provider will be granted admin permissions. If you use a test account or non-admin account, that account will still be granted admin-level permissions. See <<_external_authentication_configuration_and_principal_users,External Authentication Configuration and Principal Users>> to understand why.
 ====
 
-
 [#_external_vs_local_authentication]
 == External vs. Local Authentication
+
+External authentication provides centralized, enterprise-grade security through a third-party identity provider, while local authentication serves small test environments.
+
+* *External Authentication (Recommended for Production)*: The primary and preferred method for managing user access. External providers offer the robust security controls, strict password requirements, and centralized identity management necessary for enterprise environments.
+* *Local Authentication (Small Deployments)*: Rancher also provides {xref-local-users}[local authentication]. This is a built-in provider active by default. It is intended strictly for small deployments and testing. In production environments, local authentication should only be used as an emergency backup to ensure you can access Rancher if your external authentication provider goes down.
 
 The Rancher authentication proxy integrates with the following external authentication services.
 
@@ -75,10 +79,6 @@ The Rancher authentication proxy integrates with the following external authenti
 | {xref-shibboleth-saml}[Shibboleth]
 | {xref-configure-generic-oidc}[Generic (OIDC)]
 |===
-
-However, Rancher also provides {xref-local-users}[local authentication].
-
-In most cases, you should use an external authentication service over local authentication, as external authentication allows user management from a central location. However, you may want a few local authentication users for managing Rancher under rare circumstances, such as if your external authentication provider is unavailable or undergoing maintenance.
 
 [#_users_and_groups]
 == Users and Groups
