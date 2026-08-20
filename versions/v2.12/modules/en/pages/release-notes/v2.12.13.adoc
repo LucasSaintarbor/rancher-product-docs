@@ -31,139 +31,6 @@ Rancher {release-version} is the latest patch release of Rancher {rn-component-v
 
 For more information on new features in the general minor release, see the https://github.com/rancher/rancher/releases/tag/{rn-component-version}.0[{rn-component-version}.0 release notes].
 
-[#_security_fixes_for_vulnerabilities]
-== Security Fixes for Vulnerabilities
-
-This release addresses the following security issues:
-
-[#_security_fixes_for_vulnerabilities_rancher]
-=== Rancher
-
-* Fixed a security vulnerability in Rancher's unauthenticated cluster import endpoint where an attacker could enumerate valid cluster IDs and detect private registry usage by observing distinguishable HTTP response codes. The fix validates the request token before any cluster object is loaded, ensuring all unauthenticated requests receive a uniform response. For more information, refer to https://github.com/rancher/rancher/security/advisories/GHSA-23h9-rr79-r3gh[CVE-2026-55998].
-* Fixed a security vulnerability where an unauthenticated attacker with cluster-internal network access could flood TLS listeners in `cattle-cluster-agent` and in the Rancher server with requests containing arbitrary hostnames, causing serving certificates to accumulate excessive Subject Alternative Names (SANs) until TLS handshakes failed. The fix applies CN filtering to reject attacker-supplied SNI hostnames and caps the maximum number of SANs per certificate. For more information, refer to https://github.com/rancher/rancher/security/advisories/GHSA-9jxv-832x-45q9[CVE-2026-55996].
-* Fixed a critical security vulnerability in Rancher's impersonation middleware (`pkg/auth/requests/impersonate.go`) where an authenticated user with the default `user` global role could exploit a cross-cluster impersonation flaw to impersonate privileged identities, including `system:masters`, against the local Rancher management cluster. This allowed full administrative takeover of the Rancher control plane and all managed downstream clusters and secrets. For more information, refer to https://github.com/rancher/rancher/security/advisories/GHSA-v584-7w32-jwpq[CVE-2026-44945].
-* Rancher now protects against Denial of Service attacks on login endpoints by only reading request bodies up to 1MiB. Users with admin permissions can alter this limit by changing the setting `public-api-body-limit` by updating the corresponding global setting resource through the v3 API or via kubectl. For more information, refer to https://github.com/rancher/rancher/security/advisories/GHSA-g4f6-44g4-23xm[CVE-2026-59675].
-
-[#_rancher_general]
-== Rancher General
-
-[#_features_and_enhancements_rancher_general]
-=== Features and Enhancements
-
-[#_major_bug_fixes_rancher_general]
-=== Major Bug Fixes
-
-[#_known_issues_rancher_general]
-=== Known Issues
-
-[#_rancher_app_global_ui]
-== Rancher App (Global UI)
-
-[#_features_and_enhancements_rancher_app_global_ui]
-=== Features and Enhancements
-
-[#_major_bug_fixes_rancher_app_global_ui]
-=== Major Bug Fixes
-
-[#_known_issues_rancher_app_global_ui]
-=== Known Issues
-
-[#_authentication]
-== Authentication
-
-[#_features_and_enhancements_authentication]
-=== Features and Enhancements
-
-[#_major_bug_fixes_authentication]
-=== Major Bug Fixes
-
-[#_known_issues_authentication]
-=== Known Issues
-
-[#_cluster_provisioning]
-== Cluster Provisioning
-
-[#_features_and_enhancements_cluster_provisioning]
-=== Features and Enhancements
-
-[#_major_bug_fixes_cluster_provisioning]
-=== Major Bug Fixes
-
-[#_known_issues_cluster_provisioning]
-=== Known Issues
-
-[#_rancher_webhook]
-== Rancher Webhook
-
-[#_features_and_enhancements_rancher_webhook]
-=== Features and Enhancements
-
-[#_major_bug_fixes_rancher_webhook]
-=== Major Bug Fixes
-
-[#_known_issues_rancher_webhook]
-=== Known Issues
-
-[#_k3s_provisioning]
-== K3s Provisioning
-
-[#_features_and_enhancements_k3s_provisioning]
-=== Features and Enhancements
-
-[#_major_bug_fixes_k3s_provisioning]
-=== Major Bug Fixes
-
-[#_known_issues_k3s_provisioning]
-=== Known Issues
-
-[#_rke2_provisioning]
-== RKE2 Provisioning
-
-[#_features_and_enhancements_rke2_provisioning]
-=== Features and Enhancements
-
-[#_major_bug_fixes_rke2_provisioning]
-=== Major Bug Fixes
-
-[#_known_issues_rke2_provisioning]
-=== Known Issues
-
-[#_backup_restore]
-== Backup/Restore
-
-[#_features_and_enhancements_backup_restore]
-=== Features and Enhancements
-
-[#_major_bug_fixes_backup_restore]
-=== Major Bug Fixes
-
-[#_known_issues_backup_restore]
-=== Known Issues
-
-[#_continuous_delivery_fleet]
-== Continuous Delivery (Fleet)
-
-[#_features_and_enhancements_continuous_delivery_fleet]
-=== Features and Enhancements
-
-[#_major_bug_fixes_continuous_delivery_fleet]
-=== Major Bug Fixes
-
-[#_known_issues_continuous_delivery_fleet]
-=== Known Issues
-
-[#_suse_virtualization_harvester]
-== SUSE Virtualization (Harvester)
-
-[#_features_and_enhancements_suse_virtualization_harvester]
-=== Features and Enhancements
-
-[#_major_bug_fixes_suse_virtualization_harvester]
-=== Major Bug Fixes
-
-[#_known_issues_suse_virtualization_harvester]
-=== Known Issues
-
 == Changes Since {previous-release-version}
 
 See the full list of https://github.com/rancher/rancher/compare/{previous-release-version}%E2%80%A6{release-version}[changes].
@@ -343,7 +210,7 @@ See https://github.com/rancher/rancher/issues/49402[#49402] for more information
 * *Rancher v2.9.0:*
 ** There are some known issues with the OpenID Connect provider support:
 *** When the generic OIDC auth provider is enabled, and you attempt to add auth provider users to a cluster or project, users are not populated in the dropdown search bar. This is expected behavior as the OIDC auth provider alone is not searchable. See https://github.com/rancher/rancher/issues/46104[#46104].
-*** When the generic OIDC auth provider is enabled, auth provider users that are added to a cluster/project by their username are not able to access resources upon logging in. A user will only have access to resources upon login if the user is added by their userID.  See https://github.com/rancher/rancher/issues/46105[#46105].
+*** When the generic OIDC auth provider is enabled, auth provider users that are added to a cluster/project by their username are not able to access resources upon logging in. A user will only have access to resources upon login if the user is added by their userID. See https://github.com/rancher/rancher/issues/46105[#46105].
 *** When the generic OIDC auth provider is enabled and an auth provider user in a nested group is logged into Rancher, the user will see the following error when they attempt to create a Project: `projectroletemplatebindings.management.cattle.io is forbidden: User "u-gcxatwsnku" cannot create resource "projectroletemplatebindings" in API group "management.cattle.io" in the namespace "p-9t5pg"`. However, the project is still created. See https://github.com/rancher/rancher/issues/46106[#46106].
 
 === Long-standing Known Issues - Rancher Webhook
