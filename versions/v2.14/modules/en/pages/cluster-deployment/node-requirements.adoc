@@ -79,6 +79,7 @@ When {xref-launch-k8s-with-rancher}[Launching Kubernetes with Rancher] using Fla
 ======
 Canal::
 +
+--
 [,yaml]
 ----
 rancher_kubernetes_engine_config:
@@ -93,9 +94,11 @@ rancher_kubernetes_engine_config:
       extra_args:
         flex-volume-plugin-dir: /opt/kubernetes/kubelet-plugins/volume/exec/
 ----
+--
 
 Calico::
 +
+--
 [,yaml]
 ----
 rancher_kubernetes_engine_config:
@@ -110,6 +113,7 @@ rancher_kubernetes_engine_config:
       extra_args:
         flex-volume-plugin-dir: /opt/kubernetes/kubelet-plugins/volume/exec/
 ----
+--
 ======
 
 It is also required to enable the Docker service, you can enable the Docker service using the following command:
