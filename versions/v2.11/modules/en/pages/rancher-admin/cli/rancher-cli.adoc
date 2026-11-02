@@ -128,9 +128,6 @@ The following commands are available for use in Rancher CLI.
 | `up`
 | Applies compose config.
 
-| `wait`
-| Waits for resources cluster, app, project, multiClusterApp.
-
 | `token`
 | Authenticates and generates new kubeconfig token.
 
