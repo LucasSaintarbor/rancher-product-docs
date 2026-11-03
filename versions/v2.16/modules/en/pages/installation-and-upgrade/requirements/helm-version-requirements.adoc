@@ -23,12 +23,12 @@ To apply this rule, you may need to reference the following two external resourc
 [#_example]
 === Example
 
-* *Scenario:* You are targeting Rancher v2.15.1, which supports Kubernetes versions 1.34 through 1.36.
-* *Application:* Our rule requires a Helm version that supports this entire range. Helm does not provide forward compatibility. You must verify compatibility with the highest version, Kubernetes v1.36.
-* *Result:* You find that Helm v4.2.x and v4.3.x support the Kubernetes v1.34 through v1.36 range.
+* *Scenario:* You are targeting Rancher v2.15.1, which supports Kubernetes versions {supported-k8s-versions}.
+* *Application:* Our rule requires a Helm version that supports this entire range. Helm does not provide forward compatibility. You must verify compatibility with the highest supported Kubernetes version.
+* *Result:* You find that Helm v4.2.x and v4.3.x support the Kubernetes {supported-k8s-versions}.
 * Although multiple versions work, we recommend Helm v4.3.x because it is the newest Helm version supporting the Kubernetes range.
 
 [#_additional_notes]
-== Additional Notes
+=== Additional Notes
 
 * When using tools that run Helm commands for you (like Terraform), you must make sure they are configured to use the correct Helm version.
