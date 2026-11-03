@@ -234,6 +234,9 @@ To improve repository performance, Rancher is introducing a lifecycle management
 * *Rancher v2.14.4:*
 ** When the `crt-token-ttl-rotation` feature flag is enabled, imported clusters cannot reconnect to Rancher if their registration token is rotated while they are disconnected and the grace period ends before they reconnect. The cluster agent logs `400 Bad Request` with the response body `cluster not found`. As a workaround, re-run the registration command from the cluster *Registration* tab on the downstream cluster. To prevent the issue, increase the `crt-default-grace-period-minutes` setting to cover the expected downtime, or disable the `crt-token-ttl-rotation` feature flag. See https://github.com/rancher/rancher/issues/57939[#57939].
 
+* *Rancher v2.14.0:*
+** Upgrading from Rancher v2.13.x to v2.14 or v2.15 leaves the old `rke2-machineconfig-cleanup` CronJob, ServiceAccount, and ConfigMap in `fleet-default`. Rancher also creates these resources in `fleet-local`, leaving two CronJobs with the same name. The old CronJob uses the v2.13.x agent image, contains a copy of the local cluster registration token, and runs without permissions. To work around this issue, verify each old object has the annotation `objectset.rio.cattle.io/id=rke2-machine-config-cleanup`. Then delete the old CronJob, ServiceAccount, and ConfigMap from `fleet-default`. Do not delete the shared ClusterRole or ClusterRoleBinding because the `fleet-local` CronJob uses them. See https://github.com/rancher/rancher/issues/58290[#58290].
+
 * Not all cluster tools can be installed on a hardened cluster.
 // no issue number available
 
