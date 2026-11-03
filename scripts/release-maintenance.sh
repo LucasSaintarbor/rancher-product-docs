@@ -17,7 +17,6 @@ DOCS_REPO_PATH=${DOCS_REPO_PATH%/scripts}
 
 # --- Global Variables ---
 VERSION=""
-TAG_VERSION=""
 RELEASE_DATE=""
 ADAPTER_VERSION=""
 WEBHOOK_VERSION=""
@@ -36,22 +35,17 @@ Usage: $(basename "$0") [OPTIONS]
 This script automates the process of release maintenance for Rancher docs.
 
 Examples:
-  Provide a version to automatically fetch component versions from the release branch:
-    $ ./scripts/$(basename "$0") -v v2.14.1 -d "2026-05-27"
-
-  Or, provide a git tag to derive the version and fetch component versions from the tag:
-    $ ./scripts/$(basename "$0") -t v2.14.1-rc1 -d "2026-05-27"
+  Provide a version to automatically fetch component versions from the release branch in rancher/charts:
+    $ ./scripts/$(basename "$0") -v v2.15.3 -d "2026-11-03"
 
   Or, provide the version and component versions manually:
-    $ ./scripts/$(basename "$0") -v v2.14.1 -d "2026-05-27" -a v107.0.1+up8.0.0 -w v0.9.2 -T 108.0.4+up0.25.4-rc.1 -F 108.0.2+up0.14.2
+    $ ./scripts/$(basename "$0") -v v2.15.3 -d "2026-10-28" -a 110.0.1+up10.0.1 -w 0.11.4 -T 110.0.4+up0.27.4-rc.0 -F 110.0.3+up0.16.3-rc.2
 
 Options:
-  -v <version>          The new Rancher version (e.g., v2.14.1). (Required if -t is not used)
-  -d <date>             The release date (e.g., "2026-05-27"). (Required)
-  -t <tag>              A git tag from rancher/rancher repository (e.g., v2.14.1-rc1).
-                        If used, the version is derived from the tag, and component versions are fetched from GitHub.
-  -a <adapter_version>  The corresponding CSP adapter version. (Required for manual mode)
-  -w <webhook_version>  The corresponding webhook version. (Required for manual mode)
+  -v <version>          The new Rancher version (e.g., v2.15.3). (Required)
+  -d <date>             The release date (e.g., "2026-11-03"). (Required)
+  -a <adapter_version>  The corresponding CSP adapter version (e.g., 110.0.1+up10.0.1). (Required for manual mode in v2.15 and earlier)
+  -w <webhook_version>  The corresponding webhook version (e.g., 0.11.4). (Required for manual mode)
   -T <turtles_version>  The corresponding Turtles version. (Required for manual mode)
   -F <fleet_version>    The corresponding Fleet version. (Required for manual mode)
 
@@ -67,7 +61,6 @@ parse_args() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       -v) VERSION="$2"; shift 2 ;;
-      -t) TAG_VERSION="$2"; shift 2 ;;
       -d) RELEASE_DATE="$2"; shift 2 ;;
       -a) ADAPTER_VERSION="$2"; shift 2 ;;
       -w) WEBHOOK_VERSION="$2"; shift 2 ;;
@@ -84,7 +77,7 @@ parse_args() {
 # Validate that required inputs have been provided and are in the correct format.
 validate_inputs() {
   local valid=true
-  if [[ -z "$VERSION" ]]; then echo "Error: Version is required. Use -v or -t."; valid=false; fi
+  if [[ -z "$VERSION" ]]; then echo "Error: Version is required. Use -v."; valid=false; fi
   if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "Error: Version format must be vX.Y.Z."; valid=false; fi
   if [[ -z "$RELEASE_DATE" ]]; then echo "Error: Release date is required."; valid=false; fi
   if ! date -d "$RELEASE_DATE" >/dev/null 2>&1; then echo "Error: Invalid date format for '$RELEASE_DATE'."; valid=false; fi
@@ -95,13 +88,24 @@ validate_inputs() {
   fi
 }
 
+# Check whether CSP adapter is supported for the given minor version (<= v2.15).
+is_csp_adapter_supported() {
+  local minor="$1" # e.g. "v2.15" or "v2.16"
+  local highest
+  highest=$(printf '%s\n%s\n' "$minor" "v2.15" | sort -V | tail -n1)
+  [[ "$highest" == "v2.15" ]]
+}
+
 # Validate that all component versions are provided in manual mode.
 validate_manual_inputs() {
+  local minor_ver="$1"
   local valid=true
-  if [[ -z "$ADAPTER_VERSION" ]]; then echo "Error: Adapter version is required when not fetching from GitHub."; valid=false; fi
-  if [[ -z "$WEBHOOK_VERSION" ]]; then echo "Error: Webhook version is required when not fetching from GitHub."; valid=false; fi
-  if [[ -z "$TURTLES_VERSION" ]]; then echo "Error: Turtles version is required when not fetching from GitHub."; valid=false; fi
-  if [[ -z "$FLEET_VERSION" ]]; then echo "Error: Fleet version is required when not fetching from GitHub."; valid=false; fi
+  if is_csp_adapter_supported "$minor_ver" && [[ -z "$ADAPTER_VERSION" ]]; then
+    echo "Error: Adapter version is required for ${minor_ver} when not fetching automatically."; valid=false
+  fi
+  if [[ -z "$WEBHOOK_VERSION" ]]; then echo "Error: Webhook version is required when not fetching automatically."; valid=false; fi
+  if [[ -z "$TURTLES_VERSION" ]]; then echo "Error: Turtles version is required when not fetching automatically."; valid=false; fi
+  if [[ -z "$FLEET_VERSION" ]]; then echo "Error: Fleet version is required when not fetching automatically."; valid=false; fi
 
   if ! "$valid"; then
     echo
@@ -109,37 +113,74 @@ validate_manual_inputs() {
   fi
 }
 
-# Fetch and parse build.yaml from GitHub.
-fetch_build_yaml() {
-  local build_yaml_url="$1"
-  local source_desc="$2"
+# Fetch and parse component versions from rancher/charts repository.
+fetch_charts_data() {
+  local charts_branch="$1"
+  local minor_ver="$2"
 
-  echo "-> Fetching versions from GitHub ${source_desc}..."
-  local build_yaml_content
-  # Use curl to fetch the content. -sS for silent with errors, -f for fail-fast, -L to follow redirects.
-  build_yaml_content=$(curl -sSfL "$build_yaml_url")
-  if [[ $? -ne 0 ]] || [[ -z "$build_yaml_content" ]]; then
-      echo "Error: Failed to fetch or empty content from $build_yaml_url" >&2
-      exit 1
+  echo "-> Fetching versions from rancher/charts branch: ${charts_branch}..."
+
+  local release_yaml_url="https://raw.githubusercontent.com/rancher/charts/refs/heads/${charts_branch}/release.yaml"
+  local release_yaml_content
+  release_yaml_content=$(curl -sSfL "$release_yaml_url")
+  if [[ $? -ne 0 ]] || [[ -z "$release_yaml_content" ]]; then
+    echo "Error: Failed to fetch or empty content from $release_yaml_url" >&2
+    exit 1
   fi
 
-  # Parse YAML content using grep and awk. This is simple and avoids extra dependencies.
-  WEBHOOK_VERSION=$(echo "$build_yaml_content" | awk '/^webhookVersion:/ {print $2}')
-  ADAPTER_VERSION=$(echo "$build_yaml_content" | awk '/^cspAdapterMinVersion:/ {print $2}')
-  TURTLES_VERSION=$(echo "$build_yaml_content" | awk '/^turtlesVersion:/ {print $2}')
-  FLEET_VERSION=$(echo "$build_yaml_content" | awk '/^fleetVersion:/ {print $2}')
+  # Extract the first entry for each component from release.yaml
+  local webhook_raw fleet_raw turtles_raw
+  webhook_raw=$(echo "$release_yaml_content" | awk '/^rancher-webhook:/{p=1; next} p && /^[a-zA-Z0-9_-]+:/{p=0} p && /^[[:space:]]*- /{print $2; exit}')
+  fleet_raw=$(echo "$release_yaml_content" | awk '/^fleet:/{p=1; next} p && /^[a-zA-Z0-9_-]+:/{p=0} p && /^[[:space:]]*- /{print $2; exit}')
+  turtles_raw=$(echo "$release_yaml_content" | awk '/^rancher-turtles:/{p=1; next} p && /^[a-zA-Z0-9_-]+:/{p=0} p && /^[[:space:]]*- /{print $2; exit}')
 
-  if [[ -z "$WEBHOOK_VERSION" ]] || [[ -z "$ADAPTER_VERSION" ]]; then
-      echo "Error: Could not parse webhookVersion or cspAdapterMinVersion from build.yaml" >&2
-      exit 1
+  if [[ -z "$webhook_raw" ]]; then
+    echo "Error: Could not parse rancher-webhook from release.yaml" >&2
+    exit 1
   fi
-  echo "  - Found Webhook Version: ${WEBHOOK_VERSION}"
-  echo "  - Found Adapter Version: ${ADAPTER_VERSION}"
+
+  # For rancher-webhook: from e.g. 110.0.4+up0.11.4-rc.6 extract 0.11.4
+  local webhook_clean="${webhook_raw##*+up}"
+  WEBHOOK_VERSION="${webhook_clean%%-rc*}"
+  FLEET_VERSION="$fleet_raw"
+  TURTLES_VERSION="$turtles_raw"
+
+  echo "  - Found Webhook Version: ${WEBHOOK_VERSION} (from ${webhook_raw})"
   if [[ -n "$TURTLES_VERSION" ]]; then
     echo "  - Found Turtles Version: ${TURTLES_VERSION}"
   fi
   if [[ -n "$FLEET_VERSION" ]]; then
     echo "  - Found Fleet Version: ${FLEET_VERSION}"
+  fi
+
+  # CSP adapter is dropped in v2.16+, only extract from index.yaml for <= v2.15
+  if is_csp_adapter_supported "$minor_ver"; then
+    local index_yaml_url="https://raw.githubusercontent.com/rancher/charts/refs/heads/${charts_branch}/index.yaml"
+    echo "-> Fetching rancher-csp-adapter version from rancher/charts index.yaml..."
+    local index_yaml_content
+    index_yaml_content=$(curl -sSfL "$index_yaml_url")
+    if [[ $? -ne 0 ]] || [[ -z "$index_yaml_content" ]]; then
+      echo "Error: Failed to fetch or empty content from $index_yaml_url" >&2
+      exit 1
+    fi
+
+    ADAPTER_VERSION=$(echo "$index_yaml_content" | awk '
+      /^  rancher-csp-adapter:/ { in_chart=1; next }
+      in_chart && /^  [a-zA-Z0-9_-]+:/ { in_chart=0 }
+      in_chart && /^[[:space:]]*version:/ && !ver {
+        gsub(/["\047]/, "", $2)
+        ver=$2
+      }
+      END { print ver }
+    ')
+    if [[ -z "$ADAPTER_VERSION" ]]; then
+      echo "Error: Could not parse rancher-csp-adapter version from index.yaml" >&2
+      exit 1
+    fi
+    echo "  - Found Adapter Version: ${ADAPTER_VERSION}"
+  else
+    echo "  - Skipping Adapter Version (rancher-csp-adapter dropped in ${minor_ver})"
+    ADAPTER_VERSION=""
   fi
 }
 
@@ -327,12 +368,6 @@ main() {
 
   parse_args "$@"
 
-  # If a tag is provided without an explicit version, derive the version from the tag.
-  if [[ -n "$TAG_VERSION" ]] && [[ -z "$VERSION" ]]; then
-    VERSION=${TAG_VERSION%%-*}
-    echo "-> Derived version from tag: ${VERSION}"
-  fi
-
   # Sync webhook availability with new version availability. This simplifies input
   # by only requiring one set of availability flags (prime/community).
   local WEBHOOK_PRIME_AVAIL=$NEW_CURRENT_PRIME_AVAIL
@@ -348,17 +383,13 @@ main() {
   minor_version_no_v=$(echo "$version_no_v" | cut -d. -f1,2)
   local minor_version_with_v="v${minor_version_no_v}"
 
-  # Fetch versions from GitHub tag or release branch, or use manual inputs
-  if [[ -n "$TAG_VERSION" ]]; then
-    local build_yaml_url="https://raw.githubusercontent.com/rancher/rancher/refs/tags/${TAG_VERSION}/build.yaml"
-    fetch_build_yaml "$build_yaml_url" "tag: ${TAG_VERSION}"
-  elif [[ -z "$ADAPTER_VERSION" ]] && [[ -z "$WEBHOOK_VERSION" ]]; then
-    local release_branch="release/${minor_version_with_v}"
-    local build_yaml_url="https://raw.githubusercontent.com/rancher/rancher/refs/heads/${release_branch}/build.yaml"
-    fetch_build_yaml "$build_yaml_url" "release branch: ${release_branch}"
+  # Fetch versions from release branch in rancher/charts, or use manual inputs
+  if [[ -z "$ADAPTER_VERSION" ]] && [[ -z "$WEBHOOK_VERSION" ]]; then
+    local charts_branch="dev-${minor_version_with_v}"
+    fetch_charts_data "$charts_branch" "$minor_version_with_v"
   else
     echo "-> Using manually provided component versions..."
-    validate_manual_inputs
+    validate_manual_inputs "$minor_version_with_v"
   fi
 
   # Calculate final turtles version
@@ -441,10 +472,15 @@ main() {
     local base_path="${locale_dir}/pages"
     all_files+=(
       "${base_path}/release-notes.adoc"
-      "${base_path}/installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc"
       "${base_path}/security/rancher-webhook/rancher-webhook.adoc"
       "${base_path}/faq/deprecated-features.adoc"
     )
+
+    if is_csp_adapter_supported "$minor_version_with_v"; then
+      all_files+=(
+        "${base_path}/installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc"
+      )
+    fi
   done
 
   for file in "${all_files[@]}"; do
@@ -565,8 +601,10 @@ main() {
     fi
   fi
 
-  local adapter_row
-  adapter_row="| ${VERSION}"$'\n'"| v${ADAPTER_VERSION#v}"$'\n'
+  local adapter_row=""
+  if is_csp_adapter_supported "$minor_version_with_v"; then
+    adapter_row="| ${VERSION}"$'\n'"| v${ADAPTER_VERSION#v}"$'\n'
+  fi
 
   local webhook_version_clean="${WEBHOOK_VERSION##*up}"
   webhook_version_clean="${webhook_version_clean%%-rc*}"
@@ -583,7 +621,9 @@ main() {
 
     # Update the specific AsciiDoc files for the current locale with the new version rows and notes
     update_release_notes "${base_path}/release-notes.adoc" "$VERSION" "$new_current_prime_mark" "$new_current_community_mark"
-    update_matrix "${base_path}/installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc" "\/\/ DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT\." "$adapter_row"
+    if is_csp_adapter_supported "$minor_version_with_v"; then
+      update_matrix "${base_path}/installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc" "\/\/ DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT\." "$adapter_row"
+    fi
     update_matrix "${base_path}/security/rancher-webhook/rancher-webhook.adoc" "\/\/ DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT\." "$webhook_row"
     update_matrix "${base_path}/faq/deprecated-features.adoc" "\/\/ DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT\." "$deprecated_row"
   done
