@@ -1,33 +1,34 @@
 = Helm Version Requirements
-:description: Find the correct Helm v3 version for your Kubernetes cluster by using the Rancher Support Matrix to check Helm compatibility
+:description: Find the correct Helm version for your Kubernetes cluster by using the Rancher Support Matrix to check Helm compatibility
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-21
+:revdate: 2026-11-03
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/resources/helm-version-requirements.adoc 
 :page-product-path: installation-and-upgrade/requirements/helm-version-requirements.adoc
 
 This section contains the requirements for Helm, which is the tool used to install Rancher on a high-availability Kubernetes cluster.
 
-[#_identifying_the_proper_helm_v3_version]
-== Identifying the Proper Helm v3 Version
+[#_identifying_the_proper_helm_version]
+== Identifying the Proper Helm Version
 
-Select any Helm v3 version that is officially compatible with the Kubernetes version range you are using from our https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher Support Matrix].
+Select any Helm v3 or v4 version compatible with your Kubernetes version range from the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher Support Matrix].
 
-To apply this rule, you may need to reference two external resources:
+Helm v3 or v4 is backward compatible with three previous minor versions of Kubernetes (n-3). It does not guarantee forward compatibility with newer Kubernetes versions.
 
-* *Helm Version Compatibility:* Refer to the https://helm.sh/docs/topics/version_skew/[Helm Version Support Policy] and select the version matching the rule for your Rancher minor target.
-* *Rancher’s Kubernetes Support Range:* Use the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher Support Matrix] to identify the Kubernetes versions supported by your target Rancher minor version.
+To apply this rule, you may need to reference the following two external resources:
+
+* *Helm Version Compatibility:* Refer to the https://helm.sh/docs/topics/version_skew/[Helm Version Support Policy] and select the version matching the rule for your Rancher target version.
+* *Rancher’s Kubernetes Support Range:* Use the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher Support Matrix] to identify the Kubernetes versions supported by your target Rancher version.
 
 [#_example]
 === Example
 
-* *Scenario:* You are targeting Rancher v2.11.4, which supports Kubernetes versions 1.30 through 1.32.
-* *Application:* Our rule requires a Helm version that supports this range. You can verify this by checking the Helm version’s compatibility with the highest version in the range, Kubernetes v1.32.
-* *Result:* You find that both Helm v3.17 and Helm v3.18 support the Kubernetes v1.30-v1.32 range.
-* Although both work, we recommend Helm v3.18 because it is the newest Helm minor version overlapping the supported Kubernetes range.
+* *Scenario:* You are targeting Rancher v2.15.1, which supports Kubernetes versions 1.34 through 1.36.
+* *Application:* Our rule requires a Helm version that supports this entire range. Helm does not provide forward compatibility. You must verify compatibility with the highest version, Kubernetes v1.36.
+* *Result:* You find that Helm v4.2.x and v4.3.x support the Kubernetes v1.34 through v1.36 range.
+* Although multiple versions work, we recommend Helm v4.3.x because it is the newest Helm version supporting the Kubernetes range.
 
 [#_additional_notes]
 == Additional Notes
 
-* Helm v3.2.x or higher is required to install or upgrade Rancher v2.5.
 * When using tools that run Helm commands for you (like Terraform), you must make sure they are configured to use the correct Helm version.
