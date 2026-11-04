@@ -246,25 +246,6 @@ If you are upgrading your chart using *Customize Helm options before upgrade*, a
 * Delete the resources with immutable fields from the cluster before performing a forced upgrade.
 ====
 
-
-=== Legacy Apps
-
-The upgrade button isn't available for legacy apps on the menu:Apps[Installed Apps] page.
-
-If you want to upgrade an installed legacy app, the {xref-experimental-features}[legacy feature flag] must be turned on. This flag is automatically turned on if you had a legacy app already running before you upgraded Rancher.
-
-. Enable the {xref-experimental-features}[legacy feature flag], if it isn't enabled already.
-. Click *☰ > Cluster Management*.
-. Find the name of the cluster whose apps you want to access. Click *Explore* at the end of the cluster's row.
-. Click menu:Legacy[Project > Apps].
-
-If you don't see *Apps* listed under menu:Legacy[Project], click the project/namespace search bar in the top navigation and select the relevant project from the dropdown menu.
-
-To upgrade legacy multi-cluster apps:
-
-. Click *☰*.
-. Under *Legacy Apps*, click *Multi-cluster Apps*.
-
 == Limitations
 
 * Dashboard apps or Rancher feature charts can't be installed using the Rancher CLI.

@@ -46,4 +46,3 @@ In the regional deployment model a Rancher instance is deployed in close proximi
 
 * Overhead of managing multiple Rancher installations.
 * Visibility into Kubernetes clusters in different regions requires multiple interfaces/panes of glass.
-* Deploying multi-cluster apps in Rancher requires repeating the process for each Rancher server.
