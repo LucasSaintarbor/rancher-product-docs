@@ -4,16 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The release version (e.g., v2.14.1). If left blank, current branch or tag is used'
+        description: 'The release version (e.g., v2.14.1). If left blank, current branch is used'
         required: false
         default: ''
       release_date:
         description: 'The release date (e.g., 2026-05-27)'
         required: true
-      release_tag:
-        description: 'Optional git tag (e.g., v2.14.1-rc1) to fetch versions from tag instead of release branch'
-        required: false
-        default: ''
       prime:
         description: 'Is this version available in Prime? (Default: y)'
         required: false
@@ -36,7 +32,6 @@ jobs:
       DATE: ${{ inputs.release_date }}
       PRIME: ${{ inputs.prime }}
       COMMUNITY: ${{ inputs.community }}
-      TAG: ${{ inputs.release_tag }}
       VERSION: ${{ inputs.version }}
     steps:
       - name: Determine version and base branch
@@ -46,9 +41,6 @@ jobs:
             if [[ "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
               VERSION="${{ github.ref_name }}"
               echo "Used version from branch name: $VERSION"
-            elif [[ -n "$TAG" ]]; then
-              VERSION="${TAG%%-*}"
-              echo "Used version from release tag: $VERSION"
             fi
           fi
 
@@ -75,11 +67,7 @@ jobs:
 
       - name: Generate Release Maintenance
         run: |
-          if [[ -n "$TAG" ]]; then
-            ./scripts/release-maintenance.sh -t "$TAG" -d "$DATE" --prime "$PRIME" --community "$COMMUNITY"
-          else
-            ./scripts/release-maintenance.sh -v "$VERSION" -d "$DATE" --prime "$PRIME" --community "$COMMUNITY"
-          fi
+          ./scripts/release-maintenance.sh -v "$VERSION" -d "$DATE" --prime "$PRIME" --community "$COMMUNITY"
 
       - name: Load App Credentials from Vault
         uses: rancher-eio/read-vault-secrets@4c8f4e741954651c502bb7739c46ae1bad26b44d # main
@@ -108,11 +96,7 @@ jobs:
 
           PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --base "$BASE_BRANCH" --json number --jq '.[0].number')
 
-          if [[ -n "$TAG" ]]; then
-            CMD_EXECUTED="./scripts/release-maintenance.sh -t \"$TAG\" -d \"$DATE\" --prime \"$PRIME\" --community \"$COMMUNITY\""
-          else
-            CMD_EXECUTED="./scripts/release-maintenance.sh -v \"$VERSION\" -d \"$DATE\" --prime \"$PRIME\" --community \"$COMMUNITY\""
-          fi
+          CMD_EXECUTED="./scripts/release-maintenance.sh -v \"$VERSION\" -d \"$DATE\" --prime \"$PRIME\" --community \"$COMMUNITY\""
 
           PR_BODY="Automated release maintenance updates for version $VERSION."$'\n'"Command executed: \`$CMD_EXECUTED\`"
 
