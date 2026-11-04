@@ -22,4 +22,3 @@ asciidoc:
     elemental-docs-version: 1.7
     fleet-docs-version: v0.16
     turtles-docs-version: v0.27
-    supported-k8s-versions: v1.34 - v1.36
