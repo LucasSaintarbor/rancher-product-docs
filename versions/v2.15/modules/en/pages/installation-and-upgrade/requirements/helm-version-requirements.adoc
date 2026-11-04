@@ -20,13 +20,13 @@ To apply this rule, you may need to reference the following two external resourc
 * *Helm Version Compatibility:* Refer to the https://helm.sh/docs/topics/version_skew/[Helm Version Support Policy] and select the version matching the rule for your Rancher target version.
 * *Rancher’s Kubernetes Support Range:* Use the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher Support Matrix] to identify the Kubernetes versions supported by your target Rancher version.
 
-[#_example]
-=== Example
+[#_applying_compatibility_rules]
+=== Applying Compatibility Rules
 
-* *Scenario:* You are targeting Rancher v2.15.1, which supports Kubernetes v1.34 - v1.36.
-* *Application:* Our rule requires a Helm version that supports this entire range. Helm does not provide forward compatibility. You must verify compatibility with the highest supported Kubernetes version.
-* *Result:* You find that Helm v4.2.x and v4.3.x support the Kubernetes v1.34 - v1.36 range.
-* When multiple versions work, we recommend using the newest Helm version supporting the Kubernetes range.
+* *Scenario:* You are targeting a specific Rancher version that supports a range of Kubernetes versions.
+* *Application:* You need a Helm version that supports this entire Kubernetes range. Helm does not provide forward compatibility. You must verify compatibility with the highest supported Kubernetes version.
+* *Result:* You find multiple Helm versions that support your target Kubernetes range.
+* When multiple versions work, use the newest Helm version that supports the Kubernetes range.
 
 [#_additional_notes]
 === Additional Notes
