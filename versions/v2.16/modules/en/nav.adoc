@@ -1,4 +1,5 @@
 * xref:release-notes.adoc[Release Notes]
+** xref:release-notes/v2.16.0.adoc[]
 * About Rancher
 ** xref:about-rancher/what-is-rancher.adoc[]
 ** xref:about-rancher/prime.adoc[]
