@@ -1,7 +1,7 @@
 = Installing {rancher-product-name} in a VMware vSphere Environment
 :description: Install Rancher in a VMware vSphere environment, and follow best practices for load balancer, VM, network, and storage configuration
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-server/on-premises-rancher-in-vsphere.adoc 
 :page-product-path: installation-and-upgrade/best-practices/rancher-on-vsphere.adoc
@@ -12,7 +12,7 @@ ifeval::["{build-type}" == "community"]
 :xref-install-reqs: xref:getting-started/installation-and-upgrade/installation-requirements/index.adoc 
 endif::[]
 
-This guide outlines a reference architecture for installing Rancher on an RKE Kubernetes cluster in a VMware vSphere environment. It also desctibes standard vSphere best practices as documented by VMware.
+This guide outlines a reference architecture for installing {rancher-product-name} on an RKE Kubernetes cluster in a VMware vSphere environment. It also desctibes standard vSphere best practices as documented by VMware.
 
 .Solution Overview
 image::rancher-on-prem-vsphere.svg[Solution Overview]
@@ -104,7 +104,7 @@ ETCD is very sensitive to write latency. Therefore, leverage SSD disks where pos
 [#_perform_regular_management_cluster_backups]
 === Perform Regular Management Cluster Backups
 
-Rancher stores its data in the ETCD datastore of the Kubernetes cluster it resides on. Like with any Kubernetes cluster, perform frequent, tested backups of this cluster.
+{rancher-product-name} stores its data in the ETCD datastore of the Kubernetes cluster it resides on. Like with any Kubernetes cluster, perform frequent, tested backups of this cluster.
 
 [#_back_up_rancher_cluster_node_vms]
 === Back up Rancher Cluster Node VMs

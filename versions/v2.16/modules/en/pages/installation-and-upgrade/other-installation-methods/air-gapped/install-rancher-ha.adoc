@@ -1,7 +1,7 @@
 = 4. Install {rancher-product-name}
 :description: Install Rancher on a Kubernetes cluster in an air-gapped environment by adding the Helm chart repository, configuring TLS secrets, and setting up high availability
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/install-rancher-ha.adoc
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/install-rancher-ha.adoc
@@ -25,7 +25,7 @@ ifeval::["{build-type}" == "community"]
 endif::[]
 
 
-This section is about how to deploy Rancher for your air gapped environment in a high-availability Kubernetes installation. An air gapped environment could be where Rancher server will be installed offline, behind a firewall, or behind a proxy.
+This section is about how to deploy {rancher-product-name} for your air gapped environment in a high-availability Kubernetes installation. An air gapped environment could be where Rancher server will be installed offline, behind a firewall, or behind a proxy.
 
 [#_privileged_access_for_rancher]
 == Privileged Access for Rancher
@@ -40,7 +40,7 @@ If you want to continue the air gapped installation using Docker commands, skip 
 [#_kubernetes_instructions]
 == Kubernetes Instructions
 
-Rancher recommends installing Rancher on a Kubernetes cluster. A highly available Kubernetes install is comprised of three nodes running the Rancher server components on a Kubernetes cluster. The persistence layer (etcd) is also replicated on these three nodes, providing redundancy and data duplication in case one of the nodes fails.
+{rancher-product-name} recommends installing the platform on a Kubernetes cluster. A highly available Kubernetes install is comprised of three nodes running the Rancher server components on a Kubernetes cluster. The persistence layer (etcd) is also replicated on these three nodes, providing redundancy and data duplication in case one of the nodes fails.
 
 [#_1_add_the_helm_chart_repository]
 === 1. Add the Helm Chart Repository
@@ -377,7 +377,7 @@ Then, create the namespace for Rancher using kubectl:
 kubectl create namespace cattle-system
 ----
 
-Next, install Rancher, declaring your chosen options. Use the reference table below to replace each placeholder. Rancher needs to be configured to use the private registry in order to provision any Rancher launched Kubernetes clusters or Rancher tools.
+Next, install Rancher, declaring your chosen options. Use the reference table below to replace each placeholder. {rancher-product-name} needs to be configured to use the private registry in order to provision any {rancher-product-name} launched Kubernetes clusters or {rancher-product-name} tools.
 
 |===
 | Placeholder | Description
@@ -419,7 +419,7 @@ Create Kubernetes secrets from your own certificates for Rancher to use. The com
 [#_2_install_rancher_1]
 ===== 2. Install Rancher
 
-Install Rancher, declaring your chosen options. Use the reference table below to replace each placeholder. Rancher needs to be configured to use the private registry in order to provision any Rancher launched Kubernetes clusters or Rancher tools.
+Install Rancher, declaring your chosen options. Use the reference table below to replace each placeholder. {rancher-product-name} needs to be configured to use the private registry in order to provision any {rancher-product-name} launched Kubernetes clusters or {rancher-product-name} tools.
 
 |===
 | Placeholder | Description

@@ -1,7 +1,7 @@
 = {rancher-product-name} Helm Chart Options
 :description: Configure Rancher Helm chart options to set up passwords, enable audit logs, and manage environment variables
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-references/helm-chart-options.adoc 
 :page-product-path: installation-and-upgrade/references/helm-chart-options.adoc
@@ -27,7 +27,7 @@ ifeval::["{build-type}" == "community"]
 :xref-private-registries: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/global-default-private-registry.adoc
 endif::[]
 
-This page is a configuration reference for the Rancher Helm chart.
+This page is a configuration reference for the {rancher-product-name} Helm chart.
 
 For information on enabling experimental features, refer to {xref-experimental-features}[Enabling Experimental Features].
 
@@ -296,7 +296,7 @@ Example on setting a custom certificate issuer:
 [#_http_proxy]
 === HTTP Proxy
 
-Rancher requires internet access for some functionality (Helm charts). Use `proxy` to set your proxy server or use `extraEnv` to set the `HTTPS_PROXY` environment variable to point to your proxy server.
+{rancher-product-name} requires internet access for some functionality (Helm charts). Use `proxy` to set your proxy server or use `extraEnv` to set the `HTTPS_PROXY` environment variable to point to your proxy server.
 
 Add your IP exceptions to the `noProxy` chart value as a comma separated list. Make sure you add the following values:
 
@@ -304,7 +304,7 @@ Add your IP exceptions to the `noProxy` chart value as a comma separated list. M
 * Service cluster IP range (default: `10.43.0.0/16`).
 * Internal cluster domains (default: `.svc,.cluster.local`).
 * Any worker cluster `controlplane` nodes.
-Rancher supports CIDR notation ranges in this list.
+{rancher-product-name} supports CIDR notation ranges in this list.
 
 When not including sensitive data, the `proxy` or `extraEnv` chart options can be used. When using `extraEnv` the `noProxy` Helm option is ignored. Therefore, the `NO_PROXY` environment variable must also be set with `extraEnv`.
 
@@ -396,4 +396,4 @@ Your load balancer must support long lived websocket connections and will need t
 [#_health_checks]
 === Health Checks
 
-Rancher will respond `200` to health checks on the `/healthz` endpoint.
+{rancher-product-name} will respond `200` to health checks on the `/healthz` endpoint.

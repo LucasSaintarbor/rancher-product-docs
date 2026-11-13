@@ -1,7 +1,7 @@
 = Configuring OpenLDAP
 :description: Configure OpenLDAP in Rancher to authenticate users using their LDAP credentials and manage access to clusters and projects based on external user groups
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/index.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/openldap/openldap.adoc
@@ -14,12 +14,12 @@ ifeval::["{build-type}" == "community"]
 :xref-openldap-reference: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/openldap-config-reference.adoc
 endif::[]
 
-If your organization uses LDAP for user authentication, you can configure Rancher to communicate with an OpenLDAP server to authenticate users. This allows Rancher admins to control access to clusters and projects based on users and groups managed externally in the organisation's central user repository, while allowing end-users to authenticate with their LDAP credentials when logging in to the Rancher UI.
+If your organization uses LDAP for user authentication, you can configure {rancher-product-name} to communicate with an OpenLDAP server to authenticate users. This allows Rancher admins to control access to clusters and projects based on users and groups managed externally in the organisation's central user repository, while allowing end-users to authenticate with their LDAP credentials when logging in to the Rancher UI.
 
 [#_prerequisites]
 == Prerequisites
 
-Rancher must be configured with a LDAP bind account (aka service account) to search and retrieve LDAP entries pertaining to users and groups that should have access. It is recommended to not use an administrator account or personal account for this purpose and instead create a dedicated account in OpenLDAP with read-only access to users and groups under the configured search base (see below).
+{rancher-product-name} must be configured with a LDAP bind account (aka service account) to search and retrieve LDAP entries pertaining to users and groups that should have access. It is recommended to not use an administrator account or personal account for this purpose and instead create a dedicated account in OpenLDAP with read-only access to users and groups under the configured search base (see below).
 
 ____
 *Using TLS?*

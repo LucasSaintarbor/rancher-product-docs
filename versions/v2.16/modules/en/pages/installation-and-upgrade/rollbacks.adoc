@@ -1,7 +1,7 @@
 = Rollbacks
 :description: Learn how to roll back Rancher to a previous version by using the Rancher Backups application to restore from backup and create a Restore custom resource
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/rollbacks.adoc 
 :page-product-path: installation-and-upgrade/rollbacks.adoc
@@ -22,7 +22,7 @@ ifeval::["{build-type}" == "community"]
 :xref-rancher-restore: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/restore-rancher.adoc
 endif::[]
 
-This page outlines how to roll back Rancher to a previous version after an upgrade.
+This page outlines how to roll back {rancher-product-name} to a previous version after an upgrade.
 
 include::shared:ROOT:partial$en/rollback-warning.adoc[]
 
@@ -39,7 +39,7 @@ Follow the instructions from this page when:
 
 To roll back Rancher to a lower/previous version, use the *Rancher Backups* application and restore Rancher from backup.
 
-Rancher has to be started with the lower/previous version after a rollback.
+{rancher-product-name} has to be started with the lower/previous version after a rollback.
 
 A restore is performed by creating a Restore custom resource.
 
@@ -100,7 +100,7 @@ kubectl logs -n cattle-resources-system -f
 [#_step_2_roll_back_to_a_previous_rancher_version]
 == Step 2: Roll Back to a Previous Rancher Version
 
-Rancher can be rolled back using the Helm CLI. To roll back to the previous version:
+{rancher-product-name} can be rolled back using the Helm CLI. To roll back to the previous version:
 
 [,yaml]
 ----

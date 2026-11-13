@@ -1,7 +1,7 @@
 = Cluster and Project Roles
 :description: Manage cluster and project roles to define user access and permissions in Rancher by using the Users & Authentication section to select Role Templates,
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/manage-role-based-access-control-rbac/cluster-and-project-roles.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/manage-role-based-access-control-rbac/cluster-and-project-roles.adoc
@@ -58,7 +58,7 @@ When a Cluster Member creates a project, the user is automatically assigned <<#_
 [#_custom_cluster_roles]
 === Custom Cluster Roles
 
-Rancher lets you assign _custom cluster roles_ to a standard user instead of the typical `Owner` or `Member` roles. These roles can be either a built-in custom cluster role or one defined by a Rancher administrator. They are convenient for defining narrow or specialized access for a standard user within a cluster. See the table below for a list of built-in custom cluster roles.
+{rancher-product-name} lets you assign _custom cluster roles_ to a standard user instead of the typical `Owner` or `Member` roles. These roles can be either a built-in custom cluster role or one defined by a Rancher administrator. They are convenient for defining narrow or specialized access for a standard user within a cluster. See the table below for a list of built-in custom cluster roles.
 
 [#_cluster_role_reference]
 === Cluster Role Reference
@@ -207,7 +207,7 @@ Users assigned the `Owner` or `Member` role for a project automatically inherit 
 [#_custom_project_roles]
 === Custom Project Roles
 
-Rancher lets you assign _custom project roles_ to a standard user instead of the typical `Owner`, `Member`, or `Read Only` roles. These roles can be either a built-in custom project role or one defined by a Rancher administrator. They are convenient for defining narrow or specialized access for a standard user within a project. See the table below for a list of built-in custom project roles.
+{rancher-product-name} lets you assign _custom project roles_ to a standard user instead of the typical `Owner`, `Member`, or `Read Only` roles. These roles can be either a built-in custom project role or one defined by a Rancher administrator. They are convenient for defining narrow or specialized access for a standard user within a project. See the table below for a list of built-in custom project roles.
 
 [#_project_role_reference]
 === Project Role Reference

@@ -1,7 +1,7 @@
 = Group Permissions with Shibboleth and OpenLDAP
 :description: Configure OpenLDAP with Shibboleth to search for groups in Rancher and assign them to clusters, projects, or namespaces using the Rancher UI
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-24
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-shibboleth-saml/about-group-permissions.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/shibboleth-saml/group-permissions.adoc
@@ -29,7 +29,7 @@ In this scenario, OpenLDAP allows the cluster owner to search for groups when as
 
 When a member of the OpenLDAP group logs in to Rancher, she is redirected to Shibboleth and enters her username and password.
 
-Shibboleth validates her credentials, and retrieves user attributes from OpenLDAP, including groups. Then Shibboleth sends a SAML assertion to Rancher including the user attributes. Rancher uses the group data so that she can access all of the resources and permissions that her groups have permissions for.
+Shibboleth validates her credentials, and retrieves user attributes from OpenLDAP, including groups. Then Shibboleth sends a SAML assertion to Rancher including the user attributes. {rancher-product-name} uses the group data so that she can access all of the resources and permissions that her groups have permissions for.
 
 image::shibboleth-with-openldap-groups.svg[Adding OpenLDAP Group Permissions to Rancher Resources]
 

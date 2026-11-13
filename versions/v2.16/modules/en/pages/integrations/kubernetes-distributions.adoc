@@ -1,7 +1,7 @@
 = Kubernetes Distributions
 :description: Learn about Kubernetes distributions, such as K3s and RKE2, their use cases, and how Rancher provisions them across various platforms
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/kubernetes-distributions/index.adoc 
 :page-product-path: integrations/kubernetes-distributions.adoc
@@ -19,7 +19,7 @@ K3s is a lightweight, fully compliant Kubernetes distribution designed for a ran
 [#__k3s_product_name_with_rancher]
 === {k3s-product-name} with Rancher
 
-* Rancher allows easy provision of K3s across a range of platforms including Amazon EC2, DigitalOcean, Azure, vSphere, or existing servers.
+* {rancher-product-name} allows easy provision of K3s across a range of platforms including Amazon EC2, DigitalOcean, Azure, vSphere, or existing servers.
 * Standard Rancher management of Kubernetes clusters including all outlined {xref-cluster-deployment}#_cluster_management_capabilities_by_cluster_type[cluster management capabilities].
 
 [#__rke2_product_name]
@@ -39,5 +39,5 @@ Primary characteristics of RKE2 include:
 [#__rke2_product_name_with_rancher]
 == {rke2-product-name} with Rancher
 
-* Rancher allows easy provision of RKE2 across a range of platforms including Amazon EC2, DigitalOcean, Azure, vSphere, or existing servers.
+* {rancher-product-name} allows easy provision of RKE2 across a range of platforms including Amazon EC2, DigitalOcean, Azure, vSphere, or existing servers.
 * Standard Rancher management of Kubernetes clusters including all outlined {xref-cluster-deployment}#_cluster_management_capabilities_by_cluster_type[cluster management capabilities].

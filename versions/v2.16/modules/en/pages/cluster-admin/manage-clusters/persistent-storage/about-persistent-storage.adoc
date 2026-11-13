@@ -1,7 +1,7 @@
 = How Persistent Storage Works
 :description: Learn how persistent storage works in Kubernetes by using persistent volumes and persistent volume claims to manage data
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/create-kubernetes-persistent-storage/manage-persistent-storage/about-persistent-storage.adoc 
 :page-product-path: cluster-admin/manage-clusters/persistent-storage/about-persistent-storage.adoc
@@ -40,7 +40,7 @@ If you are setting up existing storage for a workload, the workload mounts a PVC
 
 If a workload should request new storage, the workload mounts PVC, which refers to a storage class, which has the capability to create a new PV along with its underlying storage infrastructure.
 
-Rancher lets you create as many PVCs within a project as you'd like.
+{rancher-product-name} lets you create as many PVCs within a project as you'd like.
 
 You can mount PVCs to a deployment as you create it, or later, after the deployment is running.
 

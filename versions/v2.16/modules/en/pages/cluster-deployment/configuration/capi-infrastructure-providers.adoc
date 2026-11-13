@@ -1,6 +1,6 @@
 = Configuring Native CAPI Infrastructure Providers to Provision RKE2 Clusters
 :description: Configure native CAPI infrastructure providers to provision RKE2 clusters using Rancher UI or kubectl
-:revdate: 2026-08-11
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/capi-infrastructure-providers.adoc
 :page-product-path: cluster-deployment/configuration/capi-infrastructure-providers.adoc 
@@ -22,7 +22,7 @@ endif::[]
 [#_overview]
 == Overview
 
-Rancher can provision RKE2 clusters using native CAPI infrastructure providers, such as https://cluster-api-aws.sigs.k8s.io/[CAPA] (Cluster API Provider AWS) and https://github.com/kubernetes-sigs/cluster-api-provider-vsphere[CAPV] (Cluster API Provider vSphere).
+{rancher-product-name} can provision RKE2 clusters using native CAPI infrastructure providers, such as https://cluster-api-aws.sigs.k8s.io/[CAPA] (Cluster API Provider AWS) and https://github.com/kubernetes-sigs/cluster-api-provider-vsphere[CAPV] (Cluster API Provider vSphere).
 
 Standard RKE2 provisioning relies on Rancher's internal bootstrap and control plane providers alongside Rancher Node Drivers (via `rancher/machine`) as the infrastructure provider. This new mode allows you to substitute Rancher Node Drivers with native CAPI infrastructure providers while retaining Rancher’s bootstrap and control plane logic.
 
@@ -72,12 +72,12 @@ The logs for the infrastructure provider deployment (e.g. `capa-controller-manag
 [#_installing_the_infrastructure_provider]
 == Installing the infrastructure provider
 
-Rancher allows installing the required infrastructure provider through {turtles-product-name}. Refer to the {url-CAPI-docs}[documentation] to install the CAPA or CAPV provider.
+{rancher-product-name} allows installing the required infrastructure provider through {turtles-product-name}. Refer to the {url-CAPI-docs}[documentation] to install the CAPA or CAPV provider.
 
 [#_provisioning_a_cluster_via_the_rancher_ui]
 == Provisioning a cluster via the Rancher UI
 
-Rancher provides native UI workflows to provision RKE2 clusters using CAPI infrastructure providers without requiring manual YAML creation.
+{rancher-product-name} provides native UI workflows to provision RKE2 clusters using CAPI infrastructure providers without requiring manual YAML creation.
 
 Current support for installable UI extensions is limited to CAPA.
 
@@ -131,7 +131,7 @@ To do this, CAPA provides the `clusterawsadm` tool to generate and apply the req
 
 Then, configure the provider identity in the upstream cluster so that the CAPA provider can create resources on AWS.
 
-To do this, create a {xref-cloud-credentials}[cloud credential] for AWS. Rancher creates the corresponding `AWSClusterStaticIdentity` with the same name, if the CAPA provider is installed. Rancher will not create a corresponding identity if a manually created identity of the same name already exists.
+To do this, create a {xref-cloud-credentials}[cloud credential] for AWS. {rancher-product-name} creates the corresponding `AWSClusterStaticIdentity` with the same name, if the CAPA provider is installed. {rancher-product-name} will not create a corresponding identity if a manually created identity of the same name already exists.
 
 [CAUTION]
 ====
@@ -495,7 +495,7 @@ Machine templates for CAPI infrastructure providers, such as `AWSMachineTemplate
 [#_customizing_user-data]
 === Customizing user-data
 
-You can define custom cloud-init user data for each machine pool in the `clusters.provisioning.cattle.io` resource. To do this, set the value of the `.spec.rkeConfig.machinePools.userdata.inlineUserdata` field to an inline yaml string in the cloud-config format. Rancher merges this user-data with the user-data it generates to bootstrap the cluster nodes.
+You can define custom cloud-init user data for each machine pool in the `clusters.provisioning.cattle.io` resource. To do this, set the value of the `.spec.rkeConfig.machinePools.userdata.inlineUserdata` field to an inline yaml string in the cloud-config format. {rancher-product-name} merges this user-data with the user-data it generates to bootstrap the cluster nodes.
 
 For this provisioning method, Rancher generates the final user-data as a https://docs.cloud-init.io/en/latest/explanation/format/jinja.html#user-data-formats-jinja[Jinja template]. You can therefore add limited Jinja directives in your custom user-data, such as some cloud-init variable substitutions.
 
@@ -503,7 +503,7 @@ For this provisioning method, Rancher generates the final user-data as a https:/
 ====
 Do not include sensitive data in this field, as it is part of a resource other than a Secret.
 
-The `.spec.rkeConfig.machinePools.userdata.inlineUserdata` field is only valid for native CAPI providers described in this document, and has no effect on clusters provisioned by Rancher through the standard method with node drivers. Rancher only generates user-data in the Jinja format for native CAPI providers.
+The `.spec.rkeConfig.machinePools.userdata.inlineUserdata` field is only valid for native CAPI providers described in this document, and has no effect on clusters provisioned by Rancher through the standard method with node drivers. {rancher-product-name} only generates user-data in the Jinja format for native CAPI providers.
 ====
 
 Modifying the user-data field causes all of the machines in the pool to be recreated.

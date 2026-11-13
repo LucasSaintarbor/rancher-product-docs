@@ -1,7 +1,7 @@
 = Configuring a Global Default Private Registry
 :description: Configure a global default private registry by specifying the registry host, using pull secrets, and ensuring system images are pulled from it for all clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/global-default-private-registry.adoc 
 :page-product-path: rancher-admin/global-configuration/global-default-private-registry.adoc
@@ -28,7 +28,7 @@ There are two main ways to set up a private registry in Rancher:
 * Set up a global system default registry in the **Settings** tab in the global view.
 * Set up a cluster-level system default private registry in **Advanced Options** when provisioning or updating a downstream cluster.
 
-Use the global system default registry in air-gapped environments or other setups where all clusters share the same default registry host. Rancher uses this registry to pull core images required for system components and configures downstream clusters to do the same by default.
+Use the global system default registry in air-gapped environments or other setups where all clusters share the same default registry host. {rancher-product-name} uses this registry to pull core images required for system components and configures downstream clusters to do the same by default.
 
 Use a cluster-level default registry when a downstream cluster needs a different registry than the global default or requires different credentials for the same registry.
 
@@ -40,7 +40,7 @@ Use a cluster-level default registry when a downstream cluster needs a different
 . Go to `system-default-registry` and choose *⋮ > Edit Setting*.
 . Enter your registry's hostname and port (e.g. `registry.yourdomain.com:port`). Do not prefix the text with `http://` or `https://`.
 
-*Result:* Rancher pulls system images from your private registry.
+*Result:* {rancher-product-name} pulls system images from your private registry.
 
 [#_set_an_authenticated_private_registry_as_the_default_registry]
 == Set an Authenticated Private Registry as the Default Registry
@@ -56,7 +56,7 @@ If your registry requires authentication (such as `.dockerconfigjson`), perform 
 . Find `system-default-registry` and select *⋮ > Edit Setting*.
 . Enter your registry hostname and port (such as `registry.yourdomain.com:port`). Do not prefix the text with `http://` or `https://`.
 
-*Result:* Rancher propagates the pull secret into the required Rancher-managed namespaces in the local cluster and configures Rancher-managed workloads to use it. Rancher automatically configures new and existing downstream clusters to point to the registry. All Rancher system images across all clusters then pull from your private registry.
+*Result:* {rancher-product-name} propagates the pull secret into the required Rancher-managed namespaces in the local cluster and configures Rancher-managed workloads to use it. {rancher-product-name} automatically configures new and existing downstream clusters to point to the registry. All Rancher system images across all clusters then pull from your private registry.
 
 [NOTE]
 ====

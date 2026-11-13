@@ -1,7 +1,7 @@
 = Compliance Scans
 :description: Run compliance scans to check cluster security against Kubernetes benchmarks and generate reports in CSV or XCCDF format
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/compliance-scans/index.adoc 
 :page-product-path: security/compliance-scans/compliance-scans.adoc
@@ -21,10 +21,10 @@ ifeval::["{build-type}" == "community"]
 endif::[]
 
 ifeval::["{build-type}" != "srfa"] 
-Rancher can run a security scan to check whether a cluster is deployed according to security best practices as defined in Kubernetes security benchmarks, such as the ones provided by STIG, BSI or CIS. The Compliance scans can run on any Kubernetes cluster, including hosted Kubernetes providers such as EKS, AKS, and GKE.
+{rancher-product-name} can run a security scan to check whether a cluster is deployed according to security best practices as defined in Kubernetes security benchmarks, such as the ones provided by STIG, BSI or CIS. The Compliance scans can run on any Kubernetes cluster, including hosted Kubernetes providers such as EKS, AKS, and GKE.
 endif::[]
 ifeval::["{build-type}" == "srfa"]
-Rancher can run a security scan to check whether a cluster is deployed according to security best practices as defined in Kubernetes security benchmarks, such as the ones provided by STIG, BSI or CIS. The Compliance scans can run on any Kubernetes cluster, including hosted Kubernetes providers such as EKS.
+{rancher-product-name} can run a security scan to check whether a cluster is deployed according to security best practices as defined in Kubernetes security benchmarks, such as the ones provided by STIG, BSI or CIS. The Compliance scans can run on any Kubernetes cluster, including hosted Kubernetes providers such as EKS.
 endif::[]
 
 The `rancher-compliance` app leverages https://github.com/aquasecurity/kube-bench[kube-bench,] an open-source tool from Aqua Security, to check the compliance of clusters against Kubernetes Benchmarks. Also, to generate a cluster-wide report, the application utilizes https://github.com/vmware-tanzu/sonobuoy[Sonobuoy] for report aggregation.

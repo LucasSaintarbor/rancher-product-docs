@@ -1,7 +1,7 @@
 = AKS Cluster Configuration Reference
 :description: Configure an AKS cluster in Rancher by enabling role-based access control, providing cloud credentials, selecting a subscription, and defining resource groups
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-28
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/cluster-configuration/rancher-server-configuration/aks-cluster-configuration.adoc 
 :page-product-path: cluster-deployment/hosted-kubernetes/aks/configuration.adoc
@@ -17,9 +17,9 @@ endif::[]
 [#_role_based_access_control]
 == Role-based Access Control
 
-When provisioning an AKS cluster in the Rancher UI, RBAC cannot be disabled. If role-based access control is disabled for the cluster in AKS, the cluster cannot be registered or imported into Rancher. In practice, this means that local accounts must be enabled in order to register an AKS cluster.
+When provisioning an AKS cluster in the {rancher-product-name} UI, RBAC cannot be disabled. If role-based access control is disabled for the cluster in AKS, the cluster cannot be registered or imported into Rancher. In practice, this means that local accounts must be enabled in order to register an AKS cluster.
 
-Rancher can configure member roles for AKS clusters in the same way as any other cluster. For more information, see the section on {xref-manage-rbac}[role-based access control.]
+{rancher-product-name} can configure member roles for AKS clusters in the same way as any other cluster. For more information, see the section on {xref-manage-rbac}[role-based access control.]
 
 [#_cloud_credentials]
 == Cloud Credentials
@@ -212,7 +212,7 @@ For more information about Azure Monitor Logs, see the https://docs.microsoft.co
 
 Typically, AKS worker nodes do not get public IPs, regardless of whether the cluster is private. In a private cluster, the control plane does not have a public endpoint.
 
-Rancher can connect to a private AKS cluster in one of two ways.
+{rancher-product-name} can connect to a private AKS cluster in one of two ways.
 
 The first way to ensure that Rancher is running on the same https://docs.microsoft.com/en-us/azure/virtual-network/nat-overview[NAT] as the AKS nodes.
 
