@@ -1,0 +1,183 @@
+= Configure Generic SAML
+:page-languages: [en]
+:revdate: 2026-11-16
+:page-revdate: {revdate}
+:page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-saml.adoc
+:page-product-path: rancher-admin/users/authn-and-authz/configure-generic-saml.adoc
+:description: Create a SAML 2.0 application in your identity provider and configure Rancher to work with it. Your users can then sign into Rancher using their identity provider credentials
+
+The Generic Security Assertion Markup Language (SAML) authentication provider lets users sign in to Rancher with credentials from any SAML 2.0 Identity Provider (IdP). Use it when your IdP has no dedicated provider in Rancher, for example Auth0, Google Workspace or CA Siteminder. Generic SAML uses the same SAML implementation as the other SAML providers in Rancher. It adds settings for the NameID format, the signature algorithm, IdP-initiated login and forced re-authentication.
+
+[#_prerequisites]
+== Prerequisites
+
+[NOTE]
+====
+Consult the documentation for your IdP to complete the listed prerequisites.
+====
+
+* You have a SAML 2.0 IdP that you can configure.
+* In your IdP, create a SAML application, also called a SAML client or service provider, with the following settings:
++
+|===
+| Setting | Value
+
+| Assertion Consumer Service (ACS) URL, also called Single Sign-On URL or Reply URL
+| `+https://yourRancherHostURL/v1-saml/genericsaml/saml/acs+`
+
+| Entity ID, also called Audience URI or SP Entity ID
+| `+https://yourRancherHostURL/v1-saml/genericsaml/saml/metadata+`, or the value you enter in the *Entity ID Field* in Rancher
+
+| Single Logout (SLO) URL, optional
+| `+https://yourRancherHostURL/v1-saml/genericsaml/saml/slo+`
+|===
+* In the SAML application, configure attribute statements that send the following user details in the SAML assertion:
+** A display name
+** A user name
+** A value that is unique for every user
+** The groups that the user belongs to
+* Configure the IdP to sign the SAML response, the assertion, or both. Rancher rejects SAML responses where neither is signed.
+* Download the IdP metadata XML file. The root element of the file must be `EntityDescriptor`.
+
+[NOTE]
+====
+Rancher generates the service provider metadata at `+https://yourRancherHostURL/v1-saml/genericsaml/saml/metadata+` only after you configure and save the Generic SAML provider.
+====
+
+[#_configuring_generic_saml_in_rancher]
+== Configuring Generic SAML in Rancher
+
+. In the top left corner, click *☰ > Users & Authentication*.
+. In the left navigation menu, click *Auth Provider*.
+. Click *Generic SAML*.
+. Complete the *Configure a generic SAML provider* form. For help with the fields, see the <<_configuration_reference,configuration reference>>.
+. Click *Enable*.
++
+Rancher redirects you to the IdP login page. Enter your IdP credentials to validate the Generic SAML configuration.
++
+[NOTE]
+====
+You might have to disable the pop-up blocker in your browser to see the IdP login page.
+====
+
+*Result:* Rancher is configured to work with your SAML IdP. Your users can now sign into Rancher using their IdP credentials.
+
+[NOTE]
+.SAML provider caveats
+====
+Generic SAML doesn't support OpenLDAP user and group search. This has the following effects:
+
+* Rancher doesn't validate users and groups when you assign permissions to them.
+* User search returns only users who already logged in to Rancher through this provider. Rancher matches the search text against their user name and display name.
+* To add a user who hasn't logged in yet, enter the exact user ID, that is, the value of the `UID Field` attribute.
+* Rancher doesn't search for groups. To add a group, enter the exact group name that the IdP sends in the `Groups Field` attribute.
+====
+
+[#_configuration_reference]
+== Configuration reference
+
+|===
+| Field | Description
+
+| Display Name Field
+| The attribute that contains the display name of users. +
+ +
+Example: `displayName`
+
+| User Name Field
+| The attribute that contains the user name. +
+ +
+Example: `email`
+
+| UID Field
+| The attribute that is unique to every user. +
+ +
+Example: `email`
+
+| Groups Field
+| The attribute that contains the groups that the user belongs to. +
+ +
+Example: `groups`
+
+| Entity ID Field
+| The entity ID of Rancher as a service provider. It must match the entity ID configured in the IdP application. +
+ +
+Default: `+https://yourRancherHostURL/v1-saml/genericsaml/saml/metadata+`
+
+| Rancher API Host
+| The URL of your Rancher server.
+
+| Private Key / Certificate
+| A key and certificate pair. Rancher uses the private key to sign SAML requests and to decrypt encrypted assertions. The IdP uses the certificate to verify the signature.
+
+| Metadata XML
+| The IdP metadata XML file.
+
+| NameID Format
+| The NameID format that Rancher requests from the IdP. Options are `Unspecified`, `Email Address`, `Transient` and `Persistent`. +
+ +
+Default: `Unspecified`
+
+| Signature Algorithm
+| The algorithm Rancher uses to sign SAML requests. Options are `RSA-SHA256`, `RSA-SHA1` and `RSA-SHA512`. +
+ +
+Default: `RSA-SHA256`
+
+| Allow IdP-initiated login
+| If selected, Rancher accepts SAML responses that the IdP sends without a prior request from Rancher. Users can then start the login from the IdP portal. +
+ +
+Default: Cleared
+
+| Force re-authentication
+| If selected, Rancher asks the IdP to authenticate the user again, even if the user already has a session with the IdP. +
+ +
+Default: Cleared
+|===
+
+[TIP]
+====
+You can generate a key and certificate pair with an `openssl` command. For example:
+
+[,shell]
+----
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout myservice.key -out myservice.crt
+----
+====
+
+[CAUTION]
+====
+IdP-initiated login is more exposed to replay and login cross-site request forgery attacks than service provider initiated login. Select *Allow IdP-initiated login* only if your users need to start the login from the IdP portal.
+====
+
+[NOTE]
+====
+After an IdP-initiated login, Rancher signs the user in but doesn't redirect the browser to the Rancher UI. The browser shows a blank page. To continue, open the Rancher URL in the browser.
+====
+
+[NOTE]
+====
+`RSA-SHA1` is a weak algorithm. Use it only if your IdP doesn't support `RSA-SHA256` or `RSA-SHA512`.
+====
+
+[#_troubleshooting]
+== Troubleshooting
+
+If the login fails, first verify the settings of the SAML application in your IdP. The Rancher debug logs can help you find the cause of the problem. For more information, see xref:faq/technical-items.adoc#_how_can_i_enable_debug_logging[How can I enable debug logging].
+
+[#_forbidden_message_displayed_after_idp_login]
+=== Forbidden message displayed after IdP login
+
+You can enter your credentials on the IdP login page, but Rancher displays a `Forbidden` message afterward.
+
+* Check the Rancher debug log.
+* If the log displays `SAML ERROR: signature element not present`, configure your IdP to sign the SAML response, the assertion, or both.
+
+[#_http_404_when_accessing_the_metadata_url]
+=== HTTP 404 when accessing the metadata URL
+
+Rancher serves the metadata at `/v1-saml/genericsaml/saml/metadata` only after you configure and save Generic SAML. Configure and save the provider, and then access the metadata again.
+
+[#_configuring_saml_single_logout_slo]
+== Configuring SAML Single Logout (SLO)
+
+include::shared:ROOT:partial$en/configure-slo.adoc[]

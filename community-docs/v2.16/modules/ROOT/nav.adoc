@@ -69,6 +69,7 @@
 ***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-pingidentity.adoc[]
 ***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-okta-saml.adoc[]
 ***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-oidc.adoc[]
+***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-saml.adoc[]
 ***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-amazon-cognito.adoc[]
 **** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/index.adoc[]
 ***** xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/openldap-config-reference.adoc[]
