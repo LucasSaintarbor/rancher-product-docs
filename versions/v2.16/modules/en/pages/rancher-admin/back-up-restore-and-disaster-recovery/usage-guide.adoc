@@ -130,9 +130,9 @@ The resourceSets select some CAPI provider resources for backup, e.g. for CAPA o
 Limitations:
 
 * Some objects are not automatically saved in backups. They can be selected to be included in the backup by using the `resources.cattle.io/backup:"true"` label:
-** Secrets used by CAPRKE2 and CAPK for each downstream cluster, such as kubeconfigs and certificates. These secrets can be listed using the `cluster.x-k8s.io/cluster-name:<cluster-name>` label selector. These secrets should only be selected for back-up for clusters created using {turtles-product-name} and not for RKE2 and K3s clusters provisioned directly by Rancher.
-** Namespaces objects used for cluster CAPI resources.
-** Credential secrets referenced by identity objects such as `VSphereClusterIdentity`.
+** Secrets used by external control plane providers such as CAPRKE2 for each downstream cluster, such as kubeconfigs and certificates. These secrets can be listed using the `cluster.x-k8s.io/cluster-name:<cluster-name>` label selector. These secrets should only be manually selected for back-up for clusters created using {turtles-product-name} and not for RKE2 and K3s clusters provisioned directly by Rancher.
+** User-defined namespace objects used for {turtles-product-name} cluster CAPI resources.
+** Credential secrets referenced by user-created identity objects such as `VSphereClusterIdentity`.
 * Providers and their configuration (such as `CAPIProvider` and `ClusterctlConfig`) are not saved in the backup, and need to be reinstalled when migrating Rancher.
 
 [#_edge_cases_and_improper_usage]
