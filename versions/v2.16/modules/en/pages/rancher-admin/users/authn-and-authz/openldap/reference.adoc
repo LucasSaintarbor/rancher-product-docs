@@ -1,7 +1,7 @@
 = OpenLDAP Configuration Reference
 :description: Configure OpenLDAP server parameters by entering the address, port, and protocol, setting the user and group search base, and customizing schema mappings
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-16
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/openldap-config-reference.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/openldap/reference.adoc
@@ -97,6 +97,9 @@ The table below details the parameters for the user schema configuration.
 | Login Attribute
 | The attribute whose value matches the username part of credentials entered by your users when logging in to Rancher. This is typically `uid`.
 
+| User Identifier Attribute
+| Optional. The user attribute whose value Rancher uses as the user principal ID instead of the DN. For example, `uid`. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+
 | User Member Attribute
 | The user attribute containing the Distinguished Name of groups a user is member of. Usually this is one of `memberOf` or `isMemberOf`.
 
@@ -125,6 +128,9 @@ The table below details the parameters for the group schema configuration.
 | Name Attribute
 | The group attribute whose value is suitable for a display name.
 
+| Group Identifier Attribute
+| Optional. The group attribute whose value Rancher uses as the group principal ID instead of the DN. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+
 | Group Member User Attribute
 | The name of the *user attribute* whose format matches the group members in the `Group Member Mapping Attribute`.
 
@@ -140,3 +146,18 @@ The table below details the parameters for the group schema configuration.
 | Nested Group Membership
 | This settings defines whether Rancher should resolve nested group memberships. Use only if your organization makes use of these nested memberships (ie. you have groups that contain other groups as members). This option is disabled if you are using Shibboleth.
 |===
+
+[#_principal_identifier_attributes]
+== Principal identifier attributes
+
+include::shared:ROOT:partial$en/ldap-principal-id-attributes.adoc[]
+
+[#_identifier_attributes_with_okta_and_shibboleth]
+=== Identifier attributes with Okta and Shibboleth
+
+When you configure OpenLDAP for user and group search with Okta or Shibboleth, the principal IDs come from the SAML assertion, not from OpenLDAP. In this case, the identifier attributes have different rules:
+
+* The *User Identifier Attribute* must contain the same value that the identity provider sends in the *UID Field*.
+* The *Group Identifier Attribute* must contain the same value that the identity provider sends in the *Groups Field*.
+* If a field is empty, Rancher uses the *Login Attribute* for users and the *Group DN Attribute* for groups.
+* You can change the fields while the provider is enabled.
