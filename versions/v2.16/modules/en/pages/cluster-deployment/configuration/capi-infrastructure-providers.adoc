@@ -35,11 +35,14 @@ This guide provides steps for provisioning through the Rancher UI as well as exa
 Provisioning with a native CAPI infrastructure provider and Rancher as a bootstrap and control plane provider is distinct from using {url-CAPI-docs}[{turtles-product-name}] and the https://caprke2.docs.rancher.com/[CAPRKE2] provider to provision a RKE2 cluster and subsequently import it into Rancher.
 ====
 
-[CAUTION]
-====
-By default, the `Standard User` and `Create Clusters` {xref-global-permissions}[global permissions] allow creating and then updating CAPI infrastructure objects in the `fleet-default` namespace.
+By default, the `Standard User` and `Create Clusters` {xref-global-permissions}[global permissions] allow assigned users to create and update CAPI infrastructure objects in the `fleet-default` namespace. These permissions also allow users to get and list namespaced `capiproviders` resources in the `turtles-capi.cattle.io` API group.
 
-Manually created infrastructure provider identity objects, such as `AWSClusterStaticIdentity` or `VSphereClusterIdentity`, that target the `fleet-default` namespace can be used through CAPI infrastructure objects such as `AWSCluster` or `VsphereCluster`.
+[WARNING]
+.Plain-text credentials in CAPIProvider resources
+====
+Do not store credentials or other sensitive values in the `.spec.variables` field of a `CAPIProvider` resource. Values in this field are stored in plain text and can be viewed by any user who has permission to access provider configurations.
+
+To securely manage credentials, use provider-specific identity objects, such as `AWSClusterStaticIdentity` or `VSphereClusterIdentity`. Create these identity objects and reference them directly from infrastructure cluster objects, such as `AWSCluster` or `VSphereCluster`.
 ====
 
 [#_limitations_and_requirements]
