@@ -50,7 +50,6 @@ To securely manage credentials, use provider-specific identity objects, such as 
 [#_limitations_and_requirements]
 === Limitations and requirements
 
-* Windows worker nodes are currently not supported.
 * SSH access to cluster nodes through the Rancher UI is not supported.
 * Kubernetes cloud provider requirements: a cloud-specific Kubernetes provider for the infrastructure where the downstream cluster runs is required (e.g., the https://cloud-provider-aws.sigs.k8s.io/[Kubernetes AWS Cloud Provider] for CAPA or the `rancher-vsphere-cpi` chart for CAPV).
 
