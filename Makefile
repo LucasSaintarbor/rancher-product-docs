@@ -1,7 +1,7 @@
 product-local:
 	mkdir -p tmp
 	npx antora --version
-	npx antora --stacktrace --log-format=pretty --log-level=info \
+	npx antora $(PDF_ANTORA_ARGS) --stacktrace --log-format=pretty --log-level=info \
 		playbook-product-local.yml \
 		2>&1 | tee tmp/product-local-build.log 2>&1
 
@@ -16,7 +16,7 @@ product-remote:
 	mkdir -p tmp
 	npm ci
 	npx antora --version
-	npx antora --stacktrace --log-format=pretty --log-level=info \
+	npx antora $(PDF_ANTORA_ARGS) --stacktrace --log-format=pretty --log-level=info \
 		playbook-product-remote.yml \
 		2>&1 | tee tmp/product-remote-build.log 2>&1
 
@@ -57,3 +57,12 @@ preview-product-local:
 
 preview-srfa-local:
 	npx http-server build/site-srfa-local -c-1 -p 8082
+
+# Optional PDF build: pdf-options.yml activates it. Refer to
+# dsc-style-bundle/pdf/README.md. Include pdf.mk last, so that product-local
+# stays the default target.
+PDF_PLAYBOOK ?= playbook-product-local.yml
+PDF_LOCAL_PLAYBOOK ?= playbook-product-local.yml
+PDF_SITE_DIR ?= build/site-product-local
+DSC ?= dsc-style-bundle
+-include $(DSC)/pdf/pdf.mk
