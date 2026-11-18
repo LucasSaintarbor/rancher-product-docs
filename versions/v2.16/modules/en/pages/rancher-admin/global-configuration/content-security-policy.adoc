@@ -15,21 +15,28 @@ Endpoints serving untrusted third-party content override this with a stricter po
 [#_default_policy]
 == Default Policy
 
-Rancher sends the following policy by default:
+{rancher-product-name} sends the following policy by default:
 
 [,text]
 ----
 base-uri 'self'; object-src 'none'; frame-ancestors 'self'
 ----
 
-`base-uri 'self'`:: Restricts the `<base>` element to the Rancher origin. This prevents injected `<base>` tags from redirecting relative URLs to an external host.
+`base-uri 'self'`:: Restricts the `<base>` element to the {rancher-product-name} origin. This prevents injected `<base>` tags from redirecting relative URLs to an external host.
 `object-src 'none'`:: Blocks `<object>`, `<embed>`, and `<applet>` content.
 `frame-ancestors 'self'`:: Restricts UI framing to same-origin pages.
+
+[NOTE]
+====
+The default policy does not include a `script-src` directive or a `default-src` directive. This means inline scripts are not disabled by default. If your security requirements mandate disabling inline scripts (for example, by enforcing a `script-src` directive without `'unsafe-inline'`), you can do so by configuring a custom policy. Because adding strict script restrictions can potentially impact {rancher-product-name} UI functionality, always test your custom policy in a non-production environment first.
+====
 
 [#_change_the_policy]
 == Change the Policy
 
-The policy is stored in the `ui-csp-policy` setting. This setting is omitted from the *Global Settings* UI page. Edit the corresponding `Setting.management.cattle.io/v3` custom resource with `kubectl`:
+The policy is stored in the `ui-csp-policy` setting. To prevent administrators from accidentally locking themselves out of the {rancher-product-name} UI if a restrictive policy breaks the interface, this setting is intentionally omitted from the *Global Settings* UI page. 
+
+You must edit the corresponding `Setting.management.cattle.io/v3` custom resource directly using `kubectl`:
 
 [,shell]
 ----
@@ -47,11 +54,13 @@ metadata:
 value: "base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
 ----
 
-Rancher evaluates this setting on every request. Changes take effect immediately without a system restart.
+{rancher-product-name} evaluates this setting on every request. Changes take effect immediately without a system restart.
 
 [IMPORTANT]
 ====
-An overly restrictive policy can break the Rancher UI. Because `ui-csp-policy` is not available on the *Global Settings* page, recovering UI access requires `kubectl` access to the local cluster. Always test custom policies in a non-production environment first.
+An overly restrictive policy can break the {rancher-product-name} UI. Be aware that strict policies might also cause unexpected behaviors with non-{rancher-product-name} hosted embeds, integrations (such as Fleet and Harvester), Apps & Marketplace, UI extensions, and external cloud provider dashboards (such as EKS, AKS, and GKE). Always thoroughly test custom policies in a non-production environment first to ensure all required components function as expected.
+
+If a broken policy locks you out of the interface, you must use `kubectl` access to the local cluster to revert the policy and recover UI access.
 ====
 
 [#_disable_the_header]
