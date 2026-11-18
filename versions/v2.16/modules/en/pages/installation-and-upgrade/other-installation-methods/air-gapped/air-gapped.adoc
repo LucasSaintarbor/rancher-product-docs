@@ -1,7 +1,7 @@
 = Air-Gapped Helm CLI Install
 :description: Install Rancher server using the Helm CLI in an air-gapped environment by setting up infrastructure and a private registry and collecting and publishing required
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/index.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/air-gapped.adoc
@@ -27,13 +27,6 @@ This section is about using the Helm CLI to install the Rancher server in an air
 For more information on each installation option, refer to {xref-install-upgrade}[this page.]
 
 Throughout the installation instructions, there will be _tabs_ for each installation option.
-
-[IMPORTANT]
-====
-
-If you install Rancher following the Docker installation guide, there is no upgrade path to transition your Docker Installation to a Kubernetes Installation.
-====
-
 
 [#_installation_outline]
 == Installation Outline

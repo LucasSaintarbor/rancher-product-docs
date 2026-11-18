@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-07-15
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/index.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/air-gapped.adoc
@@ -26,32 +26,15 @@ endif::[]
 
 This section is about using the Helm CLI to install the Rancher server in an air gapped environment. An air gapped environment could be where Rancher server will be installed offline, behind a firewall, or behind a proxy.
 
-ifeval::["{build-type}" == "community"]
-The installation steps differ depending on whether Rancher is installed on a K3s Kubernetes cluster or a single Docker container.
-endif::[]
-
 For more information on each installation option, refer to {xref-install-upgrade}[this page.]
 
 Throughout the installation instructions, there will be _tabs_ for each installation option.
-
-ifeval::["{build-type}" == "community"]
-[IMPORTANT]
-====
-If you install Rancher following the Docker installation guide, there is no upgrade path to transition your Docker Installation to a Kubernetes Installation.
-====
-endif::[]
 
 == Installation Outline
 
 . {xref-air-gap-private-reg}[Set up infrastructure and private registry]
 . {xref-air-gap-publish-images}[Collect and publish images to your private registry]
 . {xref-air-gap-install-k8s}[Set up a Kubernetes cluster]
-ifeval::["{build-type}" != "community"]
-. {xref-air-gap-install-k8s}[Set up a Kubernetes cluster]
-endif::[]
-ifeval::["{build-type}" == "community"]
-. {xref-air-gap-install-k8s}[Set up a Kubernetes cluster (Skip this step for Docker installations)]
-endif::[]
 . {xref-air-gap-rancher-ha}[Install Rancher]
 
 == Upgrades

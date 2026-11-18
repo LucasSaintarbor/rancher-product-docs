@@ -1,19 +1,17 @@
 = Other Installation Methods
-:description: Install Rancher in air-gapped environments, use Docker for testing, and migrate to high-availability Kubernetes clusters with the Rancher backup operator
+:description: Install Rancher in air-gapped environments, including offline setups, behind firewalls, or behind proxies
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2025-08-05
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/index.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/other-installation-methods.adoc
 ifeval::["{build-type}" != "community"]
 :xref-air-gap: xref:installation-and-upgrade/other-installation-methods/air-gapped/air-gapped.adoc
-:xref-migrate-cluster: xref:rancher-admin/back-up-restore-and-disaster-recovery/migrate-to-a-new-cluster.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-air-gap: xref:getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/index.adoc
-:xref-migrate-cluster: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/migrate-rancher-to-new-cluster.adoc
 endif::[]
 
 == Air Gapped Installations
@@ -21,13 +19,3 @@ endif::[]
 Follow {xref-air-gap}[these steps] to install the Rancher server in an air gapped environment.
 
 An air gapped environment could be where Rancher server will be installed offline, behind a firewall, or behind a proxy.
-
-== Docker Installations
-
-The xref:[single-node Docker installation] is for Rancher users that are wanting to test out Rancher. Instead of running on a Kubernetes cluster using Helm, you install the Rancher server component on a single node using a `docker run` command.
-
-The Docker installation is for development and testing environments only.
-
-Since there is only one node and a single Docker container, if the node goes down, there is no copy of the etcd data available on other nodes and you will lose all the data of your Rancher server.
-
-The Rancher backup operator can be used to migrate Rancher from the single Docker container install to an installation on a high-availability Kubernetes cluster. For details, refer to the documentation on {xref-migrate-cluster}[migrating Rancher to a new cluster.]
