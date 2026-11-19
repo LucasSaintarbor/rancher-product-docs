@@ -1,7 +1,7 @@
 = 3. Install Kubernetes
 :description: Install Kubernetes on RKE2 or K3s by preparing images, configuring a private registry, running the K3s installation script, and using the kubeconfig file
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/install-kubernetes.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/install-kubernetes.adoc
@@ -26,7 +26,7 @@ endif::[]
 
 This section describes how to install a Kubernetes cluster according to our {xref-arch-rec}#_environment_for_kubernetes_installations[best practices for the Rancher server environment.] This cluster should be dedicated to run only the Rancher server.
 
-Rancher can be installed on any Kubernetes cluster, including hosted Kubernetes providers.
+{rancher-product-name} can be installed on any Kubernetes cluster, including hosted Kubernetes providers.
 
 The steps to set up an air-gapped Kubernetes cluster on RKE2 or K3s are shown below.
 
@@ -90,7 +90,7 @@ The `registries.yaml` file configures registry credentials at the node level for
 [pass]
 <h2><a id="_3_install_k3s"></a>3. Install K3s</h2>
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
 
 To specify the K3s (Kubernetes) version, use the INSTALL_K3S_VERSION (e.g., `INSTALL_K3S_VERSION="v1.24.10+k3s1"`) environment variable when running the K3s installation script.
 
@@ -242,7 +242,7 @@ For more information on private registries configuration file for RKE2, refer to
 [pass]
 <h2><a id="_3_install_rke2"></a>3. Install RKE2</h2>
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[support maintenance terms.]
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[support maintenance terms.]
 
 Download the install script, rke2, rke2-images, and sha256sum archives from the release and upload them into a directory on each server:
 

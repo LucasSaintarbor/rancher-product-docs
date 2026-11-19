@@ -1,7 +1,7 @@
 = Overview
 :description: Find information about managing Kubernetes clusters, authentication, storage, and other features with Rancher
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-05-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/overview.adoc 
 :page-product-path: about-rancher/overview.adoc
@@ -38,22 +38,22 @@ ifeval::["{build-type}" == "community"]
 :xref-k8s-resources-setup: xref:how-to-guides/new-user-guides/kubernetes-resources-setup/index.adoc
 endif::[]
 
-Rancher is a container management platform built for organizations that deploy containers in production. Rancher makes it easy to run Kubernetes everywhere, meet IT requirements, and empower DevOps teams.
+{rancher-product-name} is a container management platform built for organizations that deploy containers in production. {rancher-product-name} makes it easy to run Kubernetes everywhere, meet IT requirements, and empower DevOps teams.
 
 [#_run_kubernetes_everywhere]
 == Run Kubernetes Everywhere
 
 ifeval::["{build-type}" != "srfa"]
-Kubernetes has become the container orchestration standard. Most cloud and virtualization vendors now offer it as standard infrastructure. Rancher users have the choice of creating Kubernetes clusters with Rancher Kubernetes Engine (RKE) or cloud Kubernetes services, such as GKE, AKS, and EKS. Rancher users can also import and manage their existing Kubernetes clusters created using any Kubernetes distribution or installer.
+Kubernetes has become the container orchestration standard. Most cloud and virtualization vendors now offer it as standard infrastructure. {rancher-product-name} users have the choice of creating Kubernetes clusters with Rancher Kubernetes Engine (RKE) or cloud Kubernetes services, such as GKE, AKS, and EKS. {rancher-product-name} users can also import and manage their existing Kubernetes clusters created using any Kubernetes distribution or installer.
 endif::[]
 ifeval::["{build-type}" == "srfa"]
-Kubernetes has become the container orchestration standard. Most cloud and virtualization vendors now offer it as standard infrastructure. Rancher users have the choice of creating Kubernetes clusters with Rancher Kubernetes Engine (RKE) or cloud Kubernetes services, such as EKS. Rancher users can also import and manage their existing Kubernetes clusters created using any Kubernetes distribution or installer.
+Kubernetes has become the container orchestration standard. Most cloud and virtualization vendors now offer it as standard infrastructure. {rancher-product-name} users have the choice of creating Kubernetes clusters with Rancher Kubernetes Engine (RKE) or cloud Kubernetes services, such as EKS. {rancher-product-name} users can also import and manage their existing Kubernetes clusters created using any Kubernetes distribution or installer.
 endif::[]
 
 [#_meet_it_requirements]
 == Meet IT Requirements
 
-Rancher supports centralized authentication, access control, and monitoring for all Kubernetes clusters under its control. For example, you can:
+{rancher-product-name} supports centralized authentication, access control, and monitoring for all Kubernetes clusters under its control. For example, you can:
 
 ifeval::["{build-type}" != "srfa"]
 * Use your Active Directory credentials to access Kubernetes clusters hosted by cloud vendors, such as GKE.
@@ -67,7 +67,7 @@ endif::[]
 [#_empower_devops_teams]
 == Empower DevOps Teams
 
-Rancher provides an intuitive user interface for DevOps engineers to manage their application workload. The user does not need to have in-depth knowledge of Kubernetes concepts to start using Rancher. Rancher catalog contains a set of useful DevOps tools. Rancher is certified with a wide selection of cloud native ecosystem products, including, for example, security tools, monitoring systems, container registries, and storage and networking drivers.
+{rancher-product-name} provides an intuitive user interface for DevOps engineers to manage their application workload. The user does not need to have in-depth knowledge of Kubernetes concepts to start using Rancher. {rancher-product-name} catalog contains a set of useful DevOps tools. {rancher-product-name} is certified with a wide selection of cloud native ecosystem products, including, for example, security tools, monitoring systems, container registries, and storage and networking drivers.
 
 The following figure illustrates the role Rancher plays in IT and DevOps organizations. Each team deploys their applications on the public or private clouds they choose. IT administrators gain visibility and enforce policies across all users, clusters, and clouds.
 
@@ -88,7 +88,7 @@ The Rancher API server is built on top of an embedded Kubernetes API server and 
 === Working with Kubernetes
 
 * *Provisioning Kubernetes clusters:* The Rancher API server can {xref-cluster-deployment}[provision Kubernetes] on existing nodes, or perform {xref-ds-backup-restore}[Kubernetes upgrades.]
-* *Catalog management:* Rancher provides the ability to use a {xref-helm-charts-in-rancher}[catalog of Helm charts] that make it easy to repeatedly deploy applications.
+* *Catalog management:* {rancher-product-name} provides the ability to use a {xref-helm-charts-in-rancher}[catalog of Helm charts] that make it easy to repeatedly deploy applications.
 * *Managing projects:* A project is a group of multiple namespaces and access control policies within a cluster. A project is a Rancher concept, not a Kubernetes concept, which allows you to manage multiple namespaces as a group and perform Kubernetes operations in them. The Rancher UI provides features for {xref-project-admin}[project administration] and for {xref-k8s-resources-setup}[managing applications within projects.]
 * *Fleet Continuous Delivery:* Within Rancher, you can leverage {xref-fleet}[{fleet-product-name}] to deploy applications from git repositories, without any manual operation, to targeted downstream Kubernetes clusters.
 * *Istio:* Our {xref-istio}[integration with Istio] is designed so that a Rancher operator, such as an administrator or cluster owner, can deliver Istio to developers. Then developers can use Istio to enforce security policies, troubleshoot problems, or manage traffic for green/blue deployments, canary deployments, or A/B testing.
@@ -102,7 +102,7 @@ The Rancher API server is built on top of an embedded Kubernetes API server and 
 [#_cluster_visibility]
 === Cluster Visibility
 
-* *Logging:* Rancher can integrate with a variety of popular logging services and tools that exist outside of your Kubernetes clusters.
+* *Logging:* {rancher-product-name} can integrate with a variety of popular logging services and tools that exist outside of your Kubernetes clusters.
 * *Monitoring:* Using Rancher, you can monitor the state and processes of your cluster nodes, Kubernetes components, and software deployments through integration with Prometheus, a leading open-source monitoring solution.
 * *Alerting:* To keep your clusters and applications healthy and driving your organizational productivity forward, you need to stay informed of events occurring in your clusters and projects, both planned and unplanned.
 

@@ -1,7 +1,7 @@
 = Upgrading Cert-Manager
 :description: Upgrade cert-manager to address API changes and follow steps for upgrading using SUSE Application Collection or internet access
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/resources/upgrade-cert-manager.adoc 
 :page-product-path: installation-and-upgrade/resources/upgrade-cert-manager.adoc
@@ -14,9 +14,9 @@ ifeval::["{build-type}" == "community"]
 :xref-air-gap-publish-images: xref:getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/publish-images.adoc
 endif::[]
 
-Rancher is compatible with the API version cert-manager.io/v1 and was last tested with cert-manager version v1.13.1.
+{rancher-product-name} is compatible with the API version cert-manager.io/v1 and was last tested with cert-manager version v1.13.1.
 
-Rancher uses cert-manager to automatically generate and renew TLS certificates for HA deployments of Rancher. As of Fall 2019, three important changes to cert-manager are set to occur that you need to take action on if you have an HA deployment of Rancher:
+{rancher-product-name} uses cert-manager to automatically generate and renew TLS certificates for HA deployments of {rancher-product-name}. As of Fall 2019, three important changes to cert-manager are set to occur that you need to take action on if you have an HA deployment of Rancher:
 
 . https://community.letsencrypt.org/t/blocking-old-cert-manager-versions/98753[Let's Encrypt will be blocking cert-manager instances older than 0.8.0 starting November 1st 2019.]
 . https://cert-manager.io/docs/installation/upgrading/upgrading-0.7-0.8/[Cert-manager is deprecating and replacing the certificate.spec.acme.solvers field]. This change has no exact deadline.
@@ -326,7 +326,7 @@ cert-manager-webhook-787858fcdb-nlzsq      1/1     Running   0          2m
 
 '''
 
-Rancher now supports cert-manager versions 1.6.2 and 1.7.1. We recommend v1.7.x because v 1.6.x will reach end-of-life on March 30, 2022. To read more, see the {xref-install-rancher}#_4_install_cert_manager[cert-manager docs]. For instructions on upgrading cert-manager from version 1.5 to 1.6, see the upstream cert-manager documentation https://cert-manager.io/docs/installation/upgrading/upgrading-1.5-1.6/[here]. For instructions on upgrading cert-manager from version 1.6 to 1.7, see the upstream cert-manager documentation https://cert-manager.io/docs/installation/upgrading/upgrading-1.6-1.7/[here].
+{rancher-product-name} now supports cert-manager versions 1.6.2 and 1.7.1. We recommend v1.7.x because v 1.6.x will reach end-of-life on March 30, 2022. To read more, see the {xref-install-rancher}#_4_install_cert_manager[cert-manager docs]. For instructions on upgrading cert-manager from version 1.5 to 1.6, see the upstream cert-manager documentation https://cert-manager.io/docs/installation/upgrading/upgrading-1.5-1.6/[here]. For instructions on upgrading cert-manager from version 1.6 to 1.7, see the upstream cert-manager documentation https://cert-manager.io/docs/installation/upgrading/upgrading-1.6-1.7/[here].
 
 '''
 

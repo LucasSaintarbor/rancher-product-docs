@@ -1,7 +1,7 @@
 = Tokens
 :description: Create, list, view, delete, and update Rancher tokens to manage access and authentication using spec fields and metadata
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-11-28
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: api/workflows/tokens.adoc 
 :page-product-path: api/workflows/tokens.adoc
@@ -11,7 +11,7 @@ include::shared:ROOT:partial$en/v3-api-tokens-deprecation-warning.adoc[]
 [#_token_resource]
 == Token Resource
 
-Rancher has an imperative API resource `tokens.ext.cattle.io` that allows you to generate tokens for authenticating with Rancher.
+{rancher-product-name} has an imperative API resource `tokens.ext.cattle.io` that allows you to generate tokens for authenticating with {rancher-product-name}.
 
 [,shell]
 ----

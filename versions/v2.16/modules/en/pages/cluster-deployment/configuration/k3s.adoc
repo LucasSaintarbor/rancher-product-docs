@@ -1,7 +1,7 @@
 = {k3s-product-name} Cluster Configuration Reference
 :description: Configure a cluster by setting network options, storage, security features, and components like CoreDNS, Traefik, and SELinux
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-16
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/cluster-configuration/rancher-server-configuration/k3s-cluster-configuration.adoc 
 :page-product-path: cluster-deployment/configuration/k3s.adoc
@@ -60,14 +60,14 @@ ifeval::["{build-type}" == "community"]
 :xref-gce-machine-configuration: xref:reference-guides/cluster-configuration/downstream-cluster-configuration/machine-configuration/google-gce.adoc
 endif::[]
 
-This section covers the configuration options that are available in Rancher for a new or existing K3s Kubernetes cluster.
+This section covers the configuration options that are available in {rancher-product-name} for a new or existing K3s Kubernetes cluster.
 
 [#_overview]
 == Overview
 
 You can configure the Kubernetes options one of two ways:
 
-* <<_configuration_options_in_the_rancher_ui,Rancher UI>>: Use the Rancher UI to select options that are commonly customized when setting up a Kubernetes cluster.
+* <<_configuration_options_in_the_rancher_ui,{rancher-product-name} UI>>: Use the {rancher-product-name} UI to select options that are commonly customized when setting up a Kubernetes cluster.
 * <<_cluster_config_file_reference,Cluster Config File>>: Instead of using the Rancher UI to choose Kubernetes options for the cluster, advanced users can create a K3s config file. Using a config file lets you set any of the https://rancher.com/docs/k3s/latest/en/installation/install-options/[options] available during a K3s installation.
 
 [#_editing_clusters_in_the_rancher_ui]
@@ -540,7 +540,7 @@ To make it easier to put files on nodes beforehand, Rancher expects the followin
 * private-registry
 * flannel-conf
 
-Rancher delivers the files to the path `/var/lib/rancher/k3s/etc/config-files/<option>` in target nodes, and sets the proper options in the K3s server.
+{rancher-product-name} delivers the files to the path `/var/lib/rancher/k3s/etc/config-files/<option>` in target nodes, and sets the proper options in the K3s server.
 
 Example:
 
@@ -653,7 +653,7 @@ The secret or configmap must meet the following requirements:
 [TIP]
 ====
 
-Rancher Dashboard provides an easy-to-use form for creating the secret or configmap.
+{rancher-product-name} Dashboard provides an easy-to-use form for creating the secret or configmap.
 ====
 
 

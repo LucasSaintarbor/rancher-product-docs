@@ -1,7 +1,7 @@
 = Local Authentication
 :description: Configure local authentication as the default method to store user credentials and create backup users to allow access during external authentication failures
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/create-local-users.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/create-local-users.adoc
@@ -14,12 +14,12 @@ endif::[]
 
 [IMPORTANT]
 ====
-Rancher's local authentication provider is designed primarily to support small-scale deployments and test environments.
+{rancher-product-name}'s local authentication provider is designed primarily to support small-scale deployments and test environments.
 
 Enterprise customers require stronger security controls, such as advanced password policies and centralized identity management. It is highly recommended to configure an {xref-authn-and-authz}[external authentication] provider as your primary method for managing user access. In production environments, local authentication should only be used as an emergency backup to ensure you can access Rancher if your external authentication provider goes down.
 ====
 
-Local authentication is the default until you configure an external authentication provider. Rancher stores user account information, such as usernames and passwords, locally. By default, the `admin` user that logs in to Rancher for the first time is a local user.
+Local authentication is the default until you configure an external authentication provider. {rancher-product-name} stores user account information, such as usernames and passwords, locally. By default, the `admin` user that logs in to Rancher for the first time is a local user.
 
 [#_adding_local_users]
 == Adding Local Users

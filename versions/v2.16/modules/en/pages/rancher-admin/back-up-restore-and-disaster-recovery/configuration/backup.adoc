@@ -1,7 +1,7 @@
 = Backup Configuration
 :description: Configure backup schedules, enable encryption, specify storage locations, and choose between basic and full ResourceSets to back up Rancher resources securely
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/backup-restore-configuration/backup-configuration.adoc 
 :page-product-path: rancher-admin/back-up-restore-and-disaster-recovery/configuration/backup.adoc
@@ -127,7 +127,7 @@ Selecting the first option stores this backup in the storage location configured
 [CAUTION]
 ====
 
-If you use an S3 backup target, make sure that every cluster has its own bucket or folder. Rancher populates snapshot information from any available snapshot listed in the S3 bucket or folder configured for that cluster.
+If you use an S3 backup target, make sure that every cluster has its own bucket or folder. {rancher-product-name} populates snapshot information from any available snapshot listed in the S3 bucket or folder configured for that cluster.
 ====
 
 

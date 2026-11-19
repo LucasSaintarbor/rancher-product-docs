@@ -1,7 +1,7 @@
 = SUSE Rancher Prime: The Open Infrastructure Platform
 :description: Learn about Rancher Prime, the new enterprise offering from SUSE Rancher, and how to get started by filling out the form
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-29
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/quick-start-guides/deploy-rancher-manager/prime.adoc 
 :page-product-path: about-rancher/prime.adoc
@@ -20,7 +20,7 @@ Rancher Prime uses the same open source code as the Rancher project which remain
 
 === One control plane for any Kubernetes
 
-Rancher Manager lets you provision, govern and audit every cluster from a single console. It manages SUSE's RKE2 and K3s distributions and Virtual Clusters. It also manages any CNCF-certified distribution, including Amazon EKS, Azure AKS and Google GKE. Access control, security policies and audit logs work the same way across all of your environments, air-gapped sites included. Rancher Manager connects to the identity providers you already use, such as Active Directory, OpenLDAP and Okta.
+SUSE Rancher Prime lets you provision, govern and audit every cluster from a single console. It manages SUSE's RKE2 and K3s distributions and Virtual Clusters. It also manages any CNCF-certified distribution, including Amazon EKS, Azure AKS and Google GKE. Access control, security policies and audit logs work the same way across all of your environments, air-gapped sites included. SUSE Rancher Prime connects to the identity providers you already use, such as Active Directory, OpenLDAP and Okta.
 
 === Built for production
 
@@ -36,7 +36,7 @@ The platform grows with your requirements, and everything you add is managed fro
 
 === Open by design
 
-Rancher Prime doesn't require a specific operating system, storage product or proprietary tooling. You decide which components to use and where they run.
+SUSE Rancher Prime doesn't require a specific operating system, storage product or proprietary tooling. You decide which components to use and where they run.
 
 == Get started
 

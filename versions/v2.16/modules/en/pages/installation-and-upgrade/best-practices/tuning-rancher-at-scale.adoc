@@ -1,7 +1,7 @@
 = Tuning and Best Practices for {rancher-product-name} at Scale
 :description: Learn best practices and tuning approaches to scale Rancher setups and manage performance challenges
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-server/tuning-and-best-practices-for-rancher-at-scale.adoc 
 :page-product-path: installation-and-upgrade/best-practices/tuning-rancher-at-scale.adoc
@@ -20,7 +20,7 @@ ifeval::["{build-type}" == "community"]
 :xref-tuning-etcd-for-large-installs: xref:how-to-guides/advanced-user-guides/tune-etcd-for-large-installs.adoc
 endif::[]
 
-This guide describes the best practices and tuning approaches to scale Rancher setups and the associated challenges with doing so. As systems grow, performance will naturally reduce, but there are steps that can minimize the load put on Rancher and optimize Rancher's ability to manage larger infrastructures.
+This guide describes the best practices and tuning approaches to scale {rancher-product-name} setups and the associated challenges with doing so. As systems grow, performance will naturally reduce, but there are steps that can minimize the load put on Rancher and optimize Rancher's ability to manage larger infrastructures.
 
 [#_optimizing_rancher_performance]
 == Optimizing Rancher Performance
@@ -80,7 +80,7 @@ Predicting how many `RoleBinding` objects a given configuration will create is c
 [#_using_new_apps_over_legacy_apps]
 === Using New Apps Over Legacy Apps
 
-Rancher uses two Kubernetes app resources: `apps.projects.cattle.io` and `apps.cattle.cattle.io`. Legacy apps, represented by `apps.projects.cattle.io`, were introduced with the former Cluster Manager UI and are now outdated. Current apps, represented by `apps.catalog.cattle.io`, are found in the Cluster Explorer UI for their respective cluster. `Apps.cattle.cattle.io` apps are preferable because their data resides in downstream clusters, which frees up resources in the upstream cluster.
+{rancher-product-name} uses two Kubernetes app resources: `apps.projects.cattle.io` and `apps.cattle.cattle.io`. Legacy apps, represented by `apps.projects.cattle.io`, were introduced with the former Cluster Manager UI and are now outdated. Current apps, represented by `apps.catalog.cattle.io`, are found in the Cluster Explorer UI for their respective cluster. `Apps.cattle.cattle.io` apps are preferable because their data resides in downstream clusters, which frees up resources in the upstream cluster.
 
 You should remove any remaining legacy apps that appear in the Cluster Manager UI, and replace them with apps in the Cluster Explorer UI. Create any new apps only in the Cluster Explorer UI.
 

@@ -1,7 +1,7 @@
 = Setting up the Amazon Cloud Provider
 :description: Set up the Amazon cloud provider by creating an IAM role, configuring ClusterID, and using AWS resources like EBS and ELB
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers/amazon.adoc 
 :page-product-path: cluster-deployment/set-up-cloud-providers/amazon.adoc
@@ -204,7 +204,7 @@ RKE2::
 +
 --
 . https://cloud-provider-aws.sigs.k8s.io/prerequisites/[Node name conventions and other prerequisites] must be followed for the cloud provider to find the instance correctly.
-. Rancher managed RKE2/K3s clusters don't support configuring `providerID`. However, the engine will set the node name correctly if the following configuration is set on the provisioning cluster object:
+. {rancher-product-name} managed RKE2/K3s clusters don't support configuring `providerID`. However, the engine will set the node name correctly if the following configuration is set on the provisioning cluster object:
 +
 [,yaml]
 ----
@@ -307,7 +307,7 @@ spec:
 RKE::
 +
 --
-. https://cloud-provider-aws.sigs.k8s.io/prerequisites/[Node name conventions and other prerequisites] must be followed so that the cloud provider can find the instance. Rancher provisioned clusters don't support configuring `providerID`.
+. https://cloud-provider-aws.sigs.k8s.io/prerequisites/[Node name conventions and other prerequisites] must be followed so that the cloud provider can find the instance. {rancher-product-name} provisioned clusters don't support configuring `providerID`.
 +
 [NOTE]
 ====

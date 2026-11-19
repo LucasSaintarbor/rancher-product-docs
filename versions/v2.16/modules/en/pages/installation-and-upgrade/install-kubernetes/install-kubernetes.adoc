@@ -1,7 +1,7 @@
 = Setting up a Kubernetes Cluster for {rancher-product-name} Server
 :description: Setting up a Kubernetes cluster for Rancher Server includes following tutorials to install a cluster where Rancher can be installed, as Rancher can run
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-cluster-setup/index.adoc 
 :page-product-path: installation-and-upgrade/install-kubernetes/install-kubernetes.adoc
@@ -10,4 +10,4 @@ Don't have a Kubernetes cluster? Try one of these tutorials.
 
 This section contains information on how to install a Kubernetes cluster that the Rancher server can be installed on.
 
-Rancher can run on any Kubernetes cluster.
+{rancher-product-name} can run on any Kubernetes cluster.

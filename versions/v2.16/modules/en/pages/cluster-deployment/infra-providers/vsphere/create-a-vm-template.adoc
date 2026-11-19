@@ -1,12 +1,12 @@
 = Creating a VMware vSphere Virtual Machine Template
 :description: Create a VMware vSphere virtual machine template to deploy identical VMs with required tools and configurations
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/launch-kubernetes-with-rancher/use-new-nodes-in-an-infra-provider/vsphere/create-a-vm-template.adoc 
 :page-product-path: cluster-deployment/infra-providers/vsphere/create-a-vm-template.adoc
 
-Creating virtual machines in a repeatable and reliable fashion can often be difficult. VMware vSphere offers the ability to build one VM that can then be converted to a template. The template can then be used to create identically configured VMs. Rancher leverages this capability to create identical RKE/K3s nodes.
+Creating virtual machines in a repeatable and reliable fashion can often be difficult. VMware vSphere offers the ability to build one VM that can then be converted to a template. The template can then be used to create identically configured VMs. {rancher-product-name} leverages this capability to create identical RKE/K3s nodes.
 
 In order to leverage the template to create new VMs, Rancher has some <<_requirements,specific requirements>> that the VM must have pre-installed. After you configure the VM with these requirements, you need to <<_preparing_your_vm,prepare the VM>> before <<_creating_a_template,creating the template>>. Finally, once preparation is complete, the VM can be <<_converting_to_a_template,converted to a template>> and <<_moving_to_a_content_library,moved into a content library>>.
 
@@ -155,7 +155,7 @@ For additional information on converting a VM to a template, see the https://doc
 [#_moving_to_a_content_library]
 == Moving to a Content library
 
-Rancher has the ability to use templates provided by a content library. Content libraries store and manage content within vSphere, and they also offer the ability to publish and share that content.
+{rancher-product-name} has the ability to use templates provided by a content library. Content libraries store and manage content within vSphere, and they also offer the ability to publish and share that content.
 
 Below are some helpful links on content libraries:
 

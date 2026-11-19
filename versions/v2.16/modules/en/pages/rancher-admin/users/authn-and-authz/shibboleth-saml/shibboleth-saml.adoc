@@ -1,7 +1,7 @@
 = Configuring Shibboleth (SAML)
 :description: Configure Shibboleth (SAML) in Rancher to allow users to log in with Shibboleth credentials and use OpenLDAP for group-based access
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-shibboleth-saml/index.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/shibboleth-saml/shibboleth-saml.adoc
@@ -16,7 +16,7 @@ ifeval::["{build-type}" == "community"]
 :xref-shibboleth-saml-group-permissions: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-shibboleth-saml/about-group-permissions.adoc
 endif::[]
 
-If your organization uses Shibboleth Identity Provider (IdP) for user authentication, you can configure Rancher to allow your users to log in to Rancher using their Shibboleth credentials.
+If your organization uses Shibboleth Identity Provider (IdP) for user authentication, you can configure {rancher-product-name} to allow your users to log in to Rancher using their Shibboleth credentials.
 
 In this configuration, when Rancher users log in, they will be redirected to the Shibboleth IdP to enter their credentials. After authentication, they will be redirected back to the Rancher UI.
 
@@ -66,7 +66,7 @@ You can generate one using an openssl command. For example:
  .. *IDP-metadata*: The `metadata.xml` file that you exported from your IdP server.
 . After you complete the *Configure Shibboleth Account* form, click *Enable*.
 +
-Rancher redirects you to the IdP login page. Enter credentials that authenticate with Shibboleth IdP to validate your Rancher Shibboleth configuration.
+{rancher-product-name} redirects you to the IdP login page. Enter credentials that authenticate with Shibboleth IdP to validate your Rancher Shibboleth configuration.
 +
 
 [NOTE]
@@ -75,7 +75,7 @@ You may have to disable your popup blocker to see the IdP login page.
 ====
 
 
-*Result:* Rancher is configured to work with Shibboleth. Your users can now sign into Rancher using their Shibboleth logins.
+*Result:* {rancher-product-name} is configured to work with Shibboleth. Your users can now sign into Rancher using their Shibboleth logins.
 
 [NOTE]
 .SAML Provider Caveats
@@ -84,7 +84,7 @@ If you configure Shibboleth without OpenLDAP, the following caveats apply due to
 
 * There is no validation on users or groups when assigning permissions to them in Rancher.
 * When adding users, the exact user IDs (i.e. UID Field) must be entered correctly. As you type the user ID, there will be no search for other user IDs that may match.
-* When adding groups, you must select the group from the drop-down that is next to the text box. Rancher assumes that any input from the text box is a user.
+* When adding groups, you must select the group from the drop-down that is next to the text box. {rancher-product-name} assumes that any input from the text box is a user.
 * The group drop-down shows only the groups that you are a member of. However, if you have Administrator permissions, you can join a group that you are not a member of.
 
 To enable searching for groups when assigning permissions in Rancher, you will need to configure a back end for the SAML provider that supports groups, such as OpenLDAP.
@@ -103,7 +103,7 @@ If you also configure OpenLDAP as the back end to Shibboleth, it will return a S
 [#_openldap_prerequisites]
 === OpenLDAP Prerequisites
 
-Rancher must be configured with a LDAP bind account (aka service account) to search and retrieve LDAP entries pertaining to users and groups that should have access. It is recommended to not use an administrator account or personal account for this purpose and instead create a dedicated account in OpenLDAP with read-only access to users and groups under the configured search base (see below).
+{rancher-product-name} must be configured with a LDAP bind account (aka service account) to search and retrieve LDAP entries pertaining to users and groups that should have access. It is recommended to not use an administrator account or personal account for this purpose and instead create a dedicated account in OpenLDAP with read-only access to users and groups under the configured search base (see below).
 
 ____
 *Using TLS?*

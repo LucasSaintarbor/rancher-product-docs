@@ -1,7 +1,7 @@
 = 2. Install Kubernetes
 :description: Install a Kubernetes cluster using RKE2 or K3s by configuring proxy settings and environment variables
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/rancher-behind-an-http-proxy/install-kubernetes.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/http-proxy/install-kubernetes.adoc
@@ -18,7 +18,7 @@ ifeval::["{build-type}" == "community"]
 :xref-install-upgrade-troubleshooting: xref:getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/troubleshooting.adoc
 endif::[]
 
-Once the infrastructure is ready, you can continue with setting up a Kubernetes cluster to install Rancher in.
+Once the infrastructure is ready, you can continue with setting up a Kubernetes cluster to install {rancher-product-name} in.
 
 The steps to set up RKE2 or K3s are shown below.
 
@@ -55,7 +55,7 @@ NO_PROXY=127.0.0.0/8,10.0.0.0/8,cattle-system.svc,172.16.0.0/12,192.168.0.0/16,.
 EOF
 ----
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
 
 To specify the K3s (Kubernetes) version, use the INSTALL_K3S_VERSION (e.g., `INSTALL_K3S_VERSION="v1.24.10+k3s1"`) environment variable when running the K3s installation script.
 

@@ -1,7 +1,7 @@
 = Setting up a High-availability {rke2-product-name} Kubernetes Cluster for {rancher-product-name}
 :description: Install a high-availability RKE2 Kubernetes cluster for Rancher by setting up three nodes, a load balancer, DNS records, and TLS
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-cluster-setup/rke2-for-rancher.adoc 
 :page-product-path: installation-and-upgrade/install-kubernetes/rke2-for-rancher.adoc
@@ -25,7 +25,7 @@ These instructions assume you have set up three nodes, a load balancer, and a DN
 
 Note that in order for RKE2 to work correctly with the load balancer, you need to set up two listeners: one for the supervisor on port 9345, and one for the Kubernetes API on port 6443.
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[support maintenance terms.] To specify the RKE2 version, use the INSTALL_RKE2_VERSION environment variable when running the RKE2 installation script.
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[support maintenance terms.] To specify the RKE2 version, use the INSTALL_RKE2_VERSION environment variable when running the RKE2 installation script.
 
 [#_installing_kubernetes]
 == Installing Kubernetes

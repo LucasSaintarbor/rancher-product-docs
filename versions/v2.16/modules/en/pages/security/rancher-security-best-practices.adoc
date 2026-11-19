@@ -1,7 +1,7 @@
 = {rancher-product-name} Security Best Practices
 :description: Learn security best practices for to restrict access, manage sessions, and use load balancers
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-23
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/rancher-security-best-practices.adoc 
 :page-product-path: security/rancher-security-best-practices.adoc
@@ -23,7 +23,7 @@ endif::[]
 [#_restrict_public_access_to_version_and_rancherversion_path]
 == Restrict Public Access to /version and /rancherversion Path
 
-The upstream (local) Rancher instance provides information about the Rancher version it is running and the Go version that was used to build it. That information is accessible via the `/version` path, which is used for tasks such as automating version bumps, or confirming that a deployment was successful. The upstream instance also provides Rancher version information accessible via the `/rancherversion` path.
+The upstream (local) {rancher-product-name} instance provides information about the Rancher version it is running and the Go version that was used to build it. That information is accessible via the `/version` path, which is used for tasks such as automating version bumps, or confirming that a deployment was successful. The upstream instance also provides Rancher version information accessible via the `/rancherversion` path.
 
 Adversaries can misuse this information to identify the running Rancher version and cross-relate it with potential bugs to exploit. If your upstream Rancher instance is publicly available on the web, use a Layer 7 firewall to block `/version` and `/rancherversion`.
 
@@ -64,7 +64,7 @@ Without these controls at the identity provider layer, there is a risk of incons
 
 [IMPORTANT]
 ====
-Rancher currently enforces only a {xref-users-and-groups}#_minimum_password_length[minimum password length].
+{rancher-product-name} currently enforces only a {xref-users-and-groups}#_minimum_password_length[minimum password length].
 ====
 
 *Recommendation:* We strongly advice that customers:
@@ -81,7 +81,7 @@ For more information, see:
 [#_waf_rules]
 === WAF Rules
 
-Rancher is designed to support a wide range of deployment scenarios, including environments where customers may programmatically automate the creation or provisioning of large numbers of clusters. Imposing strict application-level limits within Rancher itself could interfere with legitimate workloads that require dynamic scaling.
+{rancher-product-name} is designed to support a wide range of deployment scenarios, including environments where customers may programmatically automate the creation or provisioning of large numbers of clusters. Imposing strict application-level limits within Rancher itself could interfere with legitimate workloads that require dynamic scaling.
 
 For example:
 
@@ -127,7 +127,7 @@ Without these controls at the identity provider layer, there is a risk of incons
 
 [IMPORTANT]
 ====
-Rancher currently enforces only a {xref-users-and-groups}#_minimum_password_length[minimum password length].
+{rancher-product-name} currently enforces only a {xref-users-and-groups}#_minimum_password_length[minimum password length].
 ====
 
 *Recommendation:* We strongly advice that customers:
@@ -144,7 +144,7 @@ For more information, see:
 [#_waf_rules_1]
 === WAF Rules
 
-Rancher is designed to support a wide range of deployment scenarios, including environments where customers may programmatically automate the creation or provisioning of large numbers of clusters. Imposing strict application-level limits within Rancher itself could interfere with legitimate workloads that require dynamic scaling.
+{rancher-product-name} is designed to support a wide range of deployment scenarios, including environments where customers may programmatically automate the creation or provisioning of large numbers of clusters. Imposing strict application-level limits within Rancher itself could interfere with legitimate workloads that require dynamic scaling.
 
 For example:
 

@@ -1,7 +1,7 @@
 = Enabling Experimental Features
 :description: Enable experimental features in Rancher by using feature flags during installation, through the Settings page after installation, or using the Rancher API
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/enable-experimental-features/index.adoc 
 :page-product-path: rancher-admin/experimental-features/experimental-features.adoc
@@ -16,7 +16,7 @@ ifeval::["{build-type}" == "community"]
 :xref-feature-flags: xref:getting-started/installation-and-upgrade/installation-references/feature-flags.adoc
 endif::[]
 
-Rancher includes some features that are experimental and disabled by default. You might want to enable these features, for example, if you decide that the benefits of using an {xref-unsupported-storage-drivers}[unsupported storage type] outweighs the risk of using an untested feature. Feature flags were introduced to allow you to try these features that are not enabled by default.
+{rancher-product-name} includes some features that are experimental and disabled by default. You might want to enable these features, for example, if you decide that the benefits of using an {xref-unsupported-storage-drivers}[unsupported storage type] outweighs the risk of using an untested feature. Feature flags were introduced to allow you to try these features that are not enabled by default.
 
 The features can be enabled in three ways:
 

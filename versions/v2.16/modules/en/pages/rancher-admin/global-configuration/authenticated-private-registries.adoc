@@ -1,7 +1,7 @@
 = Authenticated Private Registries
 :description: Configure authenticated private registries globally or for specific clusters in Rancher to manage image pull secrets and access internal resources
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authenticated-private-registries.adoc
 :page-product-path: rancher-admin/global-configuration/authenticated-private-registries.adoc
@@ -49,13 +49,13 @@ If you configure multiple pull secrets globally using the `system-default-regist
 [#_hosted_and_imported_clusters_and_management_cluster]
 === Hosted (AKS, EKS, GKE, etc.), Imported Clusters and the Management Cluster
 
-For all other cluster types, Rancher cannot directly configure the underlying container runtime. Instead, the management cluster propagates Kubernetes image pull secrets into Rancher-managed namespaces. Rancher propagates these secrets into namespaces in the default `system` project, where Rancher-managed components use them.
+For all other cluster types, Rancher cannot directly configure the underlying container runtime. Instead, the management cluster propagates Kubernetes image pull secrets into Rancher-managed namespaces. {rancher-product-name} propagates these secrets into namespaces in the default `system` project, where Rancher-managed components use them.
 
-Rancher manages the full lifecycle of these propagated secrets and reverts manual changes during cluster reconciliation. Always modify registry configurations at the cluster or global level using the Rancher UI or by editing the relevant `clusters.management.cattle.io` object with `kubectl`.
+{rancher-product-name} manages the full lifecycle of these propagated secrets and reverts manual changes during cluster reconciliation. Always modify registry configurations at the cluster or global level using the Rancher UI or by editing the relevant `clusters.management.cattle.io` object with `kubectl`.
 
 [NOTE]
 ====
-When manually defining registry credentials on `clusters.management.cattle.io` objects, create those credentials in the `fleet-default` namespace. Rancher supports only secret types of `basic-auth`, `rke-auth`, or `.dockerconfigjson`.
+When manually defining registry credentials on `clusters.management.cattle.io` objects, create those credentials in the `fleet-default` namespace. {rancher-product-name} supports only secret types of `basic-auth`, `rke-auth`, or `.dockerconfigjson`.
 ====
 
 Because Rancher cannot configure the container runtime for these clusters, user workloads do not automatically receive registry authentication. You must create and configure pull secrets independently when deploying workloads.
@@ -68,7 +68,7 @@ Because Rancher cannot configure the container runtime for these clusters, user 
 
 When you configure an imported or hosted cluster (such as AKS, EKS, or GKE) to use an authenticated registry, Rancher automatically injects configured pull secrets into the Helm values of charts from the built-in `rancher-charts` repository. This allows these charts to pull images from the registry without additional configuration.
 
-The injected credentials depend on the cluster configuration. If the cluster inherits global registry settings, Rancher uses global pull secrets. If the cluster uses a cluster-level override, Rancher uses those cluster-specific secrets. Rancher skips secret injection if you manually specify pull secrets during installation or select the *skip pull secrets* option.
+The injected credentials depend on the cluster configuration. If the cluster inherits global registry settings, Rancher uses global pull secrets. If the cluster uses a cluster-level override, Rancher uses those cluster-specific secrets. {rancher-product-name} skips secret injection if you manually specify pull secrets during installation or select the *skip pull secrets* option.
 
 [NOTE]
 ====
@@ -97,7 +97,7 @@ If registry credentials or hostnames change frequently, configure registry setti
 
 Registry credentials used with Rancher must follow the principle of least privilege:
 
-* Grant **read-only** (pull) access. Rancher and deployed charts do not require write access.
+* Grant **read-only** (pull) access. {rancher-product-name} and deployed charts do not require write access.
 * Scope credentials to only the images or repositories the cluster needs to access.
 * Avoid reusing credentials across environments with different trust boundaries.
 

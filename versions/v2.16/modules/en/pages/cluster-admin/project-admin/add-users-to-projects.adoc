@@ -1,7 +1,7 @@
 = Adding Users to Projects
 :description: Add users to projects by assigning them project membership and roles to grant access to specific resources
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/add-users-to-projects.adoc 
 :page-product-path: cluster-admin/project-admin/add-users-to-projects.adoc
@@ -56,7 +56,7 @@ Following project creation, you can add users as project members so that they ca
 +
 If external authentication is configured:
 
- ** Rancher returns users from your external authentication source as you type.
+ ** {rancher-product-name} returns users from your external authentication source as you type.
  ** A drop-down allows you to add groups instead of individual users. The dropdown only lists groups that you, the logged in user, are included in.
 
 +

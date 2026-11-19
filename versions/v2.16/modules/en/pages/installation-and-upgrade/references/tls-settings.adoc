@@ -1,7 +1,7 @@
 = TLS Settings
 :description: Configure TLS settings for Rancher by choosing installation methods, adjusting agent-tls-mode to strict or system-store, and using environment variables
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-20
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-references/tls-settings.adoc 
 :page-product-path: installation-and-upgrade/references/tls-settings.adoc
@@ -97,7 +97,7 @@ In some cases, you may want to override the check ensuring all agents can accept
 [CAUTION]
 ====
 
-Rancher checks the status of all downstream clusters to prevent outages. Overriding this check is not recommended, and should be done with great caution.
+{rancher-product-name} checks the status of all downstream clusters to prevent outages. Overriding this check is not recommended, and should be done with great caution.
 ====
 
 

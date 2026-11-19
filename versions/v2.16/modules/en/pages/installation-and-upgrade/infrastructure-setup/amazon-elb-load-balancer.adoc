@@ -1,7 +1,7 @@
 = Setting up Amazon ELB Network Load Balancer
 :description: Set up a Network Load Balancer to direct traffic to Linux instances using target groups for ports 443 and 80
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-20
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/infrastructure-setup/amazon-elb-load-balancer.adoc 
 :page-product-path: installation-and-upgrade/infrastructure-setup/amazon-elb-load-balancer.adoc
@@ -12,7 +12,7 @@ These examples show the load balancer being configured to direct traffic to thre
 
 This tutorial is about one possible way to set up your load balancer, not the only way. Other types of load balancers, such as a Classic Load Balancer or Application Load Balancer, could also direct traffic to the Rancher server nodes.
 
-Rancher only supports using the Amazon NLB when terminating traffic in `tcp` mode for port 443 rather than `tls` mode. This is due to the fact that the NLB does not inject the correct headers into requests when terminated at the NLB. This means that if you want to use certificates managed by the Amazon Certificate Manager (ACM), you should use an ALB.
+{rancher-product-name} only supports using the Amazon NLB when terminating traffic in `tcp` mode for port 443 rather than `tls` mode. This is due to the fact that the NLB does not inject the correct headers into requests when terminated at the NLB. This means that if you want to use certificates managed by the Amazon Certificate Manager (ACM), you should use an ALB.
 
 [#_requirements]
 == Requirements

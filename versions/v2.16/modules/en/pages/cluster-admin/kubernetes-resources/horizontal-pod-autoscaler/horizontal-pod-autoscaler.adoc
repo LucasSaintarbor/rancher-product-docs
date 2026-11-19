@@ -1,6 +1,6 @@
 = Horizontal Pod Autoscaler
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/horizontal-pod-autoscaler/index.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/horizontal-pod-autoscaler/horizontal-pod-autoscaler.adoc
@@ -19,7 +19,7 @@ endif::[]
 
 The https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/[Horizontal Pod Autoscaler] (HPA) is a Kubernetes feature that allows you to configure your cluster to automatically scale the services it's running up or down.
 
-Rancher provides some additional features to help manage HPAs, depending on the version of Rancher.
+{rancher-product-name} provides some additional features to help manage HPAs, depending on the version of {rancher-product-name}.
 
 You can create, manage, and delete HPAs using the Rancher UI. It only supports HPA in the `autoscaling/v2beta2` API.
 

@@ -1,7 +1,7 @@
 = Helm Charts and Apps
 :description: Manage Helm chart repositories and apps in Rancher to deploy custom Kubernetes applications and Rancher tools
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-10-08
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/helm-charts-in-rancher/index.adoc 
 :page-product-path: cluster-admin/helm-charts-in-rancher/helm-charts-in-rancher.adoc
@@ -26,14 +26,14 @@ In this section, you'll learn how to manage Helm chart repositories and apps in 
 
 Helm chart repositories in Rancher are managed using *Apps*.
 
-Rancher uses a catalog-like system to import bundles of charts from repositories and then uses those charts to either deploy custom Kubernetes applications or Rancher's tools such as Monitoring or Istio. Rancher tools come as pre-loaded repositories which deploy as standalone Helm charts. Any additional repositories are only added to the current cluster.
+{rancher-product-name} uses a catalog-like system to import bundles of charts from repositories and then uses those charts to either deploy custom Kubernetes applications or {rancher-product-name}'s tools such as Monitoring or Istio. {rancher-product-name} tools come as pre-loaded repositories which deploy as standalone Helm charts. Any additional repositories are only added to the current cluster.
 
 [#_catalogs_apps_and_the_rancher_ui]
 === Catalogs, Apps, and the Rancher UI
 
-Rancher v2.4 and earlier, repositories of ready-to-deploy applications were called "catalogs". These repositories were managed through the *Catalogs* section of the UI.
+{rancher-product-name} v2.4 and earlier, repositories of ready-to-deploy applications were called "catalogs". These repositories were managed through the *Catalogs* section of the UI.
 
-Rancher v2.5 replaced the former catalog system with a new *Apps & Marketplace* feature.
+{rancher-product-name} v2.5 replaced the former catalog system with a new *Apps & Marketplace* feature.
 
 Since Rancher v2.6.5, the *Apps & Marketplace* feature is named *Apps* in the UI.
 
@@ -64,7 +64,7 @@ To display prerelease versions:
 
 The *Charts* page contains all Rancher, Partner, and Custom charts. You can filter charts by selecting the left-most dropdown menu:
 
-* Rancher tools such as Logging or Monitoring are listed under the *Rancher* label.
+* {rancher-product-name} tools such as Logging or Monitoring are listed under the *Rancher* label.
 * Partner charts are under the *Partners* label.
 * Custom charts are listed under the name of their respective repository.
 
@@ -214,7 +214,7 @@ To modify the refresh interval of a chart repository:
 . From the *Unit* dropdown menu, select a time unit (*secs*, *mins*, *hours*, or *days*).
 . Click *Save*.
 
-*Result:* Rancher syncs the repository according to the configured interval.
+*Result:* {rancher-product-name} syncs the repository according to the configured interval.
 
 [#_enable_disable_helm_chart_repositories]
 === Enable/Disable Helm Chart Repositories
@@ -250,7 +250,7 @@ To install and deploy a chart:
 . In the left navigation menu on the *Cluster Dashboard*, click menu:Apps[Charts].
 . Select a chart, and click *Install*.
 
-Rancher and Partner charts may have extra configurations available through custom pages or questions.yaml files. However, all chart installations can modify the values.yaml and other basic settings. After you click *Install*, a Helm operation job is deployed, and the console for the job is displayed.
+{rancher-product-name} and Partner charts may have extra configurations available through custom pages or questions.yaml files. However, all chart installations can modify the values.yaml and other basic settings. After you click *Install*, a Helm operation job is deployed, and the console for the job is displayed.
 
 [NOTE]
 ====
