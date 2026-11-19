@@ -9,10 +9,12 @@
 ifeval::["{build-type}" != "community"]
 :url-ref-capiprovider: https://documentation.suse.com/cloudnative/cluster-api/{turtles-docs-version}/en/reference/capiprovider.html
 :url-capi-slsa: https://documentation.suse.com/cloudnative/cluster-api/{turtles-docs-version}/en/security/slsa.html
+:xref-capi-providers: xref:cluster-deployment/configuration/capi-infrastructure-providers.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :url-ref-capiprovider: https://turtles.docs.rancher.com/turtles/{turtles-docs-version}/en/reference/capiprovider.html
 :url-capi-slsa: https://turtles.docs.rancher.com/turtles/{turtles-docs-version}/en/security/slsa.html
+:xref-capi-providers: xref:how-to-guides/advanced-user-guides/capi-infrastructure-providers.adoc
 endif::[]
 
 [NOTE]
@@ -61,4 +63,4 @@ spec:
   name: aws
 ----
 
-Refer to the {url-ref-capiprovider}[CAPIProvider reference] for the full list of configuration options.
+For a full list of configuration options, see the {url-ref-capiprovider}[CAPIProvider reference]. For more information about setting up providers, see {xref-capi-providers}[Configuring Native CAPI Infrastructure Providers to Provision RKE2 Clusters].
