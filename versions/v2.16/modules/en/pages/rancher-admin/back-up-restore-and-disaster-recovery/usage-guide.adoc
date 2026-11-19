@@ -11,7 +11,6 @@ ifeval::["{build-type}" != "community"]
 :xref-rancher-backup-config: xref:rancher-admin/back-up-restore-and-disaster-recovery/configuration/backup.adoc
 :xref-rancher-upgrades: xref:installation-and-upgrade/upgrades.adoc
 :xref-capi-pnp: xref:cluster-deployment/configuration/capi-infrastructure-providers.adoc
-:url-CAPI-docs: https://documentation.suse.com/cloudnative/cluster-api/latest/en/index.html
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-backup-cluster: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/back-up-rancher.adoc
