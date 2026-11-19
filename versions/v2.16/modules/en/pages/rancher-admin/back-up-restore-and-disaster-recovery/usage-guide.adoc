@@ -127,13 +127,17 @@ Migration have some more nuance since we are restoring to a different cluster. T
 
 `ResourceSet` objects select specific Cluster API (CAPI) provider resources for backup, for example, Cluster API Provider AWS (CAPA) or Cluster API Provider vSphere (CAPV) infrastructure providers {turtles-product-name} clusters and {rancher-product-name}-provisioned clusters that use {xref-capi-pnp}[native CAPI providers] require these resources. For the exact list of included resources, inspect the `ResourceSet` definition.
 
-Limitations:
+[IMPORTANT]
+.CAPI backup limitations
+====
+The backup operator does not automatically save all CAPI objects:
 
-* Some objects are not automatically saved in backups. They can be selected to be included in the backup by using the `resources.cattle.io/backup:"true"` label:
-** Secrets used by external control plane providers such as CAPRKE2 for each downstream cluster, such as kubeconfigs and certificates. These secrets can be listed using the `cluster.x-k8s.io/cluster-name:<cluster-name>` label selector. These secrets should only be manually selected for back-up for clusters created using {turtles-product-name} and not for RKE2 and K3s clusters provisioned directly by Rancher.
-** User-defined namespace objects used for {turtles-product-name} cluster CAPI resources.
-** Credential secrets referenced by user-created identity objects such as `VSphereClusterIdentity`.
-* Providers and their configuration (such as `CAPIProvider` and `ClusterctlConfig`) are not saved in the backup, and need to be reinstalled when migrating Rancher.
+* To include the following objects in a backup, add the `resources.cattle.io/backup:"true"` label to their manifests:
+** Secrets used by external control plane providers, such as Cluster API Provider RKE2 (CAPRKE2), including kubeconfigs and certificates for each downstream cluster. List these secrets with the `cluster.x-k8s.io/cluster-name:<cluster-name>` label selector. Manually select these secrets only for clusters created with {turtles-product-name}. Do not select them for {rke2-product-name} and {k3s-product-name} clusters provisioned directly by {rancher-product-name}.
+** User-defined namespace objects that store {turtles-product-name} cluster CAPI resources.
+** Credential secrets referenced by user-created identity objects, such as `VSphereClusterIdentity`.
+* Providers and their configurations (such as `CAPIProvider` and `ClusterctlConfig`) are excluded from backups. You must reinstall them when migrating {rancher-product-name}.
+====
 
 [#_edge_cases_and_improper_usage]
 == Edge Cases and Improper Usage
