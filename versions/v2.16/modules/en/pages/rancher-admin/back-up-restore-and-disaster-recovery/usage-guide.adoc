@@ -100,7 +100,7 @@ This section outlines the guidelines for the proper usage of the Rancher Backups
 === Backups
 
 * Some user generated resources will not be backed up unless they can are captured by the default resourceSet or the resourceSet was altered to capture them.
- ** We provide a label `resources.cattle.io/backup:"true"` that when added to a secret in any namespace, will result in it being backed up.
+ ** To back up a secret in any namespace, add the `resources.cattle.io/backup:"true"` label to the secret.
 * Backups are non-mutating
 * Backups are only of the local cluster
 
