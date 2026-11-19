@@ -1,12 +1,12 @@
 = Configure PingIdentity (SAML)
 :description: Configure Rancher to allow users to log in with Ping Identity via SAML by specifying the Entity ID, API host, and certificate
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-pingidentity.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-pingidentity.adoc
 
-If your organization uses Ping Identity Provider (IdP) for user authentication, you can configure Rancher to allow your users to log in using their IdP credentials.
+If your organization uses Ping Identity Provider (IdP) for user authentication, you can configure {rancher-product-name} to allow your users to log in using their IdP credentials.
 
 ____
 *Prerequisites:*
@@ -41,7 +41,7 @@ You can generate one using an openssl command. For example:
  .. *IDP-metadata*: The `metadata.xml` file that you https://documentation.pingidentity.com/pingfederate/pf83/index.shtml#concept_exportingMetadata.html[exported from your IdP server].
 . After you complete the *Configure Ping Account* form, click *Enable*.
 +
-Rancher redirects you to the IdP login page. Enter credentials that authenticate with Ping IdP to validate your Rancher PingIdentity configuration.
+{rancher-product-name} redirects you to the IdP login page. Enter credentials that authenticate with Ping IdP to validate your Rancher PingIdentity configuration.
 +
 
 [NOTE]
@@ -50,14 +50,14 @@ You may have to disable your popup blocker to see the IdP login page.
 ====
 
 
-*Result:* Rancher is configured to work with PingIdentity. Your users can now sign into Rancher using their PingIdentity logins.
+*Result:* {rancher-product-name} is configured to work with PingIdentity. Your users can now sign into Rancher using their PingIdentity logins.
 
 [NOTE]
 .SAML Provider Caveats
 ====
 * Users and groups aren't validated when you assign permissions to them in Rancher.
 * When adding users, the exact user IDs (i.e. `UID Field`) must be entered correctly. As you type the user ID, there will be no search for other  user IDs that may match.
-* When adding groups, you must select the group from the drop-down that is next to the text box. Rancher assumes that any input from the text box is a user.
+* When adding groups, you must select the group from the drop-down that is next to the text box. {rancher-product-name} assumes that any input from the text box is a user.
 * The group drop-down shows only the groups that you are a member of. If you have Administrator permissions, you can join a group that you are not a member of.
 ====
 

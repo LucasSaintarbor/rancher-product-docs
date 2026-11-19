@@ -1,7 +1,7 @@
 = Registering Existing Clusters
 :description: Register existing clusters in Rancher by following the prerequisites and ensuring proper node roles and permissions are set
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-30
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
 :page-product-path: cluster-deployment/register-existing-clusters.adoc
@@ -38,7 +38,7 @@ endif::[]
 
 The cluster registration feature replaced the feature to import clusters.
 
-The control that Rancher has to manage a registered cluster depends on the type of cluster. For details, see <<_management_capabilities_for_registered_clusters,Management Capabilities for Registered Clusters.>>
+The control that {rancher-product-name} has to manage a registered cluster depends on the type of cluster. For details, see <<_management_capabilities_for_registered_clusters,Management Capabilities for Registered Clusters.>>
 
 [#_prerequisites]
 == Prerequisites
@@ -115,7 +115,7 @@ Specifically, the value should be a comma-delimited string which only contains I
 
 *Result:*
 
-* Your cluster is registered and assigned a state of *Pending*. Rancher is deploying resources to manage your cluster.
+* Your cluster is registered and assigned a state of *Pending*. {rancher-product-name} is deploying resources to manage your cluster.
 * You can access your cluster after its state is updated to *Active*.
 * *Active* clusters are assigned two Projects: `Default` (containing the namespace `default`) and `System` (containing the namespaces `cattle-system`, `traefik`, `kube-public` and `kube-system`, if present).
 
@@ -215,7 +215,7 @@ ifeval::["{build-type}" != "srfa"]
 [#_additional_features_for_registered_eks_aks_and_gke_clusters]
 === Additional Features for Registered EKS, AKS, and GKE Clusters
 
-Rancher handles registered EKS, AKS, or GKE clusters similarly to clusters created in Rancher. However, Rancher doesn't destroy registered clusters when you delete them through the Rancher UI.
+{rancher-product-name} handles registered EKS, AKS, or GKE clusters similarly to clusters created in {rancher-product-name}. However, Rancher doesn't destroy registered clusters when you delete them through the Rancher UI.
 
 When you create an EKS, AKS, or GKE cluster in Rancher, then delete it, Rancher destroys the cluster. When you delete a registered cluster through Rancher, the Rancher server _disconnects_ from the cluster. The cluster remains live, although it's no longer in Rancher. You can still access the deregistered cluster in the same way you did before you registered it.
 
@@ -224,7 +224,7 @@ ifeval::["{build-type}" == "srfa"]
 [#_additional_features_for_registered_eks_clusters]
 === Additional Features for Registered EKS Clusters
 
-Rancher handles registered EKS clusters similarly to clusters created in Rancher. However, Rancher doesn't destroy registered clusters when you delete them through the Rancher UI.
+{rancher-product-name} handles registered EKS clusters similarly to clusters created in {rancher-product-name}. However, Rancher doesn't destroy registered clusters when you delete them through the Rancher UI.
 
 When you create an EKS cluster in Rancher and then delete it, Rancher destroys the cluster. When you delete a registered cluster through Rancher, the Rancher server _disconnects_ from the cluster. The cluster remains live, although it's no longer in Rancher. You can still access the deregistered cluster in the same way you did before you registered it.
 endif::[]
@@ -246,11 +246,11 @@ You can perform Day 2 operations directly from the Rancher UI on the following c
 
 The available operations are rotating encryption keys and creating, viewing, and restoring local `etcd` snapshots.
 
-Rancher coordinates these operations across the applicable server nodes. You don't need to run the corresponding RKE2 or K3s commands manually on each node.
+{rancher-product-name} coordinates these operations across the applicable server nodes. You don't need to run the corresponding RKE2 or K3s commands manually on each node.
 
 [NOTE]
 ====
-Rancher runs one Day 2 operation at a time for each cluster. A new operation remains pending until the current operation finishes.
+{rancher-product-name} runs one Day 2 operation at a time for each cluster. A new operation remains pending until the current operation finishes.
 ====
 
 [#_prerequisites_2]
@@ -258,7 +258,7 @@ Rancher runs one Day 2 operation at a time for each cluster. A new operation rem
 
 Before you perform a Day 2 operation, ensure that the following prerequisites are met:
 
-* *Rancher Version:* Rancher v2.15 or later.
+* *Rancher Version:* {rancher-product-name} v2.15 or later.
 * *Feature Flag:* The `imported-day-2-ops` feature flag is active by default.
 * *Cluster Enablement:* Day 2 operations are enabled for the cluster. See <<_configuring_day_2_operations,Configuring Day 2 Operations>>.
 * *Cluster Health:* The cluster is in the *Active* state, its Kubernetes API is reachable, and the {xref-about-rancher-agents}#_rancher_system_agent[`rancher-system-agent`] has registered on every cluster node.
@@ -480,7 +480,7 @@ To prevent issues when upgrading, the https://kubernetes.io/docs/tasks/administe
 [#_authorized_cluster_endpoint_support_for_rke2_product_name_and_k3s_product_name_clusters]
 == Authorized Cluster Endpoint Support for {rke2-product-name} and {k3s-product-name} Clusters
 
-Rancher supports Authorized Cluster Endpoints (ACE) for registered RKE2 and K3s clusters. Enabling ACE requires manual configuration on the downstream cluster. For more information, see {xref-kubeconfig-file}[Authorized Cluster Endpoints].
+{rancher-product-name} supports Authorized Cluster Endpoints (ACE) for registered RKE2 and K3s clusters. Enabling ACE requires manual configuration on the downstream cluster. For more information, see {xref-kubeconfig-file}[Authorized Cluster Endpoints].
 
 [NOTE]
 ====
@@ -545,7 +545,7 @@ sudo systemctl restart {rke2,k3s}-server
 
 For all types of registered Kubernetes clusters except for RKE2 and K3s Kubernetes clusters, Rancher doesn't have any information about how the cluster is provisioned or configured.
 
-Therefore, when Rancher registers a cluster, it assumes that several capabilities are disabled by default. Rancher assumes this in order to avoid exposing UI options to the user even when the capabilities are not enabled in the registered cluster.
+Therefore, when Rancher registers a cluster, it assumes that several capabilities are disabled by default. {rancher-product-name} assumes this in order to avoid exposing UI options to the user even when the capabilities are not enabled in the registered cluster.
 
 However, if the cluster has a certain capability, a user of that cluster might still want to select the capability for the cluster in the Rancher UI. In order to do that, the user will need to manually indicate to Rancher that certain capabilities are enabled for the cluster.
 

@@ -1,7 +1,7 @@
 = Cluster Administration
 :description: Manage cluster administration in Rancher by provisioning clusters, deploying, scaling containerized applications, and configuring tools like alerts
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-12-18
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/index.adoc 
 :page-product-path: cluster-admin/manage-clusters/manage-clusters.adoc
@@ -40,7 +40,7 @@ endif::[]
 [#_configuring_tools]
 == Configuring Tools
 
-Rancher contains a variety of tools that aren't included in Kubernetes to assist in your DevOps operations. Rancher can integrate with external services to help your clusters run more efficiently. Tools are divided into the following categories:
+{rancher-product-name} contains a variety of tools that aren't included in Kubernetes to assist in your DevOps operations. {rancher-product-name} can integrate with external services to help your clusters run more efficiently. Tools are divided into the following categories:
 
 * Alerts
 * Notifiers

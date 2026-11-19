@@ -1,7 +1,7 @@
 = Setting up a High-availability {k3s-product-name} Kubernetes Cluster for {rancher-product-name}
 :description: Install a high-availability K3s Kubernetes cluster for Rancher by setting up nodes, a load balancer, and an external datastore
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-cluster-setup/k3s-for-rancher.adoc 
 :page-product-path: installation-and-upgrade/install-kubernetes/k3s-for-rancher.adoc
@@ -35,7 +35,7 @@ In both single-node setups, Rancher can be installed with Helm on the Kubernetes
 
 These instructions assume you have set up two nodes, a load balancer, a DNS record, and an external MySQL database as described in {xref-ha-k3s}[this section.]
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[Rancher Support Matrix].
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://rancher.com/support-maintenance-terms/[Rancher Support Matrix].
 
 To specify the K3s (Kubernetes) version, use the INSTALL_K3S_VERSION (e.g., `INSTALL_K3S_VERSION="v1.24.10+k3s1"`) environment variable when running the K3s installation script.
 

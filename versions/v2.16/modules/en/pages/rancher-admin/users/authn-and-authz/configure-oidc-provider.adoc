@@ -1,12 +1,12 @@
 = Configure Rancher as an OIDC provider
 :description: Configure Rancher as an OIDC provider to manage access to external applications using centralized authentication and role-based access control
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-08
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/configure-oidc-provider.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-oidc-provider.adoc
 
-Rancher can act as an OpenID Connect (OIDC) Identity Provider (IdP) for other applications. This allows you to use Rancher's centralized authentication and role-based access control (RBAC) to manage access to external, third-party applications. This can be used for enabling single sign-on (SSO) across Rancher components. For example, see the https://documentation.suse.com/cloudnative/suse-observability/latest/en/setup/security/authentication/oidc.html[documentation] for configuring the OIDC provider for SUSE Observability.
+{rancher-product-name} can act as an OpenID Connect (OIDC) Identity Provider (IdP) for other applications. This allows you to use Rancher's centralized authentication and role-based access control (RBAC) to manage access to external, third-party applications. This can be used for enabling single sign-on (SSO) across Rancher components. For example, see the https://documentation.suse.com/cloudnative/suse-observability/latest/en/setup/security/authentication/oidc.html[documentation] for configuring the OIDC provider for SUSE Observability.
 
 [NOTE]
 ====
@@ -76,7 +76,7 @@ Save this configuration to a file (e.g., `oidcclient.yaml`) and apply it to your
 kubectl apply -f oidcclient.yaml
 ----
 
-Rancher automatically generates a client ID and client secret for each `OIDCClient`. Once the resource is created, Rancher populates the status field with the client id:
+{rancher-product-name} automatically generates a client ID and client secret for each `OIDCClient`. Once the resource is created, Rancher populates the status field with the client id:
 
 [,yaml]
 ----
@@ -101,7 +101,7 @@ status:
       lastFiveCharacters: xxx
 ----
 
-Rancher automatically generates a Kubernetes `Secret` in the `cattle-oidc-client-secrets` namespace for each `OIDCClient` resource. The Secret's name matches the `OIDCClient` client ID. Initially, the `Secret` contains a single client secret.
+{rancher-product-name} automatically generates a Kubernetes `Secret` in the `cattle-oidc-client-secrets` namespace for each `OIDCClient` resource. The Secret's name matches the `OIDCClient` client ID. Initially, the `Secret` contains a single client secret.
 
 To retrieve the client secret:
 
@@ -172,7 +172,7 @@ data:
  key2.pub: <base64-encoded-new-public-key>
 ----
 
-Rancher will sign tokens using `key2.pem`, while the JWKS endpoint will serve both `key1.pub` and `key2.pub`. This ensures a smooth 
+{rancher-product-name} will sign tokens using `key2.pem`, while the JWKS endpoint will serve both `key1.pub` and `key2.pub`. This ensures a smooth 
 key rotation from `key1` to `key2` without disrupting existing token verification. Note that only one private key (.pem) can be stored in the 
 secret at a time, and each key pair must share the same base name, differing only by their suffix: .pem for the private key and .pub for the public key.
 

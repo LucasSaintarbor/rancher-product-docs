@@ -1,7 +1,7 @@
 = Pod Security Admission (PSA) Configuration Templates
 :description: Assign a Pod Security Admission (PSA) Configuration Template to a cluster to apply security restrictions or exemptions
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-24
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/psa-config-templates.adoc 
 :page-product-path: security/psact.adoc
@@ -14,7 +14,7 @@ ifeval::["{build-type}" == "community"]
 :xref-sample-psact: xref:reference-guides/rancher-security/psa-restricted-exemptions.adoc
 endif::[]
 
-{xref-psa-pss}[Pod Security admission (PSA)] configuration templates are a Rancher custom-defined resource (CRD), available in Rancher v2.7.2 and above. The templates provide pre-defined security configurations that you can apply to a cluster:
+{xref-psa-pss}[Pod Security admission (PSA)] configuration templates are a {rancher-product-name} custom-defined resource (CRD), available in Rancher v2.7.2 and above. The templates provide pre-defined security configurations that you can apply to a cluster:
 
 [IMPORTANT]
 ====
@@ -159,7 +159,7 @@ When you run Rancher on a Kubernetes cluster that enforces a restrictive securit
 * `tigera-operator`
 * `traefik`
 
-Rancher, some Rancher owned charts, and RKE2 and K3s distributions all use these namespaces. A subset of the listed namespaces are already exempt in the built-in Rancher `rancher-restricted` policy, for use in downstream clusters. For a complete template which has all the exemptions you need to run Rancher, please refer to this {xref-sample-psact}[sample Admission Configuration].
+{rancher-product-name}, some {rancher-product-name} owned charts, and RKE2 and K3s distributions all use these namespaces. A subset of the listed namespaces are already exempt in the built-in Rancher `rancher-restricted` policy, for use in downstream clusters. For a complete template which has all the exemptions you need to run Rancher, please refer to this {xref-sample-psact}[sample Admission Configuration].
 
 [#_exempting_namespaces]
 == Exempting Namespaces

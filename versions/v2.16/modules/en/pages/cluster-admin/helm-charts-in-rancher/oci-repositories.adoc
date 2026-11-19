@@ -1,7 +1,7 @@
 = Using OCI-Based Helm Chart Repositories
 :description: Add an OCI-based Helm chart repository in Rancher to deploy apps using the Rancher UI and set up authentication
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/helm-charts-in-rancher/oci-repositories.adoc 
 :page-product-path: cluster-admin/helm-charts-in-rancher/oci-repositories.adoc
@@ -61,7 +61,7 @@ It may take some time for the OCI repository to activate. This is particularly t
 [#_authentication_for_oci_based_helm_chart_repositories]
 == Authentication for OCI-Based Helm Chart Repositories
 
-Rancher supports BasicAuth for OCI registries. You must create a https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret[*BasicAuth* Kubernetes secret]. You can also {xref-secrets}[create the secret through the Rancher UI].
+{rancher-product-name} supports BasicAuth for OCI registries. You must create a https://kubernetes.io/docs/concepts/configuration/secret/#basic-authentication-secret[*BasicAuth* Kubernetes secret]. You can also {xref-secrets}[create the secret through the Rancher UI].
 
 The CRD that is linked to the OCI-based Helm repository is `ClusterRepo`.
 
@@ -77,7 +77,7 @@ To view Helm charts in the OCI-based Helm chart repository after it achieves an 
 [#_refresh_an_oci_based_helm_chart_repository]
 == Refresh an OCI-Based Helm Chart Repository
 
-Rancher automatically refreshes the OCI-based Helm chart repository every 6 hours.
+{rancher-product-name} automatically refreshes the OCI-based Helm chart repository every 6 hours.
 
 If you need to update immediately, you can {xref-helm-charts-in-rancher}#_refresh_chart_repositories[perform a manual refresh].
 
@@ -103,7 +103,7 @@ If you need to update immediately, you can {xref-helm-charts-in-rancher}#_refres
 
 Due to security concerns, there are limitations on how large of a Helm chart you can deploy through an OCI-based repository, and how much metadata you can use to describe the Helm charts within a single OCI endpoint.
 
-Rancher can deploy OCI Helm charts up to 20 MB in size.
+{rancher-product-name} can deploy OCI Helm charts up to 20 MB in size.
 
 [#_rate_limiting_of_oci_based_helm_chart_repositories]
 == Rate Limiting of OCI-Based Helm Chart Repositories
@@ -114,7 +114,7 @@ Most servers return a `Retry-After` header, indicating how long to wait before r
 
 Docker Hub returns a `429` status code when it completes all allocated requests. It also returns a `RateLimit-Remaining` header which describes the rate limiting policy.
 
-Rancher currently checks for the `Retry-After` header. It also handles Docker Hub-style responses (status code `429` and the `RateLimit-Remaining` header) and automatically waits before making a new request. When handling `Retry-After` or Docker Hub-style responses, Rancher ignores `ExponentialBackOff` values.
+{rancher-product-name} currently checks for the `Retry-After` header. It also handles Docker Hub-style responses (status code `429` and the `RateLimit-Remaining` header) and automatically waits before making a new request. When handling `Retry-After` or Docker Hub-style responses, Rancher ignores `ExponentialBackOff` values.
 
 If you have an OCI-based Helm chart repository which doesn't implement the `Retry-After` or `RateLimit-Remaining` headers, and think you may be rate-limited at some point, fill out the fields under *Exponential Back Off* when you add the repository.
 

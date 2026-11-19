@@ -1,7 +1,7 @@
 = Integrations in {rancher-product-name}
 :description: Learn how to use Rancher integrations with Kubernetes distributions, Longhorn, Harvester, and other tools to manage clusters and enhance security in your
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/index.adoc 
 :page-product-path: integrations/integrations.adoc
@@ -30,7 +30,7 @@ ifeval::["{build-type}" == "community"]
 :xref-turtles-overview: xref:integrations-in-rancher/cluster-api/overview.adoc
 endif::[]
 
-Prime is the Rancher ecosystem's enterprise offering, with additional security, extended lifecycles, and access to Prime-exclusive documentation. Rancher Prime installation assets are hosted on a trusted SUSE registry, owned and managed by Rancher. The trusted Prime registry includes only stable releases that have been community-tested.
+Prime is the Rancher ecosystem's enterprise offering, with additional security, extended lifecycles, and access to Prime-exclusive documentation. Rancher Prime installation assets are hosted on a trusted SUSE registry, owned and managed by {rancher-product-name}. The trusted Prime registry includes only stable releases that have been community-tested.
 
 Prime also offers options for production support, as well as add-ons to your subscription that tailor to your commercial needs.
 

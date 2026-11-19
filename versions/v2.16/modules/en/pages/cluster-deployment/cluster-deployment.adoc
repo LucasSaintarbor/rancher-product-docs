@@ -1,6 +1,6 @@
 = Kubernetes Clusters in {rancher-product-name} Setup
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/index.adoc 
 :page-product-path: cluster-deployment/cluster-deployment.adoc
@@ -30,7 +30,7 @@ ifeval::["{build-type}" == "community"]
 :xref-rancher-architecture: xref:reference-guides/rancher-manager-architecture/index.adoc
 endif::[]
 
-Rancher simplifies the creation of clusters by allowing you to create them through the Rancher UI rather than more complex alternatives. Rancher provides multiple options for launching a cluster. Use the option that best fits your use case.
+{rancher-product-name} simplifies the creation of clusters by allowing you to create them through the {rancher-product-name} UI rather than more complex alternatives. {rancher-product-name} provides multiple options for launching a cluster. Use the option that best fits your use case.
 
 This section assumes a basic familiarity with Docker and Kubernetes. For a brief explanation of how Kubernetes components work together, refer to the {xref-k8s-concepts}[concepts] page.
 
@@ -72,7 +72,7 @@ For more information, refer to the section on {xref-hosted-k8s-clusters}[hosted 
 [#_launching_kubernetes_with_rancher]
 == Launching Kubernetes with Rancher
 
-Rancher uses {url-rke2-intro}[RKE2] or {url-k3s-intro}[K3s] as a library when provisioning Kubernetes on your own nodes. RKE2 is Rancher’s own lightweight Kubernetes installer.
+{rancher-product-name} uses {url-rke2-intro}[RKE2] or {url-k3s-intro}[K3s] as a library when provisioning Kubernetes on your own nodes. RKE2 is Rancher’s own lightweight Kubernetes installer.
 
 In RKE2 clusters, Rancher manages the deployment of Kubernetes. These clusters can be deployed on any bare metal server, cloud provider, or virtualization platform.
 
@@ -91,10 +91,10 @@ For detailed steps on configuring your CAPI environment and provisioning a clust
 === Launching Kubernetes and Provisioning Nodes in an Infrastructure Provider
 
 ifeval::["{build-type}" != "srfa"]
-Rancher can dynamically provision nodes in infrastructure providers such as Amazon EC2, DigitalOcean, Azure, or vSphere, then install Kubernetes on them.
+{rancher-product-name} can dynamically provision nodes in infrastructure providers such as Amazon EC2, DigitalOcean, Azure, or vSphere, then install Kubernetes on them.
 endif::[]
 ifeval::["{build-type}" == "srfa"]
-Rancher can dynamically provision nodes in infrastructure providers such as Amazon EC2, then install Kubernetes on them.
+{rancher-product-name} can dynamically provision nodes in infrastructure providers such as Amazon EC2, then install Kubernetes on them.
 endif::[]
 
 One benefit of using nodes hosted by an infrastructure provider is that if a node loses connectivity with the cluster, Rancher can automatically replace it, thus maintaining the expected cluster configuration.

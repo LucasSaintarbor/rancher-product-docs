@@ -1,17 +1,17 @@
 = Notifications
 :description: Receive dynamic notifications and system alerts through the Rancher dashboard by viewing updates on the home page banner and the section below Links
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-06
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/notification-center.adoc 
 :page-product-path: rancher-admin/global-configuration/notification-center.adoc
 
-The Rancher dashboard delivers dynamic notifications and system alerts to ensure that you stay informed about the latest updates, lifecycle events, and statuses relevant to your deployment.
+The {rancher-product-name} dashboard delivers dynamic notifications and system alerts to ensure that you stay informed about the latest updates, lifecycle events, and statuses relevant to your deployment.
 
 [#_dynamic_content]
 == Dynamic Content
 
-Rancher fetches dynamic content, including notifications about new releases, End of Maintenance (EOM) or End of Life (EOL) statuses, and other important announcements.
+{rancher-product-name} fetches dynamic content, including notifications about new releases, End of Maintenance (EOM) or End of Life (EOL) statuses, and other important announcements.
 
 Dynamic content is delivered to users through three areas in the Rancher dashboard.
 

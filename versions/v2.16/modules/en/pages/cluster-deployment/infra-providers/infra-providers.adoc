@@ -1,7 +1,7 @@
 = Launching Kubernetes on New Nodes in an Infrastructure Provider
 :description: Launch Kubernetes on new nodes in an infrastructure provider using Rancher, configure machine pools, and set up node roles and cluster templates
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-05-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/launch-kubernetes-with-rancher/use-new-nodes-in-an-infra-provider/index.adoc 
 :page-product-path: cluster-deployment/infra-providers/infra-providers.adoc
@@ -25,7 +25,7 @@ ifeval::["{build-type}" == "community"]
 :xref-recommended-architecture: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/checklist-for-production-ready-clusters/recommended-cluster-architecture.adoc
 endif::[]
 
-When you {xref-rke2-config}#_cluster_config_file_reference[create an RKE2 cluster] using a machine config in Rancher, each resulting node pool is shown in a new **Machine Pools** tab. You can see the machine pools by doing the following:
+When you {xref-rke2-config}#_cluster_config_file_reference[create an RKE2 cluster] using a machine config in {rancher-product-name}, each resulting node pool is shown in a new **Machine Pools** tab. You can see the machine pools by doing the following:
 
 . Click  *☰ > Cluster Management*.
 . Click the name of the RKE2 cluster.
@@ -33,7 +33,7 @@ When you {xref-rke2-config}#_cluster_config_file_reference[create an RKE2 cluste
 [#__rke2_product_name_clusters]
 == {rke2-product-name} Clusters
 
-Rancher v2.6 introduces provisioning for {url-rke2-introduction}[RKE2] clusters directly from the Rancher UI. RKE2, also known as RKE Government, is a fully conformant Kubernetes distribution that focuses on security and compliance within the U.S. Federal Government sector.
+{rancher-product-name} v2.6 introduces provisioning for {url-rke2-introduction}[RKE2] clusters directly from the Rancher UI. RKE2, also known as RKE Government, is a fully conformant Kubernetes distribution that focuses on security and compliance within the U.S. Federal Government sector.
 
 [NOTE]
 ====

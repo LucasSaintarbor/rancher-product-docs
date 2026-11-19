@@ -1,7 +1,7 @@
 = Role-based Access Control
 :description: Define role-based access control by assigning specific permissions to users based on their roles, such as letting cluster admins install monitoring apps
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-06
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/monitoring-and-alerting/rbac-for-monitoring.adoc 
 :page-product-path: observability/monitoring-and-dashboards/rbac-for-monitoring.adoc
@@ -363,7 +363,7 @@ a| * ``secrets``
 [#_role_based_access_control_for_grafana]
 == Role-based Access Control for Grafana
 
-Rancher allows any users who are authenticated by Kubernetes and have access the Grafana service deployed by the Rancher Monitoring chart to access Grafana via the Rancher Dashboard UI. By default, all users who are able to access Grafana are given the https://grafana.com/docs/grafana/latest/permissions/organization_roles/#viewer-role[Viewer] role, which allows them to view any of the default dashboards deployed by Rancher.
+{rancher-product-name} allows any users who are authenticated by Kubernetes and have access the Grafana service deployed by the Rancher Monitoring chart to access Grafana via the {rancher-product-name} Dashboard UI. By default, all users who are able to access Grafana are given the https://grafana.com/docs/grafana/latest/permissions/organization_roles/#viewer-role[Viewer] role, which allows them to view any of the default dashboards deployed by Rancher.
 
 However, users can choose to log in to Grafana as an https://grafana.com/docs/grafana/latest/permissions/organization_roles/#admin-role[Admin] if necessary. The default Admin username and password for the Grafana instance will be `admin`/`prom-operator`, but alternative credentials can also be supplied on deploying or upgrading the chart.
 

@@ -1,7 +1,7 @@
 = Launching Kubernetes on Windows Clusters
 :description: Launch Kubernetes on Windows clusters using Rancher and RKE2 by configuring Linux and Windows nodes, meeting system requirements, and setting up networking
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-12-10
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/use-windows-clusters/index.adoc 
 :page-product-path: cluster-deployment/custom-clusters/windows/use-windows-clusters.adoc
@@ -24,7 +24,7 @@ ifeval::["{build-type}" == "community"]
 :xref-custom-clusters-azure-storageclass-config: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/use-windows-clusters/azure-storageclass-configuration.adoc
 endif::[]
 
-When provisioning a {xref-custom-clusters}[custom cluster] Rancher uses RKE2 to install Kubernetes on your existing nodes.
+When provisioning a {xref-custom-clusters}[custom cluster] {rancher-product-name} uses RKE2 to install Kubernetes on your existing nodes.
 
 In a Windows cluster provisioned with Rancher, the cluster must contain both Linux and Windows nodes. The Kubernetes controlplane can only run on Linux nodes, and the Windows nodes can only have the worker role. Windows nodes can only be used for deploying workloads.
 
@@ -43,7 +43,7 @@ Listed below are the primary RKE2 features for Windows cluster provisioning:
 [NOTE]
 ====
 
-Rancher will allow Windows workload pods to deploy on both Windows and Linux worker nodes by default. When creating mixed clusters in RKE2, you must edit the `nodeSelector` in the chart to direct the pods to be placed onto a compatible Windows node. Refer to the https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector[Kubernetes documentation] for more information on how to use `nodeSelector` to assign pods to nodes.
+{rancher-product-name} will allow Windows workload pods to deploy on both Windows and Linux worker nodes by default. When creating mixed clusters in RKE2, you must edit the `nodeSelector` in the chart to direct the pods to be placed onto a compatible Windows node. Refer to the https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector[Kubernetes documentation] for more information on how to use `nodeSelector` to assign pods to nodes.
 ====
 
 
@@ -75,14 +75,14 @@ The hosts in the cluster need to have at least:
 * 5 GB memory
 * 50 GB disk space
 
-Rancher will not provision the node if the node does not meet these requirements.
+{rancher-product-name} will not provision the node if the node does not meet these requirements.
 
 [#_networking_requirements]
 === Networking Requirements
 
 Before provisioning a new cluster, be sure that you have already installed Rancher on a device that accepts inbound network traffic. This is required in order for the cluster nodes to communicate with Rancher. If you have not already installed Rancher, please refer to the {xref-install-upgrade}[installation documentation] before proceeding with this guide.
 
-Rancher supports Windows using Calico and Flannel as network providers.
+{rancher-product-name} supports Windows using Calico and Flannel as network providers.
 
 If you are configuring DHCP options sets for an AWS virtual private cloud, note that in the `domain-name` option field, only one domain name can be specified. According to the DHCP options https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html[documentation:]
 
@@ -245,7 +245,7 @@ The first node in your cluster should be a Linux host that has both the *Control
 
 *Result:*
 
-Your cluster is created and assigned a state of *Updating*. Rancher is standing up your cluster.
+Your cluster is created and assigned a state of *Updating*. {rancher-product-name} is standing up your cluster.
 
 It may take a few minutes for the node to register and appear under the *Machines* tab.
 
