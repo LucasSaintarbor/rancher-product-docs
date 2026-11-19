@@ -54,9 +54,10 @@ Follow these steps to configure Generic SAML in {rancher-product-name}:
 +
 {rancher-product-name} redirects you to the IdP login page. Enter your IdP credentials to validate the Generic SAML configuration.
 +
-[NOTE]
+[TIP]
+.Browser pop-up blockers and IdP login pages
 ====
-You might have to disable the pop-up blocker in your browser to see the IdP login page.
+Your browser pop-up blocker can prevent the identity provider (IdP) login page from opening. If the login page does not appear, disable the pop-up blocker for this site or allow pop-ups in your browser settings.
 ====
 
 *Result:* {rancher-product-name} is configured to work with your SAML IdP. Your users can now sign into Rancher using their IdP credentials.
