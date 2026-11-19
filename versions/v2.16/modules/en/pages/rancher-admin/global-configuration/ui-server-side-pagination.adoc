@@ -51,14 +51,8 @@ Additionally, the following limitations are present. These mainly revolve around
 ** `Cluster` group --> `Nodes` page
 *** The following columns are not sortable or filterable: `Roles`, `External/Internal IP`, `CPU`, `RAM` (logic to determine their value is calculated in the browser)
 ** `Workloads` list:
-*** The `Workloads` list, which showed multiple different resource types has been removed.
-**** Server-Side Pagination of multiple resources is not currently possible.
-** `Workloads` group --> All lists
-*** `Pod Restarts` and `Workload Health` columns have been removed.
-**** https://github.com/rancher/dashboard/issues/14211[Re-enable Pod Restart Count and Pod Health columns for Workload lists #14211]
-** `Workloads` group / `Job` List
-*** `Duration` is not sortable (sorting on a duration).
-**** https://github.com/rancher/dashboard/issues/12815[Implement more complex server-side pagination sorting #12815]
+*** The `Workloads` list, which showed multiple different resource types has been replaced with an overview page.
+**** Support for Server-Side Pagination backed lists using multiple resources is not currently possible.
 ** `Workloads` group / `Pod` List
 *** `Images` is not sortable (sorting on an array).
 ** `Service Discovery` group / `Ingresses`
