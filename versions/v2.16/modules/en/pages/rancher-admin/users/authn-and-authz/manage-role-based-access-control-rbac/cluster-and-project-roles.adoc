@@ -212,7 +212,7 @@ Users assigned the `Owner` or `Member` role for a project automatically inherit 
 [WARNING]
 .Privilege escalation via wild cards in custom project roles
 ====
-Using wild cards (`*`) in a custom project role can grant unintended cluster-wide administrative access. When rules match non-namespaced resources, such as nodes, persistent volumes, storage classes, API services, or cluster repositories, {rancher-product-name} promotes those rules to a `ClusterRole`. A `ProjectRoleTemplateBinding` then grants access outside the project, and combining this with `*` for verbs grants full read and write permissions across the cluster.
+Using wild cards (`+++*+++`) in a custom project role can grant unintended cluster-wide administrative access. When rules match non-namespaced resources, such as nodes, persistent volumes, storage classes, API services, or cluster repositories, {rancher-product-name} promotes those rules to a `ClusterRole`. A `ProjectRoleTemplateBinding` then grants access outside the project, and combining this with `+++*+++` for verbs grants full read and write permissions across the cluster.
 
 To prevent unintended privilege escalation, *avoid wild cards in custom project roles*. Specify only the required API groups, resources, and verbs, and review the effective permissions before assigning the role.
 ====
