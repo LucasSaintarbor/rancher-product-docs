@@ -98,7 +98,7 @@ The table below details the parameters for the user schema configuration.
 | The attribute whose value matches the username part of credentials entered by your users when logging in to Rancher. This is typically `uid`.
 
 | User Identifier Attribute
-| Optional. The user attribute whose value Rancher uses as the user principal ID instead of the DN. For example, `uid`. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+| Optional. The user attribute whose value {rancher-product-name} uses as the principal ID of the user instead of the DN (for example, `uid`). You cannot change this attribute while the provider is enabled. For more information, see <<_principal_identifier_attributes,Principal identifier attributes>>.
 
 | User Member Attribute
 | The user attribute containing the Distinguished Name of groups a user is member of. Usually this is one of `memberOf` or `isMemberOf`.
@@ -129,7 +129,7 @@ The table below details the parameters for the group schema configuration.
 | The group attribute whose value is suitable for a display name.
 
 | Group Identifier Attribute
-| Optional. The group attribute whose value Rancher uses as the group principal ID instead of the DN. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+| Optional. The group attribute whose value {rancher-product-name} uses as the principal ID of the group instead of the DN. For more information, see <<_principal_identifier_attributes,Principal identifier attributes>>.
 
 | Group Member User Attribute
 | The name of the *user attribute* whose format matches the group members in the `Group Member Mapping Attribute`.
@@ -159,5 +159,5 @@ When you configure OpenLDAP for user and group search with Okta or Shibboleth, t
 
 * The *User Identifier Attribute* must contain the same value that the identity provider sends in the *UID Field*.
 * The *Group Identifier Attribute* must contain the same value that the identity provider sends in the *Groups Field*.
-* If a field is empty, Rancher uses the *Login Attribute* for users and the *Group DN Attribute* for groups.
-* You can change the fields while the provider is enabled.
+* If a field is empty, {rancher-product-name} uses the *Login Attribute* for users and the *Group DN Attribute* for groups.
+* You can change these attributes while the provider is enabled.

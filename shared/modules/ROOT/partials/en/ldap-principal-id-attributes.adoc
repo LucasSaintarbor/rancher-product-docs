@@ -1,20 +1,18 @@
-By default, Rancher uses the Distinguished Name (DN) of a directory entry as the ID of the user or group principal. The DN changes when you move or rename the entry. Rancher then treats the entry as a new principal, and the permissions assigned to the old principal no longer apply.
+By default, {rancher-product-name} uses the DN (distinguished name) of a directory entry as the ID of the user or group principal. The DN changes when you move or rename the entry. {rancher-product-name} then treats the entry as a new principal, and the permissions assigned to the old principal no longer apply.
 
-To keep principal IDs stable, set the *User Identifier Attribute* and *Group Identifier Attribute* fields in the *Customize Schema* section. Rancher then uses the value of the attribute as the principal ID instead of the DN. For example, use `sAMAccountName` in Active Directory, or `uid` for users in OpenLDAP and FreeIPA. Leave a field empty to keep using the DN.
+To keep principal IDs stable, set *User Identifier Attribute* and *Group Identifier Attribute* under *Customize Schema*. {rancher-product-name} then uses the value of the attribute as the principal ID instead of the DN. For example, use `sAMAccountName` in Active Directory or `uid` for users in OpenLDAP and FreeIPA. Leave the attributes empty to keep using the DN.
 
 Choose attributes that meet the following requirements:
 
 * The value is unique across all users, or across all groups.
 * The value stays the same when the entry moves to another part of the directory.
-* Every user and group entry has the attribute. Login fails for a user whose entry lacks the user identifier attribute.
-
-Both fields must be valid LDAP attribute names.
+* Every user and group entry has the attribute. Users cannot log in if their entry lacks the user identifier attribute.
+* Both attributes must be valid LDAP attribute names.
 
 [IMPORTANT]
+.Changing identifier attributes after enabling the provider
 ====
-You can't change the identifier attributes while the provider is enabled. To change them, disable the provider, change the attributes and enable the provider again.
+You cannot change the identifier attributes while the provider is enabled. To change them, you must disable the provider, change the attributes and enable the provider again. When you disable the provider, {rancher-product-name} deletes the users, bindings and other resources of the provider by default.
 
-When you disable the provider, Rancher deletes the users, bindings and other resources of the provider by default. After you enable the provider again, users get new principal IDs when they log in, and you must assign their permissions again. For more information, see {xref-authn-authz}#_disabling_an_auth_provider[Disabling an auth provider].
-
-If the provider has the `management.cattle.io/auth-provider-cleanup: user-locked` annotation, Rancher keeps the users and bindings. They keep the old principal IDs, which no longer match any user or group after the change.
+To keep the users and bindings, add the `management.cattle.io/auth-provider-cleanup: user-locked` annotation to the provider before you disable it. The retained users and bindings keep their old principal IDs, which no longer match any user or group. After you enable the provider again, users receive new principal IDs when they log in, and you must assign their permissions again. For more information, see {xref-authn-authz}#_disabling_an_auth_provider[Disabling an auth provider].
 ====

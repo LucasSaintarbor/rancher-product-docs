@@ -139,7 +139,7 @@ The table below details the parameters for the user schema section configuration
 | The attribute whose value matches the username part of credentials entered by your users when logging in to Rancher. If your users authenticate with their UPN (e.g. "jdoe@acme.com") as username then this field must normally be set to `userPrincipalName`. Otherwise for the old, NetBIOS-style logon names (e.g. "jdoe") it's usually `sAMAccountName`.
 
 | User Identifier Attribute
-| Optional. The user attribute whose value Rancher uses as the user principal ID instead of the DN. For example, `sAMAccountName`. You can't change it while the provider is enabled. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+| Optional. The user attribute whose value {rancher-product-name} uses as the principal ID of the user instead of the DN (for example, `sAMAccountName`). You cannot change this attribute while the provider is enabled. For more information, see <<_principal_identifier_attributes,Principal identifier attributes>>.
 
 | User Member Attribute
 | The attribute containing the groups that a user is a member of.
@@ -176,7 +176,7 @@ The table below details the parameters for the group schema configuration.
 | The group attribute whose value is suitable for a display name.
 
 | Group Identifier Attribute
-| Optional. The group attribute whose value Rancher uses as the group principal ID instead of the DN. For example, `sAMAccountName`. You can't change it while the provider is enabled. See <<_principal_identifier_attributes,Principal identifier attributes>>.
+| Optional. The group attribute whose value {rancher-product-name} uses as the principal ID of the group instead of the DN (for example, `sAMAccountName`). You cannot change this attribute while the provider is enabled. For more information, see <<_principal_identifier_attributes,Principal identifier attributes>>.
 
 | Group Member User Attribute
 | The name of the *user attribute* whose format matches the group members in the `Group Member Mapping Attribute`.
