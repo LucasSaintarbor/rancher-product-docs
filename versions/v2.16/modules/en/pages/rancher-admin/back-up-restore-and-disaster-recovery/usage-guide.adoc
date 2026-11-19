@@ -123,7 +123,7 @@ Migration have some more nuance since we are restoring to a different cluster. T
 [#_capi_provider_resources]
 === CAPI Provider Resources
 
-`ResourceSet` objects select specific Cluster API (CAPI) provider resources for backup, for example, Cluster API Provider AWS (CAPA) or Cluster API Provider vSphere (CAPV) infrastructure providers {turtles-product-name} clusters and {rancher-product-name}-provisioned clusters that use {xref-capi-pnp}[native CAPI providers] require these resources. For the exact list of included resources, inspect the `ResourceSet` definition.
+`ResourceSet` objects select specific Cluster API (CAPI) provider resources for backup, for example, Cluster API Provider AWS (CAPA) or Cluster API Provider vSphere (CAPV) infrastructure providers. {turtles-product-name} clusters and {rancher-product-name}-provisioned clusters that use {xref-capi-pnp}[native CAPI providers] require these resources. For the exact list of included resources, inspect the `ResourceSet` definition.
 
 [IMPORTANT]
 .CAPI backup limitations
