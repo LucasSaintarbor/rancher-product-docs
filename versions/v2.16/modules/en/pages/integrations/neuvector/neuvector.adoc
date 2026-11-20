@@ -1,7 +1,7 @@
 = {neuvector-product-name}
 :description: Deploy and manage container security with NeuVector and Rancher to scan, protect, and monitor clusters and workloads
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/neuvector/index.adoc 
 :page-product-path: integrations/neuvector/neuvector.adoc
@@ -11,7 +11,7 @@ NeuVector is the only 100% open source, Zero Trust container security platform. 
 [#__neuvector_product_name_with_rancher]
 == {neuvector-product-name} with Rancher
 
-All NeuVector features are available through Rancher with integrated deployment and single-sign on to the NeuVector console. Rancher cluster admins are able to deploy and manage the NeuVector deployment on their clusters and easily configure NeuVector through Helm values, configMaps, custom resource definitions (CRDs) and the NeuVector console.
+All NeuVector features are available through {rancher-product-name} with integrated deployment and single-sign on to the NeuVector console. {rancher-product-name} cluster admins are able to deploy and manage the NeuVector deployment on their clusters and easily configure NeuVector through Helm values, configMaps, custom resource definitions (CRDs) and the NeuVector console.
 
 With NeuVector and Rancher:
 

@@ -1,12 +1,12 @@
 = {rancher-product-name} Deployment Strategy
 :description: Choose between two Rancher deployment strategies: Hub & Spoke and Regional, and learn their pros and cons
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-server/rancher-deployment-strategy.adoc 
 :page-product-path: installation-and-upgrade/best-practices/deployment-strategy.adoc
 
-There are two recommended deployment strategies for a Rancher instance that manages downstream Kubernetes clusters. Each one has its own pros and cons. Read more about which one would fit best for your use case.
+There are two recommended deployment strategies for a {rancher-product-name} instance that manages downstream Kubernetes clusters. Each one has its own pros and cons. Read more about which one would fit best for your use case.
 
 [#_hub_spoke_strategy]
 == Hub & Spoke Strategy
@@ -37,7 +37,7 @@ In the regional deployment model a Rancher instance is deployed in close proximi
 [#_pros_1]
 === Pros
 
-* Rancher functionality in regions stay operational if a Rancher instance in another region goes down.
+* {rancher-product-name} functionality in regions stay operational if a {rancher-product-name} instance in another region goes down.
 * Network latency between Rancher and downstream clusters is greatly reduced, improving the performance of functionality in Rancher.
 * Upgrades of Rancher can be done independently per region.
 

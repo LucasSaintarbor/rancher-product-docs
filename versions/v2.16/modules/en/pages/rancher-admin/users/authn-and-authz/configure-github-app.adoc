@@ -1,12 +1,12 @@
 = Configure GitHub App
 :description: Configure the GitHub App authentication provider in Rancher to allow users to log in with a GitHub Organization account
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-12-08
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-github-app.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-github-app.adoc
 
-In environments using GitHub, you can configure the new GitHub App authentication provider in Rancher, which allows users to authenticate against a GitHub Organization account using a dedicated https://docs.github.com/en/apps/overview[GitHub App]. This new provider runs alongside the existing standard GitHub authentication provider, offering increased security and better management of permissions based on GitHub Organization teams.
+In environments using GitHub, you can configure the new GitHub App authentication provider in {rancher-product-name}, which allows users to authenticate against a GitHub Organization account using a dedicated https://docs.github.com/en/apps/overview[GitHub App]. This new provider runs alongside the existing standard GitHub authentication provider, offering increased security and better management of permissions based on GitHub Organization teams.
 
 [#_prerequisites]
 == Prerequisites
@@ -82,7 +82,7 @@ To set up the GitHub App Auth Provider in Rancher, follow these steps:
 A GitHub App can be installed across multiple Organizations, and each installation has a unique Installation ID. If you want to restrict authentication to a single App installation and GitHub Organization, provide the Installation ID during configuration. If you do not provide an Installation ID, the user's permissions are aggregated across all installations.
 ====
 +
-. Select *Enable*. Rancher attempts to validate the credentials and, upon success, activates the GitHub App provider.
+. Select *Enable*. {rancher-product-name} attempts to validate the credentials and, upon success, activates the GitHub App provider.
 
 After it is enabled, users logging in via the GitHub App provider are automatically identified and you can leverage your GitHub Organization's teams and users to configure Role-Based Access Control (RBAC) and to assign permissions to projects and clusters.
 

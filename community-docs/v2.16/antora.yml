@@ -7,6 +7,7 @@ nav:
 - modules/ROOT/nav.adoc
 asciidoc:
   attributes:
+    rancher-product-name: "Rancher Community"
     rancher-helm-repo: "rancher-latest"
     current-patch-version: 2.16.0
     page-target-edit-version: "v2.16"

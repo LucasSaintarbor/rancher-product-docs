@@ -1,14 +1,14 @@
 = Using {fleet-product-name} Behind a Proxy
 :description: Configure Fleet to work behind a proxy by setting agent environment variables in Rancher for downstream clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/fleet/use-fleet-behind-a-proxy.adoc 
 :page-product-path: integrations/fleet/use-fleet-behind-a-proxy.adoc
 
 In this section, you'll learn how to enable Fleet in a setup that has a Rancher server with a public IP a Kubernetes cluster that has no public IP, but is configured to use a proxy.
 
-Rancher does not establish connections with registered downstream clusters. The Rancher agent deployed on the downstream cluster must be able to establish the connection with Rancher.
+{rancher-product-name} does not establish connections with registered downstream clusters. The Rancher agent deployed on the downstream cluster must be able to establish the connection with Rancher.
 
 To set up Fleet to work behind a proxy, you will need to set the *Agent Environment Variables* for the downstream cluster. These are cluster-level configuration options.
 

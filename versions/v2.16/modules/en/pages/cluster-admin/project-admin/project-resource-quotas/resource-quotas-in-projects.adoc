@@ -1,7 +1,7 @@
 = How Resource Quotas Work in {rancher-product-name} Projects
 :description: Learn how to apply resource quotas to projects in Rancher to set limits for all namespaces automatically
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-24
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/manage-projects/manage-project-resource-quotas/about-project-resource-quotas.adoc 
 :page-product-path: cluster-admin/project-admin/project-resource-quotas/resource-quotas-in-projects.adoc
@@ -14,7 +14,7 @@ ifeval::["{build-type}" == "community"]
 :xref-resource-quota-types: xref:how-to-guides/advanced-user-guides/manage-projects/manage-project-resource-quotas/resource-quota-types.adoc
 endif::[]
 
-Resource quotas in Rancher include the same functionality as the https://kubernetes.io/docs/concepts/policy/resource-quotas/[native version of Kubernetes]. However, in Rancher, resource quotas have been extended so that you can apply them to projects.
+Resource quotas in {rancher-product-name} include the same functionality as the https://kubernetes.io/docs/concepts/policy/resource-quotas/[native version of Kubernetes]. However, in Rancher, resource quotas have been extended so that you can apply them to projects.
 
 In a standard Kubernetes deployment, resource quotas are applied to individual namespaces. However, you cannot apply the quota to your namespaces simultaneously with a single action. Instead, the resource quota must be applied multiple times.
 
@@ -38,7 +38,7 @@ This set of values configures a total limit for each specified resource shared a
 This set of values configures the default quota limit available for each namespace for each specified resource.
   When a namespace is created in the project without overrides, this limit is automatically bound to the namespace and enforced.
 
-In the following diagram, a Rancher administrator wants to apply a resource quota that sets the same CPU and memory limit for every namespace in their project (`Namespace 1-4`). However, in Rancher, the administrator can set a resource quota for the project (`Project Resource Quota`) rather than individual namespaces. This quota includes resource limits for both the entire project (`Project Limit`) and individual namespaces (`Namespace Default Limit`). Rancher then propagates the `Namespace Default Limit` quotas to each namespace (`Namespace Resource Quota`) when created.
+In the following diagram, a Rancher administrator wants to apply a resource quota that sets the same CPU and memory limit for every namespace in their project (`Namespace 1-4`). However, in Rancher, the administrator can set a resource quota for the project (`Project Resource Quota`) rather than individual namespaces. This quota includes resource limits for both the entire project (`Project Limit`) and individual namespaces (`Namespace Default Limit`). {rancher-product-name} then propagates the `Namespace Default Limit` quotas to each namespace (`Namespace Resource Quota`) when created.
 
 ^Rancher: Resource Quotas Propagating to Each Namespace^
 

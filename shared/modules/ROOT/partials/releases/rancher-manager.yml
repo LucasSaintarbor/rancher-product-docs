@@ -1,0 +1,10 @@
+# Rancher Manager releases. Each version of the rancher-manager component is
+# a release. The versions and their prerelease flag come from antora.yml.
+#
+# The PDF build in dsc-style-bundle reads this file (product: rancher-manager
+# in pdf-options.yml). With "releases: versions", the release selector and
+# release-url-layout ignore it, so the site does not change.
+
+product:
+  component: rancher-manager
+releases: versions

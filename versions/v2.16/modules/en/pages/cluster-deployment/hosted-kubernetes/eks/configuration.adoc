@@ -1,7 +1,7 @@
 = EKS Cluster Configuration Reference
 :description: Configure your EKS cluster by following steps to set up account access, service roles, and API endpoint access
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-21
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/cluster-configuration/rancher-server-configuration/eks-cluster-configuration.adoc 
 :page-product-path: cluster-deployment/hosted-kubernetes/eks/configuration.adoc
@@ -81,7 +81,7 @@ For more information about public and private access to the cluster endpoint, re
 [#_ipv6_dual_stack_networking]
 == IPv6 / Dual-stack Networking
 
-Rancher supports provisioning and managing Amazon EKS clusters with IPv6 network routing. When IPv6 is enabled, Kubernetes pods and services are assigned IPv6 addresses. However, the underlying EC2 worker nodes operate in a *dual-stack mode* (receiving both IPv4 and IPv6 addresses). This dual-stack architecture ensures that the nodes can still communicate with the AWS API and the Kubernetes control plane over IPv4, while your application workloads communicate over IPv6.
+{rancher-product-name} supports provisioning and managing Amazon EKS clusters with IPv6 network routing. When IPv6 is enabled, Kubernetes pods and services are assigned IPv6 addresses. However, the underlying EC2 worker nodes operate in a *dual-stack mode* (receiving both IPv4 and IPv6 addresses). This dual-stack architecture ensures that the nodes can still communicate with the AWS API and the Kubernetes control plane over IPv4, while your application workloads communicate over IPv6.
 
 To provision a dual-stack cluster from the Rancher UI:
 
@@ -112,13 +112,13 @@ The IP Family setting is *immutable*. After an EKS cluster is created, you canno
 [#_importing_existing_ipv6_clusters]
 == Importing Existing IPv6 Clusters
 
-Rancher fully supports registering (importing) existing Amazon EKS clusters that were configured with IPv6 networking outside of Rancher (e.g., via Terraform or the AWS Console).
+{rancher-product-name} fully supports registering (importing) existing Amazon EKS clusters that were configured with IPv6 networking outside of {rancher-product-name} (e.g., via Terraform or the AWS Console).
 
 When you register an existing EKS cluster:
 
 . Follow the standard cluster registration process (*Cluster Management > Add Cluster > Generic*).
-. Rancher queries the AWS EKS API to read the cluster’s upstream state.
-. Rancher automatically detects if the cluster was provisioned with IPv6.
+. {rancher-product-name} queries the AWS EKS API to read the cluster’s upstream state.
+. {rancher-product-name} automatically detects if the cluster was provisioned with IPv6.
 
 When configuring an IPv6 cluster, several automated behaviors and strict requirements apply:
 

@@ -1,6 +1,6 @@
 = Port Requirements
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-requirements/port-requirements.adoc 
 :page-product-path: installation-and-upgrade/requirements/port-requirements.adoc
@@ -35,14 +35,14 @@ The following table lists the ports that need to be open to and from nodes that 
 
 The port requirements differ based on the Rancher server architecture.
 
-Rancher can be installed on any Kubernetes cluster. For Rancher installs on a K3s, RKE, or RKE2 Kubernetes cluster, refer to the tabs below. For other Kubernetes distributions, refer to the distribution's documentation for the port requirements for cluster nodes.
+{rancher-product-name} can be installed on any Kubernetes cluster. For Rancher installs on a K3s, RKE, or RKE2 Kubernetes cluster, refer to the tabs below. For other Kubernetes distributions, refer to the distribution's documentation for the port requirements for cluster nodes.
 
 [NOTE]
 ====
-* Rancher nodes may also require additional outbound access for any external authentication provider which is configured (LDAP for example).
+* {rancher-product-name} nodes may also require additional outbound access for any external authentication provider which is configured (LDAP for example).
 * Kubernetes recommends TCP 30000-32767 for node port services.
 * For firewalls, traffic may need to be enabled within the cluster and pod CIDR.
-* Rancher nodes may also need outbound access to an external S3 location which is used for storing cluster backups (Minio for example).
+* {rancher-product-name} nodes may also need outbound access to an external S3 location which is used for storing cluster backups (Minio for example).
 ====
 
 

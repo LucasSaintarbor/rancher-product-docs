@@ -1,7 +1,7 @@
 = Enabling the API Audit Log in Downstream Clusters
 :description: Enable the API audit log in downstream clusters using machineGlobalConfig or machineSelectorConfig with secrets or configmaps
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-04-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/enable-api-audit-log-in-downstream-clusters.adoc 
 :page-product-path: observability/logging/enable-api-audit-log-in-downstream-clusters.adoc
@@ -104,7 +104,7 @@ The secret or configmap must meet the following requirements:
 [TIP]
 ====
 
-Rancher Dashboard provides an easy-to-use form for creating the secret or configmap.
+{rancher-product-name} Dashboard provides an easy-to-use form for creating the secret or configmap.
 ====
 
 

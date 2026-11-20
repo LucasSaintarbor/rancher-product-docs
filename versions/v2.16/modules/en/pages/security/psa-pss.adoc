@@ -1,7 +1,7 @@
 = Pod Security Standards (PSS) & Pod Security Admission (PSA)
 :description: Apply Pod Security Admission (PSA) configuration templates to enforce security restrictions on Kubernetes workloads
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-18
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/pod-security-standards.adoc 
 :page-product-path: security/psa-pss.adoc
@@ -22,11 +22,11 @@ PSS define security levels for workloads. PSAs describe requirements for pod sec
 [#_pod_security_admission_configuration_templates]
 == Pod Security Admission Configuration Templates
 
-Rancher offers PSA configuration templates. These are pre-defined security configurations that you can apply to a cluster. Rancher admins (or those with the right permissions) can {xref-psact}[create, manage, and edit] PSA templates.
+{rancher-product-name} offers PSA configuration templates. These are pre-defined security configurations that you can apply to a cluster. Rancher admins (or those with the right permissions) can {xref-psact}[create, manage, and edit] PSA templates.
 
 [#_rancher_on_psa_restricted_clusters]
 === Rancher on PSA-restricted Clusters
 
-Rancher system namespaces are also affected by the restrictive security policies described by PSA templates. You need to exempt Rancher's system namespaces after you assign the template, or else the cluster won't operate correctly. See {xref-psact}#_exempting_required_rancher_namespaces[Pod Security Admission (PSA) Configuration Templates] for more details.
+{rancher-product-name} system namespaces are also affected by the restrictive security policies described by PSA templates. You need to exempt Rancher's system namespaces after you assign the template, or else the cluster won't operate correctly. See {xref-psact}#_exempting_required_rancher_namespaces[Pod Security Admission (PSA) Configuration Templates] for more details.
 
 For a complete file which has all the exemptions you need to run Rancher, please refer to this {xref-sample-psact}[sample Admission Configuration].

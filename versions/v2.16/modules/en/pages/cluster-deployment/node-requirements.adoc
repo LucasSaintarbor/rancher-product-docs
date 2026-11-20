@@ -1,7 +1,7 @@
 = Node Requirements for {rancher-product-name} Managed Clusters
 :description: Learn the node requirements for Rancher managed Kubernetes clusters where your apps and services will be installed
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/node-requirements-for-rancher-managed-clusters.adoc 
 :page-product-path: cluster-deployment/node-requirements.adoc
@@ -26,7 +26,7 @@ ifeval::["{build-type}" == "community"]
 :xref-rancher-on-arm64: xref:how-to-guides/advanced-user-guides/enable-experimental-features/rancher-on-arm64.adoc
 endif::[]
 
-This page describes the requirements for the Rancher managed Kubernetes clusters where your apps and services will be installed. These downstream clusters should be separate from the three-node cluster running Rancher.
+This page describes the requirements for the {rancher-product-name} managed Kubernetes clusters where your apps and services will be installed. These downstream clusters should be separate from the three-node cluster running Rancher.
 
 [NOTE]
 ====
@@ -172,7 +172,7 @@ Details on which ports are used in each situation are found under {xref-port-req
 [#_ipv6_address_requirements]
 === IPv6 Address Requirements
 
-Rancher supports clusters configured with IPv4-only, IPv6-only, or dual-stack networking.
+{rancher-product-name} supports clusters configured with IPv4-only, IPv6-only, or dual-stack networking.
 
 You must provision each node with at least one valid IPv4 address, one IPv6 address, or both, according to the cluster networking configuration.
 

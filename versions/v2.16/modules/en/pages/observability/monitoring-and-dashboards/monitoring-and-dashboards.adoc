@@ -1,6 +1,6 @@
 = Monitoring and Dashboards
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-10-20
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/monitoring-and-alerting/index.adoc 
 :page-product-path: observability/monitoring-and-dashboards/monitoring-and-dashboards.adoc
@@ -49,12 +49,12 @@ endif::[]
 
 [IMPORTANT]
 ====
-Starting in Rancher v2.15.0, new monitoring installations use the decoupled `rancher-monitoring-dashboards` chart.
+Starting in {rancher-product-name} v2.15.0, new monitoring installations use the decoupled `rancher-monitoring-dashboards` chart.
 
-Rancher maintains the legacy `rancher-monitoring` chart to support existing deployments, but it does not receive new updates. Use the `rancher-monitoring-dashboards` chart for ongoing updates and support.
+{rancher-product-name} maintains the legacy `rancher-monitoring` chart to support existing deployments, but it does not receive new updates. Use the `rancher-monitoring-dashboards` chart for ongoing updates and support.
 ====
 
-The `rancher-monitoring-dashboards` chart provides Grafana dashboards and Rancher UI integration for external Prometheus monitoring stacks, such as `kube-prometheus-stack`.
+The `rancher-monitoring-dashboards` chart provides Grafana dashboards and {rancher-product-name} UI integration for external Prometheus monitoring stacks, such as `kube-prometheus-stack`.
 
 * *No bundled runtime:* Operates without depending on Rancher-shipped `kube-prometheus-stack` images or components. It operates independently and does not require installing the legacy `rancher-monitoring` chart. It installs a dashboard-only version of `rancher-monitoring`.
 * *Prerequisites:* Requires uninstalling the `rancher-monitoring` chart and using a Prometheus infrastructure. Although several configurations are supported, installing `kube-prometheus-stack` is the simplest method.
@@ -220,7 +220,7 @@ To deploy the `rancher-monitoring-dashboards` chart using the Rancher UI:
 . Optional: Customize any chart installation values as needed.
 . Click *Install*.
 
-*Result:* Rancher deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
+*Result:* {rancher-product-name} deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
 endif::[]
 ifeval::["{build-type}" != "community"]
 [#_rancher_monitoring_dashboards_installation]
@@ -486,7 +486,7 @@ k3sServer:
 
 . Click *Install*.
 
-*Result:* Rancher deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
+*Result:* {rancher-product-name} deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
 endif::[]
 
 [#_customization_and_overrides]
@@ -561,7 +561,7 @@ k3sServer:
 
 *Q*: Will the legacy `rancher-monitoring` chart still be available?
 
-*A*: Yes. Rancher v2.15 retains the Rancher v2.14 version of the `rancher-monitoring` chart, but you cannot install it directly as a new installation. Rancher v2.15 also includes an updated monitoring version available exclusively for upgrades.
+*A*: Yes. {rancher-product-name} v2.15 retains the {rancher-product-name} v2.14 version of the `rancher-monitoring` chart, but you cannot install it directly as a new installation. {rancher-product-name} v2.15 also includes an updated monitoring version available exclusively for upgrades.
 
 *Q*: What happens to existing installations when upgrading to Rancher v2.15?
 
@@ -955,7 +955,7 @@ For more information on configuring access to monitoring, see {xref-rancher-moni
 
 [NOTE]
 ====
-Rancher and Project read permissions don't necessarily apply to monitoring resources. See xref:./rbac-for-monitoring.adoc#_additional_monitoring_clusterroles[monitoring-ui-view] for more details.
+{rancher-product-name} and Project read permissions don't necessarily apply to monitoring resources. See xref:./rbac-for-monitoring.adoc#_additional_monitoring_clusterroles[monitoring-ui-view] for more details.
 ====
 
 

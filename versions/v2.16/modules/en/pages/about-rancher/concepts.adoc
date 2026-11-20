@@ -1,7 +1,7 @@
 = Kubernetes Concepts
 :description: Explain Kubernetes concepts important for understanding Rancher, covering clusters, nodes, etcd, control plane, worker nodes, and Helm, with a simplified explanation
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/kubernetes-concepts.adoc 
 :page-product-path: about-rancher/concepts.adoc
@@ -43,7 +43,7 @@ A Kubernetes cluster consists of at least one etcd, controlplane, and worker nod
 [#_etcd_nodes]
 === etcd Nodes
 
-Rancher uses etcd as a data store in both single node and high-availability installations. In Kubernetes, etcd is also a role for nodes that store the cluster state.
+{rancher-product-name} uses etcd as a data store in both single node and high-availability installations. In Kubernetes, etcd is also a role for nodes that store the cluster state.
 
 The state of a Kubernetes cluster is maintained in https://kubernetes.io/docs/concepts/overview/components/#etcd[etcd.]  The etcd nodes run the etcd database.
 

@@ -1,7 +1,7 @@
 = Creating an AKS Cluster
 :description: Use Rancher to create an AKS cluster in Microsoft Azure, configure a service principal, and assign necessary roles for deployment
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-28
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-clusters-from-hosted-kubernetes-providers/aks.adoc 
 :page-product-path: cluster-deployment/hosted-kubernetes/aks/aks.adoc
@@ -17,7 +17,7 @@ ifeval::["{build-type}" == "community"]
 :xref-deploy-aks-config: xref:reference-guides/cluster-configuration/rancher-server-configuration/aks-cluster-configuration.adoc
 endif::[]
 
-You can use Rancher to create a cluster hosted in Microsoft Azure Kubernetes Service (AKS).
+You can use {rancher-product-name} to create a cluster hosted in Microsoft Azure Kubernetes Service (AKS).
 
 [#_prerequisites_in_microsoft_azure]
 == Prerequisites in Microsoft Azure
@@ -122,7 +122,7 @@ Use Rancher to set up and configure your Kubernetes cluster.
 . Fill out the form. For help with filling out the form, see the {xref-deploy-aks-config}[configuration reference.]
 . Click *Create*.
 
-*Result:* Your cluster is created and assigned a state of *Provisioning*. Rancher is standing up your cluster.
+*Result:* Your cluster is created and assigned a state of *Provisioning*. {rancher-product-name} is standing up your cluster.
 
 You can access your cluster after its state is updated to *Active*.
 
@@ -156,7 +156,7 @@ For more information about how to configure AKS clusters from the Rancher UI, se
 
 Typically, AKS worker nodes do not get public IPs, regardless of whether the cluster is private. In a private cluster, the control plane does not have a public endpoint.
 
-Rancher can connect to a private AKS cluster in one of two ways.
+{rancher-product-name} can connect to a private AKS cluster in one of two ways.
 
 The first way to ensure that Rancher is running on the same https://docs.microsoft.com/en-us/azure/virtual-network/nat-overview[NAT] as the AKS nodes.
 

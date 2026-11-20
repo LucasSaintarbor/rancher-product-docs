@@ -33,7 +33,7 @@ asciidoc:
     stackstate-product-name: "SUSE® Observability"
     turtles-product-name: "Turtles"
     rancher-prime: "Rancher"
-    rancher-product-name: "Rancher"
+    rancher-product-name: "Rancher@"
   extensions:
   - '@asciidoctor/tabs'
 antora:

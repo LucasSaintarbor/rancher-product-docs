@@ -1,7 +1,7 @@
 = Setting up the Azure Cloud Provider
 :description: Set up the Azure Cloud Provider by configuring credentials, permissions, and network security groups for Rancher cluster setup
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-28
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers/azure.adoc 
 :page-product-path: cluster-deployment/set-up-cloud-providers/azure.adoc
@@ -112,7 +112,7 @@ This section is valid only for creating clusters with the in-tree cloud provider
 
 
 . Choose "Azure" from the Cloud Provider drop-down in the Cluster Configuration section.
-. Supply the Cloud Provider Configuration. Note that Rancher automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you must specify them before creating the cluster.
+. Supply the Cloud Provider Configuration. Note that {rancher-product-name} automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you must specify them before creating the cluster.
  ** Click *Show Advanced* to view or edit these automatically generated names. Your Cloud Provider Configuration *must* match the fields in the *Machine Pools* section. If you have multiple pools, they must all use the same Resource Group, Availability Set, Subnet, Virtual Network, and Network Security Group.
  ** An example is provided below. Modify it as needed.
 
@@ -151,7 +151,7 @@ This section is valid only for creating clusters with the in-tree cloud provider
 [#_cloud_provider_configuration]
 == Cloud Provider Configuration
 
-Rancher automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you will need to specify them before creating the cluster. You can check *RKE1 Node Templates* or *RKE2 Machine Pools* to view or edit these automatically generated names.
+{rancher-product-name} automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you will need to specify them before creating the cluster. You can check *RKE1 Node Templates* or *RKE2 Machine Pools* to view or edit these automatically generated names.
 
 *Refer to the full list of configuration options in the https://cloud-provider-azure.sigs.k8s.io/install/configs/[upstream docs].*
 
@@ -212,7 +212,7 @@ RKE2::
 --
 . Select *External* from the *Cloud Provider* drop-down in the *Cluster Configuration* section.
 . Under menu:Cluster Configuration[Advanced], click *Add* under *Additional Controller Manager Args* and add this flag: `--configure-cloud-routes=false`.
-. Prepare the Cloud Provider Configuration to set it in the next step. Note that Rancher automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you must specify them before creating the cluster.
+. Prepare the Cloud Provider Configuration to set it in the next step. Note that {rancher-product-name} automatically creates a new Network Security Group, Resource Group, Availability Set, Subnet, and Virtual Network. If you already have some or all of these created, you must specify them before creating the cluster.
 +
 Click *Show Advanced* to view or edit these automatically generated names. Your Cloud Provider Configuration *must* match the fields in the *Machine Pools* section. If you have multiple pools, they must all use the same Resource Group, Availability Set, Subnet, Virtual Network, and Network Security Group.
 +
