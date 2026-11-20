@@ -1,12 +1,22 @@
-= Configure Generic SAML
+= Configue Generic SAML
+:description: Create a SAML 2.0 application in your identity provider and configure Rancher to allow users to log in with their IdP credentials
 :page-languages: [en, de, es, fr, ja, pt, zh]
 :revdate: 2026-11-16
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-saml.adoc
 :page-product-path: rancher-admin/users/authn-and-authz/configure-generic-saml.adoc
-:description: Create a SAML 2.0 application in your identity provider and configure Rancher to work with it. Your users can then sign into Rancher using their identity provider credentials
+ifeval::["{build-type}" != "community"]
+:xref-openldap: xref:faq/technical-items.adoc
+endif::[]
+ifeval::["{build-type}" == "community"]
+:xref-openldap: xref:faq/technical-items.adoc
+endif::[]
 
-The Generic Security Assertion Markup Language (SAML) authentication provider lets users sign in to {rancher-product-name} with credentials from any SAML 2.0 Identity Provider (IdP). Use it when your IdP has no dedicated provider in {rancher-product-name}, for example Auth0, Google Workspace or CA Siteminder. Generic SAML uses the same SAML implementation as the other SAML providers in {rancher-product-name}. It adds settings for the NameID format, the signature algorithm, IdP-initiated login and forced re-authentication.
+The Generic Security Assertion Markup Language (SAML) authentication provider lets users log in to {rancher-product-name}. They can use credentials from any SAML 2.0 Identity Provider (IdP). 
+
+Use it when your IdP has no dedicated provider in {rancher-product-name}, for example Auth0, Google Workspace or CA Siteminder. 
+
+Generic SAML uses the same SAML implementation as the other SAML providers in {rancher-product-name}. It adds settings for the NameID format, the signature algorithm, IdP-initiated login and forced re-authentication.
 
 [#_prerequisites]
 == Prerequisites
@@ -35,7 +45,7 @@ Consult the documentation for your IdP to complete the following prerequisites:
 ** The groups that the user belongs to
 * Configure the IdP to sign the SAML response, the assertion, or both. {rancher-product-name} rejects SAML responses where neither is signed.
 * Download the IdP metadata XML file. The root element of the file must be `EntityDescriptor`.
-
++
 [NOTE]
 .Metadata generation
 ====
@@ -60,7 +70,7 @@ Follow these steps to configure Generic SAML in {rancher-product-name}:
 Your browser pop-up blocker can prevent the identity provider (IdP) login page from opening. If the login page does not appear, disable the pop-up blocker for this site or allow pop-ups in your browser settings.
 ====
 
-*Result:* {rancher-product-name} is configured to work with your SAML IdP. Your users can now sign into Rancher using their IdP credentials.
+*Result:* {rancher-product-name} is configured to work with your SAML IdP. Your users can now log into Rancher using their IdP credentials.
 
 [#_saml_provider_caveats]
 === SAML provider caveats
@@ -69,8 +79,8 @@ Generic SAML doesn't support OpenLDAP user and group search. This has the follow
 
 * {rancher-product-name} doesn't validate users and groups when you assign permissions to them.
 * User search returns only users who already logged in to {rancher-product-name} through this provider. {rancher-product-name} matches the search text against their user name and display name.
-* To add a user who hasn't logged in yet, enter the exact user ID, that is, the value of the `UID Field` attribute.
-* {rancher-product-name} doesn't search for groups. To add a group, enter the exact group name that the IdP sends in the `Groups Field` attribute.
+* To add a user who hasn't logged in yet, enter the exact user ID, that is, the value of the *UID Field* attribute.
+* {rancher-product-name} doesn't search for groups. To add a group, enter the exact group name that the IdP sends in the *Groups Field* attribute.
 
 [#_configuration_reference]
 == Configuration reference
@@ -152,7 +162,11 @@ IdP-initiated login is more exposed to replay and login cross-site request forge
 Select *Allow IdP-initiated login* only if your users need to start the login from the IdP portal.
 ====
 
-After an IdP-initiated login, {rancher-product-name} signs the user in but doesn't redirect the browser to the Rancher UI. The browser shows a blank page. To continue, open the Rancher URL in the browser.
+[TIP]
+.IdP-initiated login behavior
+====
+After an IdP-initiated login, {rancher-product-name} logs the user in but doesn't redirect the browser to the Rancher UI. The browser shows a blank page. To continue, open the Rancher URL in the browser.
+====
 
 [WARNING]
 .Weak signature algorithm
@@ -165,7 +179,7 @@ Use `RSA-SHA1` only if your IdP doesn't support `RSA-SHA256` or `RSA-SHA512`.
 [#_troubleshooting]
 == Troubleshooting
 
-If the login fails, first verify the settings of the SAML application in your IdP. The {rancher-product-name} debug logs can help you find the cause of the problem. For more information, see xref:faq/technical-items.adoc#_how_can_i_enable_debug_logging[How can I enable debug logging].
+If the login fails, first verify the settings of the SAML application in your IdP. The {rancher-product-name} debug logs can help you find the cause of the problem. For more information, see {xref-openldap}#_how_can_i_enable_debug_logging[How can I enable debug logging].
 
 [#_forbidden_message_displayed_after_idp_login]
 === Forbidden message displayed after IdP login
