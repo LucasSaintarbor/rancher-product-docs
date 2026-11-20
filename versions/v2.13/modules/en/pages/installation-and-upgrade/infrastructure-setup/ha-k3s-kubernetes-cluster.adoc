@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-07-15
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/infrastructure-setup/ha-k3s-kubernetes-cluster.adoc 
 :page-product-path: installation-and-upgrade/infrastructure-setup/ha-k3s-kubernetes-cluster.adoc
@@ -29,7 +29,7 @@ endif::[]
 
 This tutorial is intended to help you provision the underlying infrastructure for a Rancher management server.
 
-The recommended infrastructure for the Rancher-only Kubernetes cluster differs depending on whether Rancher will be installed on a K3s Kubernetes cluster, an RKE Kubernetes cluster, or a single Docker container.
+The recommended infrastructure for the Rancher-only Kubernetes cluster differs depending on whether Rancher will be installed on a K3s Kubernetes cluster, an RKE2 Kubernetes cluster, or a single Docker container.
 
 For more information about each installation option, refer to {xref-install-upgrade}[this page.]
 
