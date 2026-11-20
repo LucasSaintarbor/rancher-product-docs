@@ -1,7 +1,7 @@
 = Set up Istio's Components for Traffic Management
 :description: Configure Istio's virtual services and destination rules to manage traffic routing between service versions, such as splitting traffic between v1 and v2
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-10-01
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/istio-setup-guide/set-up-traffic-management.adoc 
 :page-product-path: observability/istio/guides/set-up-traffic-management.adoc
@@ -14,7 +14,7 @@ endif::[]
 
 [WARNING]
 ====
-https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12.0; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
+https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
 Detailed information can be found in https://forums.suse.com/t/deprecation-of-rancher-istio/45043[this announcement].
 ====
 

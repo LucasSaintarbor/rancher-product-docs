@@ -1,7 +1,7 @@
 = Enable Istio in a Namespace
 :description: Enable Istio in a namespace to automatically inject the Envoy sidecar proxy into new workloads, requiring redeployment of existing workloads to take effect
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/istio-setup-guide/enable-istio-in-namespace.adoc 
 :page-product-path: observability/istio/guides/enable-istio-in-namespace.adoc
@@ -14,7 +14,7 @@ endif::[]
 
 [WARNING]
 ====
-https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12.0; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
+https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
 Detailed information can be found in https://forums.suse.com/t/deprecation-of-rancher-istio/45043[this announcement].
 ====
 

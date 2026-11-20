@@ -1,14 +1,14 @@
 = Additional Steps for Installing Istio on {rke2-product-name} and {k3s-product-name} Clusters
 :description: Follow steps to enable CNI and add a custom overlay file when installing Istio on RKE2 and K3s clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-10-01
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/istio/configuration-options/install-istio-on-rke2-cluster.adoc 
 :page-product-path: observability/istio/configuration/install-istio-on-rke2-cluster.adoc
 
 [WARNING]
 ====
-https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12.0; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
+https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
 Detailed information can be found in https://forums.suse.com/t/deprecation-of-rancher-istio/45043[this announcement].
 ====
 

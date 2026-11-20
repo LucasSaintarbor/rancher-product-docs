@@ -1,7 +1,7 @@
 = Upgrades
 :description: Upgrade Rancher server on Kubernetes using Helm, including air-gapped installations, by following prerequisites and steps for backup, repo update, and cert-manager
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-06
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/upgrades.adoc 
 :page-product-path: installation-and-upgrade/upgrades.adoc
@@ -227,26 +227,6 @@ This section describes how to upgrade normal (Internet-connected) or air-gapped 
 
 If you are installing Rancher in an air-gapped environment, skip the rest of this page and render the Helm template by following the instructions on {xref-air-gap-upgrade}[this page.]
 ====
-
-ifeval::["{build-type}" != "community"]
-[IMPORTANT]
-.Upgrading from Rancher v2.13.1
-====
-In Rancher v2.13.2, the Helm chart name has reverted from `rancher-prime` back to `rancher`. If you are upgrading from v2.13.1, the existing Ingress resource created by the previous chart conflicts with the new one, causing the upgrade to fail with an error similar to:
-
-[,shell]
-----
-Error: UPGRADE FAILED: failed to create resource: admission webhook "validate.nginx.ingress.kubernetes.io" denied the request: host "rancher.my.org" and path "/" is already defined in ingress cattle-system/rancher-rancher-prime
-----
-
-To prevent or resolve this issue, you must manually delete the old Ingress before completing the upgrade:
-
-[,shell]
-----
-kubectl delete ingress rancher-rancher-prime -n cattle-system
-----
-====
-endif::[]
 
 Get the values, which were passed with `--set`, from the current Rancher Helm chart that is installed.
 

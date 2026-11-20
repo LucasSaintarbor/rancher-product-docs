@@ -1,7 +1,7 @@
 = CPU and Memory Allocations
 :description: Configure CPU and memory allocations for Istio components to ensure your cluster has enough resources
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/istio/cpu-and-memory-allocations.adoc 
 :page-product-path: observability/istio/cpu-and-memory-allocations.adoc
@@ -14,7 +14,7 @@ endif::[]
 
 [WARNING]
 ====
-https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12.0; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
+https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
 Detailed information can be found in https://forums.suse.com/t/deprecation-of-rancher-istio/45043[this announcement].
 ====
 
