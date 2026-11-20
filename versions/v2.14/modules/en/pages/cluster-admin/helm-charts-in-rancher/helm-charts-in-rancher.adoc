@@ -1,7 +1,7 @@
 = Helm Charts and Apps
 :description: Manage Helm chart repositories and apps in Rancher to deploy custom Kubernetes applications and Rancher tools
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-10-08
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/helm-charts-in-rancher/index.adoc 
 :page-product-path: cluster-admin/helm-charts-in-rancher/helm-charts-in-rancher.adoc
@@ -29,7 +29,7 @@ Rancher uses a catalog-like system to import bundles of charts from repositories
 [#_catalogs_apps_and_the_rancher_ui]
 === Catalogs, Apps, and the Rancher UI
 
-xref:[Rancher v2.4 and earlier], repositories of ready-to-deploy applications were called "catalogs". These repositories were managed through the *Catalogs* section of the UI.
+Rancher v2.4 and earlier, repositories of ready-to-deploy applications were called "catalogs". These repositories were managed through the *Catalogs* section of the UI.
 
 Rancher v2.5 replaced the former catalog system with a new *Apps & Marketplace* feature.
 
@@ -141,13 +141,13 @@ To add a private CA to Helm chart repositories, you must add a base64 encoded co
 
 [,yaml]
 ----
-    [...]
+    # [...]
     spec:
-      caBundle:
-    MIIFXzCCA0egAwIBAgIUWNy8WrvSkgNzV0zdWRP79j9cVcEwDQYJKoZIhvcNAQELBQAwPzELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMRQwEgYDVQQKDAtNeU9yZywgSW5jLjENMAsGA1UEAwwEcm9vdDAeFw0yMTEyMTQwODMyMTdaFw0yNDEwMDMwODMyMT
-    ...
-    nDxZ/tNXt/WPJr/PgEB3hQdInDWYMg7vGO0Oz00G5kWg0sJ0ZTSoA10ZwdjIdGEeKlj1NlPyAqpQ+uDnmx6DW+zqfYtLnc/g6GuLLVPamraqN+gyU8CHwAWPNjZonFN9Vpg0PIk1I2zuOc4EHifoTAXSpnjfzfyAxCaZsnTptimlPFJJqAMj+FfDArGmr4=
-    [...]
+      caBundle: MIIFXzCC...DArGmr4=
+        MIIFXzCCA0egAwIBAgIUWNy8WrvSkgNzV0zdWRP79j9cVcEwDQYJKoZIhvcNAQELBQAwPzELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMRQwEgYDVQQKDAtNeU9yZywgSW5jLjENMAsGA1UEAwwEcm9vdDAeFw0yMTEyMTQwODMyMTdaFw0yNDEwMDMwODMyMT
+        ...
+        nDxZ/tNXt/WPJr/PgEB3hQdInDWYMg7vGO0Oz00G5kWg0sJ0ZTSoA10ZwdjIdGEeKlj1NlPyAqpQ+uDnmx6DW+zqfYtLnc/g6GuLLVPamraqN+gyU8CHwAWPNjZonFN9Vpg0PIk1I2zuOc4EHifoTAXSpnjfzfyAxCaZsnTptimlPFJJqAMj+FfDArGmr4=
+    # [...]
 ----
 
 [NOTE]
@@ -160,10 +160,10 @@ To use this feature for an existing Helm chart repository, follow previous steps
 
 [,yaml]
 ----
-[...]
+# [...]
 spec:
   disableSameOriginCheck: true
-[...]
+# [...]
 ----
 ====
 
@@ -199,7 +199,7 @@ Airgap installations where Rancher is configured to use the packaged copy of Hel
 [#_refresh_interval]
 ==== Refresh Interval
 
-Rancher v2.10.0 adds the `refreshInterval` field to the `ClusterRepo` CRD. The default value is 3600 seconds, meaning that Rancher syncs each Helm repository every 3600 seconds.
+By default, Rancher syncs each Helm repository every hour (3600 seconds). You can configure the frequency using the `refreshInterval` field of the `ClusterRepo` custom resource definition (CRD).
 
 To modify the refresh interval of a chart repository:
 
@@ -213,7 +213,7 @@ To modify the refresh interval of a chart repository:
 [#_enable_disable_helm_chart_repositories]
 === Enable/Disable Helm Chart Repositories
 
-Rancher v2.10.0 adds the ability to enable and disable Helm repositories. Helm repositories are enabled by default.
+Helm repositories are enabled by default.
 
 To disable a chart repository:
 
@@ -261,48 +261,6 @@ If you are upgrading your chart using *Customize Helm options before upgrade*, a
 * Uninstall the existing chart and install the upgraded chart.
 * Delete the resources with immutable fields from the cluster before performing a forced upgrade.
 ====
-
-
-[#_legacy_apps]
-=== Legacy Apps
-
-The upgrade button isn't available for legacy apps on the menu:Apps[Installed Apps] page.
-
-If you want to upgrade an installed legacy app, the {xref-experimental-features}[legacy feature flag] must be turned on. This flag is automatically turned on if you had a legacy app already running before you upgraded Rancher.
-
-. Enable the {xref-experimental-features}[legacy feature flag], if it isn't enabled already.
-. Click *☰ > Cluster Management*.
-. Find the name of the cluster whose apps you want to access. Click *Explore* at the end of the cluster's row.
-. Click menu:Legacy[Project > Apps].
-
-If you don't see *Apps* listed under menu:Legacy[Project], click the project/namespace search bar in the top navigation and select the relevant project from the dropdown menu.
-
-To upgrade legacy multi-cluster apps:
-
-. Click *☰*.
-. Under *Legacy Apps*, click *Multi-cluster Apps*.
-
-[#_chart_specific_information]
-=== Chart-Specific Information
-
-[#_sriov_chart_deprecation_and_migration]
-==== sriov Chart Deprecation and Migration
-
-The `sriov` (SR-IOV network operator) chart from the Rancher Charts repository is deprecated and will be removed in Rancher v2.10. Please migrate to the `sriov-network-operator` chart from the SUSE Edge repository (https://github.com/suse-edge/charts) instead.
-
-To migrate, follow these steps:
-
-. Add the SUSE Edge repository to your cluster by following the steps in <<_add_custom_git_repositories,Add Custom Git Repositories>>.
-. For the *Git Repo URL* field, enter `+https://github.com/suse-edge/charts+`.
-. Click *Create*.
-. In the left navigation menu on the *Cluster Dashboard*, click menu:Apps[Charts].
-. Find the `sriov-network-operator` chart and click on it.
-. Click *Install*.
-. In the *Name* field, enter the same name you used for your existing `sriov` chart installation.
-. Click *Next*.
-. Click *Install*.
-
-*Result:* Rancher redirects to the *Installed Apps* page where your existing installation enters the *Updating* state. The migration is complete when it enters the *Deployed* state.
 
 [#_limitations]
 == Limitations

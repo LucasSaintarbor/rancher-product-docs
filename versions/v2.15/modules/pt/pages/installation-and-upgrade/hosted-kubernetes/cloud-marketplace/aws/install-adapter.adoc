@@ -1,6 +1,6 @@
 = Instalando o Adaptador
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-28
 :page-revdate: {revdate}
 :community-path: integrations-in-rancher/cloud-marketplace/aws-cloud-marketplace/install-adapter.adoc 
 :product-path: installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc
@@ -30,6 +30,9 @@ Para implantar e executar o adaptador com sucesso, você precisa garantir que su
 | Versão do Rancher | Versão do Adaptador
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
+| v2.15.3
+| v110.0.0+up10.0.1
+
 | v2.15.2
 | v110.0.0+up10.0.0
 

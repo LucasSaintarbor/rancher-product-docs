@@ -24,6 +24,8 @@ ifeval::["{build-type}" == "community"]
 :xref-aws-node-template-configuration: xref:reference-guides/cluster-configuration/downstream-cluster-configuration/node-template-configuration/amazon-ec2.adoc
 endif::[]
 
+include::shared:ROOT:partial$en/eol-rke1-warning.adoc[]
+
 In this section, you'll learn how to use Rancher to install an https://rancher.com/docs/rke/latest/en/[RKE] Kubernetes cluster in Amazon EC2.
 
 First, you will set up your EC2 cloud credentials in Rancher. Then you will use your cloud credentials to create a node template, which Rancher will use to provision new nodes in EC2.

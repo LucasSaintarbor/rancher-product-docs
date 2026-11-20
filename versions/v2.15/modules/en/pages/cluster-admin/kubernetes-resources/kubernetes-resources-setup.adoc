@@ -1,7 +1,7 @@
 = Kubernetes Resources Setup
 :description: Set up Kubernetes resources by deploying workloads, services, load balancers, and ingress controllers, managing secrets and config maps to run
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-10-14
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/index.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/kubernetes-resources-setup.adoc
@@ -72,8 +72,6 @@ Load Balancers can only handle one IP address per service, which means if you ru
 Ingress is a set of rules that act as a load balancer. Ingress works in conjunction with one or more ingress controllers to dynamically route service requests. When the ingress receives a request, the ingress controller(s) in your cluster program the load balancer to direct the request to the correct service based on service subdomains or path rules that you've configured.
 
 For more information, see {xref-add-ingresses}[Ingress].
-
-When using ingresses in a project, you can program the ingress hostname to an external DNS by setting up a Global DNS entry.
 
 [#_service_discovery]
 == Service Discovery

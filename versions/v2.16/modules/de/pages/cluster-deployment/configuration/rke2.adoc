@@ -589,7 +589,7 @@ Beispiel:
 
 [,yaml]
 ----
-machineSelectorConfig
+machineSelectorConfig:
   - config:
       config-key: config-value
     machineLabelSelector:

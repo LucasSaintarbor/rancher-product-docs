@@ -1,6 +1,6 @@
 = 发版说明
 :page-languages: [en, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-28
 :page-revdate: {revdate}
 
 == 当前版本
@@ -9,8 +9,8 @@
 | 版本 | 发版说明 | 支持矩阵 | Prime | Community
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT. CURRENT VERSION.
-| v2.13.10
-| xref:release-notes/v2.13.10.adoc[View]
+| v2.13.11
+| xref:release-notes/v2.13.11.adoc[View]
 | N/A
 | &#10003;
 | N/A
@@ -24,6 +24,12 @@
 | 版本 | 发版说明 | 支持矩阵 | Prime | Community
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT. PAST VERSIONS.
+| v2.13.10
+| xref:release-notes/v2.13.10.adoc[View]
+| https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-13-10/[View]
+| &#10003;
+| N/A
+
 | v2.13.9
 | xref:release-notes/v2.13.9.adoc[View]
 | https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/rancher-v2-13-9/[View]

@@ -139,42 +139,42 @@ metadata:
 rules:
 # allowed to impersonate user user-abcde
 - apiGroups:
- - ""
- resourceNames:
- - user-abcde
- resources:
- - users
- verbs:
- - impersonate
+  - ""
+  resourceNames:
+  - user-abcde
+  resources:
+  - users
+  verbs:
+  - impersonate
 # allowed to impersonate listed groups
 - apiGroups:
- - ""
- resourceNames:
- - github_team://123 # group from GitHub auth provider
- - system:authenticated # automatic group from Kubernetes
- - system:cattle:authenticated # automatic group from Rancher
- resources:
- - groups
- verbs:
- - impersonate
+  - ""
+  resourceNames:
+  - github_team://123 # group from GitHub auth provider
+  - system:authenticated # automatic group from Kubernetes
+  - system:cattle:authenticated # automatic group from Rancher
+  resources:
+  - groups
+  verbs:
+  - impersonate
 # allowed to impersonate principal ID github_user://098
 - apiGroups:
- - authentication.k8s.io
- resourceNames:
- - github_user://098 # principal ID from GitHub auth provider
- resources:
- - userextras/principalid
- verbs:
- - impersonate
+  - authentication.k8s.io
+  resourceNames:
+  - github_user://098 # principal ID from GitHub auth provider
+  resources:
+  - userextras/principalid
+  verbs:
+  - impersonate
 # allowed to impersonate username example
 - apiGroups:
- - authentication.k8s.io
- resourceNames:
- - example # username from GitHub auth provider
- resources:
- - userextras/username
- verbs:
- - impersonate
+  - authentication.k8s.io
+  resourceNames:
+  - example # username from GitHub auth provider
+  resources:
+  - userextras/username
+  verbs:
+  - impersonate
 ----
 
 Wenn Sie Probleme mit der Identitätsübernahme beheben, überprüfen Sie, ob diese Ressourcen für den Benutzer vorhanden sind und ob die Regeln in der Clusterrolle ähnlich wie oben aussehen. Beispiel:

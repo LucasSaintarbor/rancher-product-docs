@@ -1,12 +1,12 @@
 = Security Advisories and CVEs
 :description: Rancher publishes security advisories and CVEs to inform the community about resolved security issues in its products and provides access to new advisories
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/security-advisories-and-cves.adoc 
 :page-product-path: security/cves.adoc
 
-Rancher is committed to informing the community of security issues in our products. Rancher will publish security advisories and CVEs (Common Vulnerabilities and Exposures) for issues we have resolved. New security advisories are also published in Rancher's GitHub https://github.com/rancher/rancher/security/advisories[security page].
+{rancher-product-name} is committed to informing the community of security issues in our products. {rancher-product-name} will publish security advisories and CVEs (Common Vulnerabilities and Exposures) for issues we have resolved. New security advisories are also published in Rancher's GitHub https://github.com/rancher/rancher/security/advisories[security page].
 
 [cols="20%,50%,15%,15%"]
 |===

@@ -8,7 +8,7 @@ nav:
 asciidoc:
   attributes:
     rancher-helm-repo: "rancher-latest"
-    current-patch-version: 2.15.2
+    current-patch-version: 2.15.3
     page-target-edit-version: "v2.15"
     # docs links
     harvester-docs-version: v1.7

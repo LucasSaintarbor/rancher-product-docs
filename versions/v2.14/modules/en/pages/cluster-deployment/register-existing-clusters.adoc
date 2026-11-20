@@ -235,6 +235,11 @@ See {xref-cluster-deployment}[Cluster Management Capabilities by Cluster Type] f
 When version management is enabled for an imported cluster, upgrading it outside of Rancher may lead to unexpected consequences.
 ====
 
+[IMPORTANT]
+====
+{rancher-short-name} does not support managing Kubernetes versions for imported {rke2-short-name} clusters with Windows worker nodes.
+====
+
 The version management feature for imported RKE2 and K3s clusters can be configured using one of the following options:
 
 * **Global default** (default): Inherits behavior from the global **imported-cluster-version-management** setting.

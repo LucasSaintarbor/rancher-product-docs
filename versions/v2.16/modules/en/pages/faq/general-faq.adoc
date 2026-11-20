@@ -1,7 +1,7 @@
 = General FAQ
 :description: Answer questions about Rancher v2.x by finding information on managing Kubernetes clusters, Windows support, Istio integration, and other features
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-10-08
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: faq/general-faq.adoc 
 :page-product-path: faq/general-faq.adoc
@@ -31,13 +31,13 @@ Yes. See our {xref-manage-clusters}[Cluster Administration] guide for what Ranch
 [#_does_rancher_support_windows]
 == Does Rancher support Windows?
 
-Yes. Rancher supports Windows Server 1809 containers. For details on how to set up a cluster with Windows worker nodes, refer to the section on {xref-use-windows-clusters}[configuring custom clusters for Windows.]
+Yes. {rancher-product-name} supports Windows Server 1809 containers. For details on how to set up a cluster with Windows worker nodes, refer to the section on {xref-use-windows-clusters}[configuring custom clusters for Windows.]
 endif::[]
 
 [#_does_rancher_support_istio]
 == Does Rancher support Istio?
 
-Yes. Rancher supports {xref-istio}[Istio].
+Yes. {rancher-product-name} supports {xref-istio}[Istio].
 
 [#_will_rancher_v2_x_support_hashicorps_vault_for_storing_secrets]
 == Will Rancher v2.x support Hashicorp's Vault for storing secrets?

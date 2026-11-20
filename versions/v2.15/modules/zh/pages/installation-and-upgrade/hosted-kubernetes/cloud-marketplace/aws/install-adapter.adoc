@@ -1,6 +1,6 @@
 = 安装适配器
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-28
 :page-revdate: {revdate}
 :community-path: integrations-in-rancher/cloud-marketplace/aws-cloud-marketplace/install-adapter.adoc 
 :product-path: installation-and-upgrade/hosted-kubernetes/cloud-marketplace/aws/install-adapter.adoc
@@ -30,6 +30,9 @@ IMPORTANT: 如果您尝试重新安装适配器，您可能会遇到长达一个
 | Rancher 版本 | 适配器版本
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
+| v2.15.3
+| v110.0.0+up10.0.1
+
 | v2.15.2
 | v110.0.0+up10.0.0
 

@@ -1,12 +1,12 @@
 = Best Practices for Disconnected Clusters
 :description: Learn best practices for managing disconnected clusters, including keeping them online during Rancher upgrades and removing clusters that will not reconnect
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-managed-clusters/disconnected-clusters.adoc 
 :page-product-path: cluster-admin/best-practices/disconnected-clusters.adoc
 
-Rancher supports managing clusters that may not always be online due to network disruptions, control plane availability, or because all cluster nodes are down. At the moment there are no known issues with disconnected clusters in the latest released Rancher version.
+{rancher-product-name} supports managing clusters that may not always be online due to network disruptions, control plane availability, or because all cluster nodes are down. At the moment there are no known issues with disconnected clusters in the latest released Rancher version.
 
 While a managed cluster is disconnected from Rancher, management operations will be unavailable, and the Rancher UI will not allow navigation to the cluster. However, once the connection is reestablished, functionality is fully restored.
 

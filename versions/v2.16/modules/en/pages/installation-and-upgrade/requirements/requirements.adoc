@@ -1,6 +1,6 @@
 = Installation Requirements
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-requirements/index.adoc 
 :page-product-path: installation-and-upgrade/requirements/requirements.adoc
@@ -55,7 +55,7 @@ See our page on {xref-tips-for-running-rancher}[best practices] for a list of re
 [#_kubernetes_compatibility_with_rancher]
 == Kubernetes Compatibility with Rancher
 
-Rancher needs to be installed on a supported Kubernetes version. Consult the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher support matrix] to ensure that your intended version of Kubernetes is supported.
+{rancher-product-name} needs to be installed on a supported Kubernetes version. Consult the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher support matrix] to ensure that your intended version of Kubernetes is supported.
 
 Regardless of version and distribution, the Kubernetes cluster must have the aggregation API layer properly configured to support the xref:api/extension-apiserver.adoc[extension API] used by Rancher.
 
@@ -74,7 +74,7 @@ For details on Rancher’s IPv6-only and dual-stack support, see the {xref-dual-
 [#_operating_systems_and_container_runtime_requirements]
 == Operating Systems and Container Runtime Requirements
 
-Rancher works with any modern Linux distribution. All supported operating systems can run in x86_64, ARM64, or mixed-architecture environments.
+{rancher-product-name} works with any modern Linux distribution. All supported operating systems can run in x86_64, ARM64, or mixed-architecture environments.
 
 [#_operating_systems_and_cpu_architectures]
 === Operating Systems and CPU Architectures
@@ -125,7 +125,7 @@ For details on which OS versions were tested with RKE2, refer to the https://www
 
 For the container runtime, K3s bundles its own containerd by default. Alternatively, you can configure K3s to use an already installed Docker runtime. For more information on using K3s with Docker see the {url-k3s-advanced-docker-runtime}[K3s documentation.]
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher support matrix]. To specify the K3s version, use the INSTALL_K3S_VERSION environment variable when running the K3s installation script.
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions[Rancher support matrix]. To specify the K3s version, use the INSTALL_K3S_VERSION environment variable when running the K3s installation script.
 
 If you are installing Rancher on a K3s cluster with *Raspbian Buster*, follow https://rancher.com/docs/k3s/latest/en/advanced/#enabling-legacy-iptables-on-raspbian-buster[these steps] to switch to legacy iptables.
 
@@ -162,7 +162,7 @@ Higher numbers are possible but requirements might be higher. If you have more t
 .Evolution:
 ====
 
-Rancher's codebase evolves, use cases change, and the body of accumulated Rancher experience grows every day.
+{rancher-product-name}'s codebase evolves, use cases change, and the body of accumulated {rancher-product-name} experience grows every day.
 
 Hardware requirement recommendations are subject to change over time, as guidelines improve in accuracy and become more concrete.
 
@@ -327,7 +327,7 @@ For hosted Kubernetes clusters (EKS, GKE, AKS), you will need to set up the ingr
 [#_disks]
 == Disks
 
-Rancher performance depends on etcd in the cluster performance. To ensure optimal speed, we recommend always using SSD disks to back your Rancher management Kubernetes cluster. On cloud providers, you will also want to use the minimum size that allows the maximum IOPS. In larger clusters, consider using dedicated storage devices for etcd data and wal directories.
+{rancher-product-name} performance depends on etcd in the cluster performance. To ensure optimal speed, we recommend always using SSD disks to back your Rancher management Kubernetes cluster. On cloud providers, you will also want to use the minimum size that allows the maximum IOPS. In larger clusters, consider using dedicated storage devices for etcd data and wal directories.
 
 [#_networking_requirements]
 == Networking Requirements

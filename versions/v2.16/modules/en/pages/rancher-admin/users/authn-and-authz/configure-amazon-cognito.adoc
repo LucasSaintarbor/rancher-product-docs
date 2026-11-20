@@ -1,6 +1,6 @@
 = Configure Amazon Cognito
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-05-12
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-amazon-cognito.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-amazon-cognito.adoc
@@ -31,7 +31,7 @@ Consult the Amazon Cognito https://aws.amazon.com/cognito/getting-started/[docum
 . Complete the **Configure an Amazon Cognito account** form. For help with filling the form, see the xref:#_configuration_reference[configuration reference].
 . Click **Enable**.
 +
-Rancher redirects you to the Amazon Cognito login page. Enter your Amazon Cognito credentials to validate your Rancher configuration.
+{rancher-product-name} redirects you to the Amazon Cognito login page. Enter your Amazon Cognito credentials to validate your Rancher configuration.
 +
 [NOTE]
 ====

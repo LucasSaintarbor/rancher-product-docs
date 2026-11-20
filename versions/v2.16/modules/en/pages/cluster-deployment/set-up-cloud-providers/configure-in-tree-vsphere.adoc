@@ -1,12 +1,12 @@
 = Setting Up an In-tree VMware vSphere Cloud Provider
 :description: Configure the in-tree VMware vSphere cloud provider in Rancher by editing YAML to set the vsphereCloudProvider directive
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers/configure-in-tree-vsphere.adoc 
 :page-product-path: cluster-deployment/set-up-cloud-providers/configure-in-tree-vsphere.adoc
 
-To set up the in-tree VMware vSphere cloud provider, follow these steps while creating the vSphere cluster in Rancher:
+To set up the in-tree VMware vSphere cloud provider, follow these steps while creating the vSphere cluster in {rancher-product-name}:
 
 . Set *Cloud Provider* option to `Custom` or `Custom (In-Tree)`.
 . Click on *Edit as YAML*
@@ -20,5 +20,3 @@ To set up the in-tree VMware vSphere cloud provider, follow these steps while cr
        vsphereCloudProvider:
            [Insert provider configuration]
 ----
-
-Rancher uses RKE (the Rancher Kubernetes Engine) to provision Kubernetes clusters. Refer to the https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/vsphere/config-reference/[vSphere configuration reference in the RKE documentation] for details about the properties of the `vsphereCloudProvider` directive.

@@ -1,6 +1,6 @@
 = Installing {rancher-product-name}
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-06-01
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/index.adoc 
 :page-product-path: installation-and-upgrade/installation-and-upgrade.adoc
@@ -32,7 +32,7 @@ ifeval::["{build-type}" == "community"]
 :xref-http-proxy: xref:getting-started/installation-and-upgrade/other-installation-methods/rancher-behind-an-http-proxy/index.adoc
 endif::[]
 
-This section provides an overview of the architecture options of installing Rancher, describing advantages of each option.
+This section provides an overview of the architecture options of installing {rancher-product-name}, describing advantages of each option.
 
 [#_terminology]
 == Terminology
@@ -44,7 +44,7 @@ This section provides an overview of the architecture options of installing Ranc
 [#_overview_of_installation_options]
 == Overview of Installation Options
 
-Rancher can be installed on these main architectures.
+{rancher-product-name} can be installed on these main architectures.
 
 [#_high_availability_kubernetes_install_with_the_helm_cli]
 === High-availability Kubernetes Install with the Helm CLI
@@ -54,14 +54,14 @@ We recommend using Helm, a Kubernetes package manager, to install Rancher on mul
 [#_rancher_on_eks_install]
 === Rancher on EKS Install
 
-Rancher can be installed on to Amazon Elastic Kubernetes Service (EKS). For details, refer to {xref-qs-rancher-on-amazon-eks}[].
+{rancher-product-name} can be installed on to Amazon Elastic Kubernetes Service (EKS). For details, refer to {xref-qs-rancher-on-amazon-eks}[].
 
 You can also use https://documentation.suse.com/en-us/cloudnative/rancher-srfa/[SUSE Rancher for AWS] as a distinct, fully managed Software-as-a-Service (SaaS) offering through the AWS Marketplace.
 
 [#_single_node_kubernetes_install]
 === Single-node Kubernetes Install
 
-Rancher can be installed on a single-node Kubernetes cluster. In this case, the Rancher server doesn't have high availability, which is important for running Rancher in production.
+{rancher-product-name} can be installed on a single-node Kubernetes cluster. In this case, the Rancher server doesn't have high availability, which is important for running Rancher in production.
 
 However, this option is useful if you want to save resources by using a single node in the short term, while preserving a high-availability migration path. In the future, you can add nodes to the cluster to get a high-availability Rancher server.
 

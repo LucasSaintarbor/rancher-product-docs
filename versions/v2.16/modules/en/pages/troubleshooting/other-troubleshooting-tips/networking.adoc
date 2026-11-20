@@ -1,7 +1,7 @@
 = Networking
 :description: Check networking issues in your cluster by verifying required ports, testing connectivity to Rancher Manager, and ensuring the overlay network and MTU are set correctly
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: troubleshooting/other-troubleshooting-tips/networking.adoc 
 :page-product-path: troubleshooting/other-troubleshooting-tips/networking.adoc
@@ -24,7 +24,7 @@ Double check if all the {xref-node-reqs}#_networking_requirements[required ports
 [#_check_if_your_downstream_node_can_communicate_to_rancher_manager]
 == Check if your downstream node can communicate to Rancher Manager
 
-Rancher components with HTTP endpoints generally contain a `ping` liveness probe which you can use to test connectivity. Replace the `$RANCHER_URL` as appropriate and run the following from a node to check that it has connectivity to Rancher Manager's servers in the `local` cluster. If successful, it should return `pong`.
+{rancher-product-name} components with HTTP endpoints generally contain a `ping` liveness probe which you can use to test connectivity. Replace the `$RANCHER_URL` as appropriate and run the following from a node to check that it has connectivity to Rancher Manager's servers in the `local` cluster. If successful, it should return `pong`.
 
 [,sh]
 ----

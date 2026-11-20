@@ -22,6 +22,8 @@ ifeval::["{build-type}" == "community"]
 :xref-azure-node-template-configuration: xref:reference-guides/cluster-configuration/downstream-cluster-configuration/node-template-configuration/azure.adoc
 endif::[]
 
+include::shared:ROOT:partial$en/eol-rke1-warning.adoc[]
+
 In this section, you'll learn how to install an https://rancher.com/docs/rke/latest/en/[RKE] Kubernetes cluster in Azure through Rancher.
 
 First, you will set up your Azure cloud credentials in Rancher. Then you will use your cloud credentials to create a node template, which Rancher will use to provision new nodes in Azure.

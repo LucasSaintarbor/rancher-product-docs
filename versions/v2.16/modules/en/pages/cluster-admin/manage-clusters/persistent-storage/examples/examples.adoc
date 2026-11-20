@@ -1,7 +1,7 @@
 = Provisioning Storage Examples
 :description: Configure storage for your workloads by setting up cloud-based or on-prem solutions like NFS, vSphere, or EBS using Rancher’s documentation
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/provisioning-storage-examples/index.adoc 
 :page-product-path: cluster-admin/manage-clusters/persistent-storage/examples/examples.adoc
@@ -16,7 +16,7 @@ ifeval::["{build-type}" == "community"]
 :xref-nfs-storage: xref:how-to-guides/new-user-guides/manage-clusters/provisioning-storage-examples/nfs-storage.adoc
 endif::[]
 
-Rancher supports persistent storage with a variety of volume plugins. However, before you use any of these plugins to bind persistent storage to your workloads, you have to configure the storage itself, whether its a cloud-based solution from a service-provider or an on-prem solution that you manage yourself.
+{rancher-product-name} supports persistent storage with a variety of volume plugins. However, before you use any of these plugins to bind persistent storage to your workloads, you have to configure the storage itself, whether its a cloud-based solution from a service-provider or an on-prem solution that you manage yourself.
 
 For your convenience, Rancher offers documentation on how to configure some of the popular storage methods:
 

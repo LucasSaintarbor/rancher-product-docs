@@ -1,7 +1,7 @@
 = Configure FreeIPA
 :description: Configure Rancher to allow users to log in with their FreeIPA credentials by completing the FreeIPA server form and enabling authentication
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-freeipa.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-freeipa.adoc
@@ -19,7 +19,7 @@ If your organization uses FreeIPA for user authentication, you can configure Ran
 ====
 
 * You must have a https://www.freeipa.org/[FreeIPA Server] configured.
-* Create a service account in FreeIPA with `read-only` access. Rancher uses this account to verify group membership when a user makes a request using an API key.
+* Create a service account in FreeIPA with `read-only` access. {rancher-product-name} uses this account to verify group membership when a user makes a request using an API key.
 * Read {xref-authn-authz}#_external_authentication_configuration_and_principal_users[External Authentication Configuration and Principal Users].
 ====
 
@@ -57,7 +57,7 @@ Search base allows Rancher to search for users and groups that are in your FreeI
 [NOTE]
 .Search Attribute
 ====
-The Search Attribute field defaults with three specific values: `uid|sn|givenName`. After FreeIPA is configured, when a user enters text to add users or groups, Rancher automatically queries the FreeIPA server and attempts to match fields by user id, last name, or first name. Rancher specifically searches for users/groups that begin with the text entered in the search field.
+The Search Attribute field defaults with three specific values: `uid|sn|givenName`. After FreeIPA is configured, when a user enters text to add users or groups, Rancher automatically queries the FreeIPA server and attempts to match fields by user id, last name, or first name. {rancher-product-name} specifically searches for users/groups that begin with the text entered in the search field.
 
 The default field value `uid|sn|givenName`, but you can configure this field to a subset of these fields. The pipe (`|`) between the fields separates these fields.
 

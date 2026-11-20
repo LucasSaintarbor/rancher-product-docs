@@ -1,6 +1,6 @@
 = Layer 4 and Layer 7 Load Balancing
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-23
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/layer-4-and-layer-7-load-balancing.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/load-balancer-and-ingress-controller/layer-4-and-layer-7-load-balancing.adoc
@@ -75,7 +75,7 @@ Some cloud-managed layer-7 load balancers (such as the ALB ingress controller on
 Other layer-7 load balancers, such as the Google Load Balancer, directly expose one or more IP addresses. Google Load Balancer provides a single routable IP address. You can do either of the following:
 
 . Configure your own DNS to map (via A records) your domain name to the IP addresses exposes by the Layer-7 load balancer.
-. Ask Rancher to generate an xip.io host name for your ingress rule. Rancher will take one of your exposed IPs, say `a.b.c.d`, and generate a host name `<ingressname>.<namespace>.a.b.c.d.xip.io`.
+. Ask Rancher to generate an xip.io host name for your ingress rule. {rancher-product-name} will take one of your exposed IPs, say `a.b.c.d`, and generate a host name `<ingressname>.<namespace>.a.b.c.d.xip.io`.
 
 The benefit of using xip.io is that you obtain a working entrypoint URL immediately after you create the ingress rule. Setting up your own domain name, on the other hand, requires you to configure DNS servers and wait for DNS to propagate.
 

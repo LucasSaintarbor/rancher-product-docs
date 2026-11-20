@@ -200,6 +200,7 @@ For more detailed information regarding installation and migrations check the {r
 
 * **General Availability**: Promoted support for native Cluster API (CAPI) infrastructure providers within Rancher’s V2 provisioning framework (v2prov) from Tech Preview to General Availability (GA). See https://github.com/rancher/rancher/issues/53777[#53777].
 ** If the CAPA infrastructure provider is installed, Rancher will mirror {rn-cloud-credentials}[cloud credentials] for AWS and create a corresponding `AWSClusterStaticIdentity` object that targets the `fleet-default` namespace.
+* Rancher introduces a new `rke2-provisioning-prime-default` setting, which defaults to `true`. This setting enables the RKE2 `prime` server argument for newly provisioned clusters, ensuring that new clusters use Prime-specific images and chart values by default. Existing clusters remain unchanged after an upgrade. You can override this behavior per cluster by using a new annotation. See https://github.com/rancher/rancher/issues/54336[#54336].
 
 [#_behavior_changes_k3s_and_rke2_provisioning]
 === Behavior Changes

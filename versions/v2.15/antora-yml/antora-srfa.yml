@@ -19,7 +19,7 @@ asciidoc:
     rancher-product-name-tm: "SUSE® Rancher for AWS"
     rancher-short-name: "Rancher"
     rancher-helm-repo: "rancher-prime"
-    current-patch-version: 2.15.2
+    current-patch-version: 2.15.3
     # docs links
     harvester-docs-version: v1.7
     longhorn-docs-version: 1.11

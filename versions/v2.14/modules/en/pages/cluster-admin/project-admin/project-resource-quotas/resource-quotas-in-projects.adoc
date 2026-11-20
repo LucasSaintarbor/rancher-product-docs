@@ -49,13 +49,13 @@ requested quota limit, use the `field.cattle.io/resourceQuota` annotation.
 
 Note that Rancher will only override limits for resources that are defined on the project quota.
 
-[,shell]
+[,yaml]
 ----
 apiVersion: v1
 kind: Namespace
 metadata:
   annotations:
-    field.cattle.io/projectId: [your-cluster-ID]:[your-project-ID]
+    field.cattle.io/projectId: <YOUR_CLUSTER_ID>:<YOUR_PROJECT_ID>
     field.cattle.io/resourceQuota: '{"limit":{"limitsCpu":"100m", "configMaps": "50"}}'
   name: my-ns
 ----

@@ -6,6 +6,8 @@
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/use-windows-clusters/workload-migration-guidance.adoc 
 :page-product-path: cluster-deployment/custom-clusters/windows/workload-migration-guidance.adoc
 
+include::shared:ROOT:partial$en/eol-rke1-warning.adoc[]
+
 CAUTION: The contents of this document are not covered under SLA by Rancher Support. Please proceed with caution.
 
 This document covers how end users can migrate their Windows workloads from RKE1 to RKE2.

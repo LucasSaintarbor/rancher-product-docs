@@ -1,1 +1,0 @@
-../../../../../../../../../versions/v2.15/modules/en/pages/cluster-deployment/custom-clusters/windows/workload-migration-guidance.adoc

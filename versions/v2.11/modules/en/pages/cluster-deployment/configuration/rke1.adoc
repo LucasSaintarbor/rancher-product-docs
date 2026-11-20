@@ -34,6 +34,8 @@ ifeval::["{build-type}" == "community"]
 :xref-global-default-private-registry: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/global-default-private-registry.adoc
 endif::[]
 
+include::shared:ROOT:partial$en/eol-rke1-warning.adoc[]
+
 When Rancher installs Kubernetes, it uses {xref-launch-k8s-with-rancher}[RKE] or {url-rke2-introduction}[RKE2] as the Kubernetes distribution.
 
 This section covers the configuration options that are available in Rancher for a new or existing RKE Kubernetes cluster.

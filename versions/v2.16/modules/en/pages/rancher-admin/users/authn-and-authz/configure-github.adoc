@@ -1,7 +1,7 @@
 = Configure GitHub
 :description: Configure GitHub authentication in Rancher by setting up a GitHub application and entering client ID and secret
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-github.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-github.adoc
@@ -12,7 +12,7 @@ ifeval::["{build-type}" == "community"]
 :xref-authn-authz: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/index.adoc
 endif::[]
 
-In environments using GitHub, you can configure Rancher to allow sign on using GitHub credentials.
+In environments using GitHub, you can configure {rancher-product-name} to allow sign on using GitHub credentials.
 
 [NOTE]
 .Prerequisites:
@@ -26,7 +26,7 @@ Read {xref-authn-authz}#_external_authentication_configuration_and_principal_use
 . In the top left corner, click *☰ > Users & Authentication*.
 . In the left navigation menu, click *Auth Provider*.
 . Click *GitHub*.
-. Follow the directions displayed to set up a GitHub Application. Rancher redirects you to GitHub to complete registration.
+. Follow the directions displayed to set up a GitHub Application. {rancher-product-name} redirects you to GitHub to complete registration.
 +
 
 [NOTE]

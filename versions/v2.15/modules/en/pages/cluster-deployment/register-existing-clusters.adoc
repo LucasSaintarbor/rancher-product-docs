@@ -234,6 +234,11 @@ See {xref-cluster-deployment}[Cluster Management Capabilities by Cluster Type] f
 [#_day_2_operations_for_imported_rke2_and_k3s_clusters]
 == Day 2 Operations for Imported RKE2 and K3s Clusters
 
+[IMPORTANT]
+====
+{rancher-short-name} does not support Day 2 operations for imported {rke2-short-name} clusters with Windows worker nodes.
+====
+
 You can perform Day 2 operations directly from the Rancher UI on the following clusters:
 
 * RKE2 and K3s clusters imported into Rancher using the *Generic* option.
@@ -402,6 +407,11 @@ You can restore only successful snapshots created after the cluster was imported
 [WARNING]
 ====
 When version management is enabled for an imported cluster, upgrading it outside of Rancher may lead to unexpected consequences.
+====
+
+[IMPORTANT]
+====
+{rancher-short-name} does not support managing Kubernetes versions for imported {rke2-short-name} clusters with Windows worker nodes.
 ====
 
 The version management feature for imported RKE2 and K3s clusters can be configured using one of the following options:

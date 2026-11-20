@@ -1,6 +1,6 @@
 = Kubernetes Workloads and Pods
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/workloads-and-pods/index.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/workloads-and-pods/workloads-and-pods.adoc
@@ -62,7 +62,7 @@ In many use cases, a workload has to be either:
 * Accessed by other workloads in the cluster.
 * Exposed to the outside world.
 
-You can achieve these goals by creating a _Service_. Services are mapped to the underlying workload's pods using a https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#service-and-replicationcontroller[selector/label approach (view the code samples)]. Rancher UI simplifies this mapping process by automatically creating a service along with the workload, using the service port and type that you select.
+You can achieve these goals by creating a _Service_. Services are mapped to the underlying workload's pods using a https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#service-and-replicationcontroller[selector/label approach (view the code samples)]. {rancher-product-name} UI simplifies this mapping process by automatically creating a service along with the workload, using the service port and type that you select.
 
 [#_service_types]
 === Service Types

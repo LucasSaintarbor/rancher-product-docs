@@ -189,7 +189,7 @@ kubectl apply -f ceph-admin-secret.yaml
 
 === 在 Pod 中使用 RBD
 
-[,yaml]
+[,bash]
 ----
 # pod
 cat > ceph-rbd-pod-inline.yaml << EOF
@@ -228,7 +228,7 @@ kubectl exec pod/ceph-rbd-pod-inline -- df -k | grep rbd
 
 === 在持久卷中使用 RBD
 
-[,yaml]
+[,bash]
 ----
 # pod-pvc-pv
 cat > ceph-rbd-pod-pvc-pv-allinone.yaml << EOF
@@ -292,7 +292,7 @@ kubectl exec pod/ceph-rbd-pod-pvc-pv -- df -k | grep rbd
 
 此示例用于动态配置。需要 ceph-csi 驱动。
 
-[,yaml]
+[,bash]
 ----
 # pod-pvc-sc
 cat > ceph-rbd-pod-pvc-sc-allinone.yaml <<EOF

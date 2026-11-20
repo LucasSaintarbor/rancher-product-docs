@@ -1,4 +1,4 @@
 [WARNING]
 ====
-Rancher Kubernetes Engine (RKE/RKE1) will reach end of life on **July 31, 2025**. Rancher 2.12.0 and later will no longer support provisioning or managing downstream RKE1 clusters. We recommend replatforming RKE1 clusters to RKE2 to ensure continued support and security updates. Learn more about the transition https://www.suse.com/support/kb/doc/?id=000021518[here].
+Rancher Kubernetes Engine (RKE/RKE1) reached End of Life (EOL) on July 31, 2025. Rancher 2.12.0 and later versions no longer support provisioning or managing downstream RKE1 clusters. We recommend replatforming your RKE1 clusters to RKE2 to to ensure continued support and security updates. For detailed guidance, review the https://www.suse.com/support/kb/doc/?id=000021518[SUSE Knowledge Base Article].
 ====

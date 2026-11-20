@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-02-09
+:revdate: 2026-10-16
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/psa-restricted-exemptions.adoc 
 :page-product-path: security/sample-psact.adoc
@@ -51,6 +51,7 @@ plugins:
                      cattle-prometheus,
                      cattle-provisioning-capi-system,
                      cattle-resources-system,
+                     cattle-scc-system,
                      cattle-sriov-system,
                      cattle-system,
                      cattle-ui-plugin-system,

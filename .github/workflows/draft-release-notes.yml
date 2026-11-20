@@ -34,7 +34,7 @@ jobs:
         run: ./scripts/draft-release-notes.sh "$VERSION"
 
       - name: Load App Credentials from Vault
-        uses: rancher-eio/read-vault-secrets@dfae8acd43a9e170fca5f90168da22f814fe4e9a # main
+        uses: rancher-eio/read-vault-secrets@4c8f4e741954651c502bb7739c46ae1bad26b44d # main
         continue-on-error: true
         with:
           secrets: |
@@ -44,22 +44,22 @@ jobs:
         env:
           GH_TOKEN: ${{ env.GH_TOKEN || github.token }}
           PR_BODY_TEMPLATE: |
-            - [ ] Remove the old info, issues listed as Bug Fixes and Features, move previous 'Known Issues' and 'Behavior Changes' to 'Long-standing Known Issues' and 'Previous Rancher Behavior Changes' section.
-            - [ ] New issues for __VERSION__:
-              - [ ] [rancher/rancher-prime](https://github.com/rancher/rancher-prime/issues?q=state%3Aclosed%20label%3A%22release-note%22%20milestone%3A__VERSION__)
-                - [rancher/rancher Prime-only](https://github.com/rancher/rancher/issues?q=is%3Aissue%20state%3Aopen%20milestone%3A__VERSION__%20label%3Arelease-note-prime)
-                - [rancher/rancher](https://github.com/rancher/rancher/issues?q=is%3Aissue%20state%3Aopen%20milestone%3A__VERSION__%20label%3Arelease-note)
-              - [ ] [rancher/dashboard](https://github.com/rancher/dashboard/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3A__VERSION__%20label%3Arelease-note)
-              - [ ] [rancher/backup-restore-operator](https://github.com/rancher/backup-restore-operator/issues?q=is%3Aissue%20state%3Aopen%20label%3Arelease-note%20milestone%3A__VERSION__)
+            - [ ] __CLEANUP_ITEM__
+            - New issues for __VERSION__:
+              - [ ] [rancher/rancher](https://github.com/rancher/rancher/issues?q=is%3Aissue%20milestone%3A__VERSION__%20label%3Arelease-note)
+              - [ ] [rancher/rancher Prime-only](https://github.com/rancher/rancher/issues?q=is%3Aissue%20milestone%3A__VERSION__%20label%3Arelease-note-prime)
+              - [ ] [rancher/rancher-prime](https://github.com/rancher/rancher-prime/issues?q=label%3A%22release-note%22%20milestone%3A__VERSION__)
+              - [ ] [rancher/dashboard](https://github.com/rancher/dashboard/issues?q=is%3Aissue%20milestone%3A__VERSION__%20label%3Arelease-note)
+              - [ ] [rancher/backup-restore-operator](https://github.com/rancher/backup-restore-operator/issues?q=is%3Aissue%20label%3Arelease-note%20milestone%3A__VERSION__)
             - [ ] Existing Known Issues
             - [ ] Updated K8s versions
 
             <details>
-            <summary>copilot prompt template</summary>
+            <summary>Copilot prompt template</summary>
 
-            ```text
+            ````text
             __INSTRUCTIONS__
-            ```
+            ````
             </details>
         run: |
           # Extract version from tag (e.g., v2.13.4-alpha1 -> v2.13.4)
@@ -67,13 +67,18 @@ jobs:
           MINOR_VERSION=${VERSION%.*}
           BRANCH_NAME="release-notes-${VERSION}"
 
-          # Determine the correct instructions file based on the version
-          if [[ "$VERSION" == *.0 || "$VERSION" == *.1 ]]; then
+          # Determine the correct instructions file and cleanup checklist item based on the version
+          if [[ "$VERSION" == *.0 ]]; then
             INSTRUCTIONS_FILE=".github/instructions/RN-MINOR-VERSION.instructions.md"
+            CLEANUP_ITEM="Remove the old info, issues listed as Bug Fixes and Features, move previous 'Known Issues' and 'Behavior Changes' to 'Long-standing Known Issues' and 'Previous Rancher Behavior Changes' section."
+          elif [[ "$VERSION" == *.1 ]]; then
+            INSTRUCTIONS_FILE=".github/instructions/RN-PRIME-VERSION.instructions.md"
+            CLEANUP_ITEM="Keep the content carried over from the .0 release. Do not remove or move any release notes."
           else
             INSTRUCTIONS_FILE=".github/instructions/RN-PATCH-VERSION.instructions.md"
+            CLEANUP_ITEM="Remove the old info, issues listed as Bug Fixes and Features, move previous 'Known Issues' and 'Behavior Changes' to 'Long-standing Known Issues' and 'Previous Rancher Behavior Changes' section."
           fi
-          # Strip the YAML front matter
+          # Strip the YAML front matter, including the comments with the placeholder explanations
           INSTRUCTIONS=$(sed '1,/^---$/d' "$INSTRUCTIONS_FILE")
 
           if git ls-remote --heads origin "$VERSION" | grep -q "$VERSION"; then
@@ -98,6 +103,7 @@ jobs:
           
           # Inject instructions first so __VERSION__ strings inside the instructions are updated too
           PR_BODY="${PR_BODY_TEMPLATE//__INSTRUCTIONS__/$INSTRUCTIONS}"
+          PR_BODY="${PR_BODY//__CLEANUP_ITEM__/$CLEANUP_ITEM}"
           PR_BODY="${PR_BODY//__VERSION__/$VERSION}"
           PR_BODY="${PR_BODY//__MINOR_VERSION__/$MINOR_VERSION}"
 

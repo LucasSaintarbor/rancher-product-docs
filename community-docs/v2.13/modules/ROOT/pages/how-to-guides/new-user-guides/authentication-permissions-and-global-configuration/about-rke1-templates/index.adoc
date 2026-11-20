@@ -1,1 +1,0 @@
-../../../../../../../../../versions/v2.13/modules/en/pages/rancher-admin/global-configuration/rke1-templates/rke1-templates.adoc

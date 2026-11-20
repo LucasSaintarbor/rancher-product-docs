@@ -1,6 +1,6 @@
 = Removing Kubernetes Components from Nodes
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/clean-cluster-nodes.adoc 
 :page-product-path: cluster-admin/manage-clusters/clean-cluster-nodes.adoc
@@ -124,9 +124,9 @@ This process will remove data from your cluster. Make sure you have created a ba
 
 After you initiate the removal of a registered cluster using the Rancher UI (or API), the following events occur.
 
-. Rancher creates a `serviceAccount` that it uses to remove the Rancher components from the cluster. This account is assigned the https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole[clusterRole] and https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding[clusterRoleBinding] permissions, which are required to remove the Rancher components.
+. {rancher-product-name} creates a `serviceAccount` that it uses to remove the {rancher-product-name} components from the cluster. This account is assigned the https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole[clusterRole] and https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding[clusterRoleBinding] permissions, which are required to remove the Rancher components.
 . Using the `serviceAccount`, Rancher schedules and runs a https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/[job] that cleans the Rancher components off of the cluster. This job also references the `serviceAccount` and its roles as dependencies, so the job deletes them before its completion.
-. Rancher is removed from the cluster. However, the cluster persists, running the native version of Kubernetes.
+. {rancher-product-name} is removed from the cluster. However, the cluster persists, running the native version of Kubernetes.
 
 *Result:* All components listed for registered clusters in <<_what_gets_removed,What Gets Removed?>> are deleted.
 --

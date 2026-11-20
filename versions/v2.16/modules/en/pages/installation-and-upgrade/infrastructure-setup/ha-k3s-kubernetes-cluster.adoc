@@ -1,7 +1,7 @@
 = Setting up Infrastructure for a High Availability {k3s-product-name} Kubernetes Cluster
 :description: Set up infrastructure for a high-availability K3s cluster by configuring Linux nodes, an external MySQL database, and a load balancer
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/infrastructure-setup/ha-k3s-kubernetes-cluster.adoc 
 :page-product-path: installation-and-upgrade/infrastructure-setup/ha-k3s-kubernetes-cluster.adoc
@@ -57,7 +57,7 @@ For an example of one way to set up Linux nodes, refer to this {xref-setup-ec2-n
 
 The ability to run Kubernetes using a datastore other than etcd sets K3s apart from other Kubernetes distributions. This feature provides flexibility to Kubernetes operators. The available options allow you to select a datastore that best fits your use case.
 
-For a high-availability K3s installation, you will need to set a https://www.mysql.com/[MySQL] external database. Rancher has been tested on K3s Kubernetes clusters using MySQL version 5.7 as the datastore.
+For a high-availability K3s installation, you will need to set a https://www.mysql.com/[MySQL] external database. {rancher-product-name} has been tested on K3s Kubernetes clusters using MySQL version 5.7 as the datastore.
 
 When you install Kubernetes using the K3s installation script, you will pass in details for K3s to connect to the database.
 

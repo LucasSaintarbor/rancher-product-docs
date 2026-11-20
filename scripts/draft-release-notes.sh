@@ -8,7 +8,7 @@ show_usage() {
     echo "Example: $0 v2.13.5"
     echo ""
     echo "This script automates creating the initial release notes draft for a new Rancher version."
-    echo "It will base the new draft on the latest existing release notes for the same minor version."
+    echo "It will base the new draft on the latest existing release notes for the same minor version, or the preceding minor version if needed."
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -50,13 +50,28 @@ if [ ! -d "$RN_DIR" ]; then
     exit 1
 fi
 
-# Scan for the latest release version .adoc file
+# Scan for the latest release version .adoc file in the current minor version
 # Uses find and version sort (-V) to grab the highest versioned .adoc file
+TEMPLATE_DIR="$RN_DIR"
 LATEST_FILE=$(find "$RN_DIR" -maxdepth 1 -name "v*.adoc" -printf "%f\n" | sort -V | tail -n 1)
 
 if [ -z "$LATEST_FILE" ]; then
-    echo "Error: No existing release notes found in '$RN_DIR' to use as a template."
-    exit 1
+    PREVIOUS_MINOR=$(find "$REPO_ROOT/versions" -mindepth 1 -maxdepth 1 -type d -name 'v[0-9]*' -printf "%f\n" | sort -V | awk -v target="$MINOR_VERSION" '
+    $0 == target { print previous; exit }
+    { previous = $0 }
+    ')
+
+    if [ -n "$PREVIOUS_MINOR" ]; then
+        TEMPLATE_DIR="$REPO_ROOT/versions/$PREVIOUS_MINOR/modules/en/pages/release-notes"
+        if [ -d "$TEMPLATE_DIR" ]; then
+            LATEST_FILE=$(find "$TEMPLATE_DIR" -maxdepth 1 -name "v*.adoc" -printf "%f\n" | sort -V | tail -n 1)
+        fi
+    fi
+
+    if [ -z "$LATEST_FILE" ]; then
+        echo "Error: No existing release notes found in '$RN_DIR' or the preceding minor version to use as a template."
+        exit 1
+    fi
 fi
 
 # Extract the previous version string from the file name (e.g., v2.13.4)
@@ -70,7 +85,7 @@ fi
 NEW_FILE="$RN_DIR/$NEW_VERSION.adoc"
 
 echo "Using $LATEST_FILE as a template..."
-cp "$RN_DIR/$LATEST_FILE" "$NEW_FILE"
+cp "$TEMPLATE_DIR/$LATEST_FILE" "$NEW_FILE"
 
 CURRENT_DATE=$(date +%Y-%m-%d)
 

@@ -22,6 +22,7 @@ ifeval::["{build-type}" != "community"]
 :xref-k3s-for-rancher: xref:installation-and-upgrade/install-kubernetes/k3s-for-rancher.adoc
 :xref-rke2-for-rancher: xref:installation-and-upgrade/install-kubernetes/rke2-for-rancher.adoc
 :xref-rke1-for-rancher: xref:installation-and-upgrade/install-kubernetes/rke1-for-rancher.adoc
+:xref-tuning-rancher-at-scale: xref:installation-and-upgrade/best-practices/tuning-rancher-at-scale.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-rancher-on-aks: xref:getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/rancher-on-aks.adoc
@@ -40,6 +41,7 @@ ifeval::["{build-type}" == "community"]
 :xref-k3s-for-rancher: xref:how-to-guides/new-user-guides/kubernetes-cluster-setup/k3s-for-rancher.adoc
 :xref-rke2-for-rancher: xref:how-to-guides/new-user-guides/kubernetes-cluster-setup/rke2-for-rancher.adoc
 :xref-rke1-for-rancher: xref:how-to-guides/new-user-guides/kubernetes-cluster-setup/rke1-for-rancher.adoc
+:xref-tuning-rancher-at-scale: xref:reference-guides/best-practices/rancher-server/tuning-and-best-practices-for-rancher-at-scale.adoc
 endif::[]
 
 In this section, you'll learn how to deploy Rancher on a Kubernetes cluster using the Helm CLI.
@@ -55,6 +57,8 @@ In this section, you'll learn how to deploy Rancher on a Kubernetes cluster usin
 Set up the Rancher server's local Kubernetes cluster.
 
 Rancher can be installed on any Kubernetes cluster. This cluster can use upstream Kubernetes, or it can use one of Rancher's Kubernetes distributions, or it can be a managed Kubernetes cluster from a provider such as Amazon EKS.
+
+For maximum uptime and stability, {rancher-product-name} server clusters require three nodes, each assigned all roles (`etcd`, `controlplane`, and `worker`). For further optimization in large environments, see {xref-tuning-rancher-at-scale}[Tuning and Best Practices for {rancher-product-name} at Scale].
 
 For help setting up a Kubernetes cluster, we provide these tutorials:
 

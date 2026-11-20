@@ -1,1 +1,0 @@
-../../../../../../../../../versions/v2.14/modules/en/pages/rancher-admin/global-configuration/rke1-templates/example-use-cases.adoc

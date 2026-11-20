@@ -1,6 +1,6 @@
 = Sample PodSecurityConfiguration
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-12
+:revdate: 2026-10-16
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/psa-restricted-exemptions.adoc 
 :page-product-path: security/sample-psact.adoc
@@ -48,6 +48,7 @@ plugins:
         - cattle-prometheus
         - cattle-provisioning-capi-system
         - cattle-resources-system
+        - cattle-scc-system
         - cattle-sriov-system
         - cattle-system
         - cattle-turtles-system

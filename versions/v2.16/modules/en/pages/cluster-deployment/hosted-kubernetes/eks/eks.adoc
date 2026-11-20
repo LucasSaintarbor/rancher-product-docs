@@ -1,7 +1,7 @@
 = Creating an EKS Cluster
 :description: Use Rancher to create an Amazon EKS cluster by configuring a VPC, setting up IAM policies, and following interface steps to deploy and manage
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-clusters-from-hosted-kubernetes-providers/eks.adoc 
 :page-product-path: cluster-deployment/hosted-kubernetes/eks/eks.adoc
@@ -14,7 +14,7 @@ ifeval::["{build-type}" == "community"]
 :xref-deploy-eks-config: xref:reference-guides/cluster-configuration/rancher-server-configuration/eks-cluster-configuration.adoc
 endif::[]
 
-Amazon EKS provides a managed control plane for your Kubernetes cluster. Amazon EKS runs the Kubernetes control plane instances across multiple Availability Zones to ensure high availability. Rancher provides an intuitive user interface for managing and deploying the Kubernetes clusters you run in Amazon EKS. With this guide, you will use Rancher to quickly and easily launch an Amazon EKS Kubernetes cluster in your AWS account. For more information on Amazon EKS, see this https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html[documentation].
+Amazon EKS provides a managed control plane for your Kubernetes cluster. Amazon EKS runs the Kubernetes control plane instances across multiple Availability Zones to ensure high availability. {rancher-product-name} provides an intuitive user interface for managing and deploying the Kubernetes clusters you run in Amazon EKS. With this guide, you will use Rancher to quickly and easily launch an Amazon EKS Kubernetes cluster in your AWS account. For more information on Amazon EKS, see this https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html[documentation].
 
 [#_prerequisites_in_amazon_web_services]
 == Prerequisites in Amazon Web Services
@@ -36,7 +36,7 @@ An Amazon VPC is required to launch the EKS cluster. The VPC enables you to laun
 [#_iam_policies]
 === IAM Policies
 
-Rancher needs access to your AWS account in order to provision and administer your Kubernetes clusters in Amazon EKS. You'll need to create a user for Rancher in your AWS account and define what that user can access.
+{rancher-product-name} needs access to your AWS account in order to provision and administer your Kubernetes clusters in Amazon EKS. You'll need to create a user for Rancher in your AWS account and define what that user can access.
 
 . Create a user with programmatic access by following the steps https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html[here].
 . Next, create an IAM policy that defines what this user has access to in your AWS account. It's important to only grant this user minimal access within your account. The minimum permissions required for an EKS cluster are listed <<_minimum_eks_permissions,here.>> Follow the steps https://docs.aws.amazon.com/eks/latest/userguide/EKS_IAM_user_policies.html[here] to create an IAM policy and attach it to your user.
@@ -66,7 +66,7 @@ Use Rancher to set up and configure your Kubernetes cluster.
 
 *Result:*
 
-Your cluster is created and assigned a state of *Provisioning*. Rancher is standing up your cluster.
+Your cluster is created and assigned a state of *Provisioning*. {rancher-product-name} is standing up your cluster.
 
 You can access your cluster after its state is updated to *Active*.
 

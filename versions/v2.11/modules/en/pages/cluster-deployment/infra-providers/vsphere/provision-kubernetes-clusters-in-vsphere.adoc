@@ -29,6 +29,8 @@ ifeval::["{build-type}" == "community"]
 :xref-persistent-storage-examples: xref:how-to-guides/new-user-guides/manage-clusters/provisioning-storage-examples/index.adoc
 endif::[]
 
+include::shared:ROOT:partial$en/eol-rke1-warning.adoc[]
+
 In this section, you'll learn how to use Rancher to install an https://rancher.com/docs/rke/latest/en/[RKE]  Kubernetes cluster in VMware vSphere.
 
 First, you will set up your vSphere cloud credentials in Rancher. Then you will use your cloud credentials to create a node template, which Rancher will use to provision nodes in vSphere.

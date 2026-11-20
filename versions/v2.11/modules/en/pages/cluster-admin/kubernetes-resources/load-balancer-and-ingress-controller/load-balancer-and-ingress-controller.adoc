@@ -1,6 +1,6 @@
 = Load Balancer and Ingress Controller Setup within {rancher-product-name}
 :page-languages: [en, zh]
-:revdate: 2026-03-23
+:revdate: 2026-10-14
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/index.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/load-balancer-and-ingress-controller/load-balancer-and-ingress-controller.adoc
@@ -74,5 +74,4 @@ Refrain from adding an Ingress to the `local` cluster. The Nginx Ingress Control
 
 
 * For more information on how to set up ingress in Rancher, see {xref-add-ingresses}[Ingress].
-* For complete information about ingress and ingress controllers, see the https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes Ingress Documentation]
-* When using ingresses in a project, you can program the ingress hostname to an external DNS by setting up a Global DNS entry.
+* For complete information about ingress and ingress controllers, see the https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes Ingress Documentation].

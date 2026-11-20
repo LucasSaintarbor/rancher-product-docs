@@ -1,7 +1,7 @@
 = Security Advisories and CVEs
 :description: Rancher publishes security advisories and CVEs to inform the community about resolved security issues in its products and provides access to new advisories
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-29
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/security-advisories-and-cves.adoc 
 :page-product-path: security/cves.adoc
@@ -11,6 +11,31 @@ Rancher is committed to informing the community of security issues in our produc
 [cols="20%,50%,15%,15%"]
 |===
 | ID | Description | Date | Resolution
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-f9gf-wh3x-jx3v[CVE-2026-88809]
+| Fixed a security vulnerability in the Rancher meta proxy endpoint where the destination allowlist could not prevent a request from being forwarded, allowing an authenticated user to reach internal services through the Rancher server. The allowlist is now enforced in the request handler.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-x82x-2qj6-5rm2[CVE-2026-88811]
+| Fixed a security vulnerability in the Rancher Manager meta proxy where the caller's own Rancher credentials were not consistently removed from requests forwarded to third-party cloud provider hosts, allowing a signed-in user's session credential or an API client's Rancher token to be disclosed to the receiving host. The proxy now strips the caller's credentials on every request path.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-8x6f-2v58-x6p7[CVE-2026-104623]
+| Fixed a security vulnerability in Rancher where the authorization check protecting the local cluster shell was not applied to every API route that could reach it, allowing any authenticated user, including users with no permissions on the `local` cluster, to obtain an unprivileged shell pod on the management cluster. The authorization check is now enforced consistently for all request forms.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
+
+| https://github.com/rancher/fleet/security/advisories/GHSA-qfmw-gw96-ffcr[CVE-2026-94290]
+| Fixed a privilege escalation vulnerability in Fleet's agent management controller where a Fleet cluster object created by an unprivileged user could reference the Rancher management cluster's own administrative credentials, allowing escalation to cluster-admin on the local cluster.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, and v2.12.15 with Fleet v0.16.3, v0.15.8, v0.14.12, and v0.13.17
+
+| https://github.com/rancher/fleet/security/advisories/GHSA-gx8v-2929-9q95[CVE-2026-104615]
+| Fixed a cluster identity takeover vulnerability in Fleet where a registration request could claim an existing cluster's identity using a different registration token, granting access to that cluster's Fleet management namespace.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, and v2.12.15 with Fleet v0.16.3, v0.15.8, v0.14.12, and v0.13.17
 
 | https://github.com/rancher/fleet/security/advisories/GHSA-q9v4-358v-r8q5[CVE-2026-88808]
 | Fixed a vulnerability in Fleet where bundle `downstreamResources` were copied to downstream clusters with the agent's privileged credentials, allowing a tenant to write Secrets and ConfigMaps, and create namespaces, outside of their authorization scope.

@@ -194,7 +194,7 @@ kubectl apply -f ceph-admin-secret.yaml
 
 === Using RBD in Pods
 
-[,yaml]
+[,bash]
 ----
 # pod
 cat > ceph-rbd-pod-inline.yaml << EOF
@@ -233,7 +233,7 @@ kubectl exec pod/ceph-rbd-pod-inline -- df -k | grep rbd
 
 === Using RBD in Persistent Volumes
 
-[,yaml]
+[,bash]
 ----
 # pod-pvc-pv
 cat > ceph-rbd-pod-pvc-pv-allinone.yaml << EOF
@@ -297,7 +297,7 @@ kubectl exec pod/ceph-rbd-pod-pvc-pv -- df -k | grep rbd
 
 This example is for dynamic provisioning. The ceph-csi driver is needed.
 
-[,yaml]
+[,bash]
 ----
 # pod-pvc-sc
 cat > ceph-rbd-pod-pvc-sc-allinone.yaml <<EOF

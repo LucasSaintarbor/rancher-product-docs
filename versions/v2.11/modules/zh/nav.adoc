@@ -1,5 +1,6 @@
 * xref:release-notes.adoc[Release Notes]
 ifeval::["{build-type}" != "community"]
+** xref:release-notes/v2.11.19.adoc[]
 ** xref:release-notes/v2.11.18.adoc[]
 ** xref:release-notes/v2.11.17.adoc[]
 ** xref:release-notes/v2.11.16.adoc[]

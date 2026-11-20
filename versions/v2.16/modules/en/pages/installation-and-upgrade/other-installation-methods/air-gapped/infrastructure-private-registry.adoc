@@ -1,7 +1,7 @@
 = 1. Set up Infrastructure and Private Registry
 :description: Set up infrastructure and a private registry for Rancher management server in an air gapped environment
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-11
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/infrastructure-private-registry.adoc 
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/infrastructure-private-registry.adoc
@@ -130,7 +130,7 @@ For instructions on routing domain traffic to an Amazon ELB load balancer, see t
 [pass]
 <h3><a class="anchor" id="_k3s_5_set_up_a_private_image_registry" href="#_k3s_5_set_up_a_private_image_registry"></a>5. Set up a Private Image Registry</h3>
 
-Rancher supports air-gapped installations using a private registry. Ensure that you have a private registry or an alternative mechanism to distribute container images to your nodes.
+{rancher-product-name} supports air-gapped installations using a private registry. Ensure that you have a private registry or an alternative mechanism to distribute container images to your nodes.
 
 During K3s cluster setup, create a url-k3s-private-registry-configuration[private registry configuration file] containing your registry configuration details.
 
@@ -210,7 +210,7 @@ For instructions on routing domain traffic to an Amazon ELB load balancer, see t
 [pass]
 <h3><a class="anchor" id="_rke2_4_set_up_a_private_image_registry" href="#_rke2_4_set_up_a_private_image_registry"></a>4. Set up a Private Image Registry</h3>
 
-Rancher supports air-gapped installations using a private registry. Ensure that you have a private registry or an alternative mechanism to distribute container images to your nodes.
+{rancher-product-name} supports air-gapped installations using a private registry. Ensure that you have a private registry or an alternative mechanism to distribute container images to your nodes.
 
 During RKE2 cluster setup, create a url-rke2-private-registry-configuration[private registry configuration file] containing your registry details.
 

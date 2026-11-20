@@ -8,7 +8,7 @@ nav:
 asciidoc:
   attributes:
     rancher-helm-repo: "rancher-prime"
-    current-patch-version: 2.13.10
+    current-patch-version: 2.13.11
     # docs links
     harvester-docs-version: v1.7
     longhorn-docs-version: 1.11

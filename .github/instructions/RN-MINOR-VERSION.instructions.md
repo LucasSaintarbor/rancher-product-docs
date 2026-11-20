@@ -1,30 +1,86 @@
 ---
-applyTo: "**/release-notes/*.0.adoc,**/release-notes/*.1.adoc"
+# Placeholders that the draft-release-notes.yml workflow replaces in the PR body:
+#   __VERSION__: the release being documented, for example `v2.13.0`.
+#   __MINOR_VERSION__: the minor version directory, for example `v2.13`.
+# The workflow strips this front matter, including these comments, from the PR body.
+applyTo: "**/release-notes/*.0.adoc"
 ---
 @copilot
 
-* First, clean up the `__VERSION__.adoc` file in this PR (located under `versions/__MINOR_VERSION__/modules/en/pages/release-notes/__VERSION__.adoc`):
-  * Remove the entire `Security Fixes for Vulnerabilities` section if found.
-  * Remove any bug fix release notes listed under `Major Bug Fixes` sections.
-  * Remove any feature enhancements release notes listed under `Features and Enhancements` sections.
-  * Move the issues listed under `Behavior Changes` and `Known Issues` sections to the corresponding subsections under `Previous Rancher Behavior Changes` and `Long-standing Known Issues`. Older issues are listed with their respective categories, for example issues originally under `Cluster Provisioning` are moved to the `Long-standing Known Issues - Cluster Provisioning` section.
-    * For each moved issue, list it under the release it was introduced in, for example `Rancher v2.13.1:`, following the format of other old issues.
-* Next, use the search queries in the PR body to search for the issues labeled as `release-note` or `release-note-prime`.
-* For each found issue, scan the body, comments, referenced Pull Requests, GitHub issues, and labels to understand the full context of the Rancher __VERSION__ release and the status of the issue.
-  * Summarize the scanned contents as a release note, following the format found in the `__VERSION__.adoc` file.
-  * If the issue is a backport/forwardport, the issue will reference another issue that it is backported/forwardported from. Check the referenced issue to see if it has a `release-note` or `release-note-prime` label. If it does, reuse the existing description.
-  * If the issue has a comment containing a Release Notes summary of the issue, reuse that as the description.
-  * Update reused descriptions for clarity and grammar as needed.
-* Update the `__VERSION__.adoc` file with the summarized release notes, placing them under the correct section in the document:
-  * Attempt to determine the correct section by scanning issue labels for relevant areas and teams. If no suitable section can be determined, place the issue under `Rancher General`.
-  * For each issue under the specific section, determine the release note type of each issue and place it under the correct subsection category of `Features and Enhancements`, `Behavior Changes`, `Major Bug Fixes`, or `Known Issues`.
-* For any features, components, roles, flags, or APIs identified as removed or deprecated under the respective __VERSION__ (as covered by the release notes process under `Behavior Changes`, `Previous Rancher Behavior Changes`, `Removed Legacy Features`, or in found issues/PRs):
-  * Search the product documentation under the respective version and `en` locale (`versions/__MINOR_VERSION__/modules/en/pages/`) for any remaining references to the removed features (for example, obsolete roles, deprecated CLI subcommands, or removed feature flags).
-  * Do not commit updates to the documentation files; report only. List all identified references and occurrences (file paths and line numbers or contexts) in the PR comment summary so they can be reviewed and addressed separately.
-* Post a comment summarizing found issues and actions taken, formatted as separate tables for each search query:
-  * Each table should also contain the determined category and found references to related issues or PRs.
-  * Include a summary or table of any removed features identified for __VERSION__, along with all occurrences found across documentation files under `versions/__MINOR_VERSION__/`.
-* Scan issues found in the `Long-standing Known Issues` section in the `__VERSION__.adoc` file, follow the referenced links and list issues closed in the past 45 days in a table in the comment, including the date and a summary of the latest updates made to the issue. Ignore any closed as not planned issues.
-  * If the scanned long-standing known issues contain a comment with either a `/backport __VERSION__` or `/forwardport __VERSION__` in it, report this in the summary.
-  * Then search for any `[backport]` or `[forwardport]` link references to determine the status of the long-standing known issue and update the summary and the document accordingly.
-* Finally, remove empty placeholder sections in the document.
+Update the release notes for the first release of a Rancher minor version (the `.0` release). Work through the sections below in order.
+
+The file to edit is `versions/__MINOR_VERSION__/modules/en/pages/release-notes/__VERSION__.adoc`. Edit only this file. Do not change any other file. Collect your findings as you go and post them in a single PR comment in section 8.
+
+## 1. Clean up the release notes file
+
+1. Remove the entire `Security Fixes for Vulnerabilities` section if found.
+2. Remove all bug fix release notes listed under `Major Bug Fixes` sections.
+3. Remove all feature enhancement release notes listed under `Features and Enhancements` sections.
+4. Move the issues listed under `Behavior Changes` and `Known Issues` sections to the corresponding subsections under `Previous Rancher Behavior Changes` and `Long-standing Known Issues`.
+   * Keep the category of each issue. For example, issues from `Cluster Provisioning` move to `Long-standing Known Issues - Cluster Provisioning`.
+   * List each moved issue under the release it was introduced in, for example `Rancher v2.13.1:`. Follow the format of the older issues.
+
+## 2. Find the release note issues
+
+1. Use the search queries in the PR body to find issues labeled `release-note` or `release-note-prime`.
+2. Do not run the query for the private `rancher/rancher-prime` repository. You cannot access it. List the query in the PR comment with a warning that a person must check it manually.
+3. Record each other query and its results for the PR comment.
+
+## 3. Write a release note for each issue
+
+1. Scan the issue body, comments, referenced pull requests, referenced issues, and labels. Use them to understand the full context of the Rancher `__VERSION__` release and the status of the issue.
+2. Summarize what you found as a release note. Follow the format used in the `__VERSION__.adoc` file.
+3. If the issue is a backport or forwardport, it references the issue it was copied from. Check that issue for a `release-note` or `release-note-prime` label. If it has one, reuse its description.
+4. If a comment on the issue contains a release note summary, reuse it as the description.
+5. Edit reused descriptions for clarity and grammar as needed.
+
+## 4. Add the release notes to the file
+
+1. Determine the correct area section by scanning the issue labels for Rancher areas and teams. If you cannot determine a suitable section, use `Rancher General`.
+2. Determine the release note type of the issue. Place it under the matching subsection of that area section: `Features and Enhancements`, `Behavior Changes`, `Major Bug Fixes`, or `Known Issues`.
+3. If an issue has the `release-note-prime` label and does not have the `release-note` label, it applies to SUSE Rancher Prime only. Wrap its release note in an AsciiDoc conditional, with each directive on its own line. Consecutive Prime-only notes can share one conditional block. For example:
+
+   ```asciidoc
+   ifeval::["{build-type}" != "community"]
+   * Release note text. See https://github.com/rancher/rancher/issues/12345[#12345].
+   endif::[]
+   ```
+
+4. Do not add the conditional to issues that have the `release-note` label, with or without the `release-note-prime` label.
+5. Record the area, type, and whether you added the conditional for each issue for the PR comment.
+
+## 5. Check for references to removed or deprecated items
+
+Do this for any feature, component, role, flag, or API that is removed or deprecated in `__VERSION__`. Identify these items from `Behavior Changes`, `Previous Rancher Behavior Changes`, `Removed Legacy Features`, and from the issues and pull requests you found.
+
+1. Search `versions/__MINOR_VERSION__/modules/en/pages/` for remaining references to each item. Examples are obsolete roles, deprecated CLI subcommands, and removed feature flags.
+2. Do not edit the documentation files that contain these references. Report them only.
+3. For each reference, record the file path and the line number or surrounding context for the PR comment.
+
+## 6. Review the long-standing known issues
+
+1. Scan the issues listed in the `Long-standing Known Issues` section of `__VERSION__.adoc`.
+2. Follow the links to each issue. Find the issues closed in the past 45 days. Ignore issues closed as not planned.
+3. For each closed issue, record the close date and a summary of the latest updates for the PR comment.
+4. If a scanned issue has a comment containing `/backport __VERSION__` or `/forwardport __VERSION__`, record this for the PR comment. It means a port of the issue to this release was requested.
+5. For each long-standing known issue, find the issues created from it as backports or forwardports. Look for `[backport]` or `[forwardport]` references and links in the original issue.
+6. Mark each long-standing known issue that has been ported in `__VERSION__.adoc`. Choose the update based on the status of the port issue:
+   * Port issue open: keep the known issue. Add a sentence that names the target version and links the port issue, for example `A backport to v2.12.x is tracked in https://github.com/rancher/rancher/issues/12345[#12345].`
+   * Port issue closed as completed: remove the known issue from `__VERSION__.adoc`. Record the removed entry, the port issue link, and the version containing the fix for the PR comment.
+   * Port issue closed as not planned: do not change the known issue. Mention it in the PR comment.
+7. Record each ported issue, the port issue link, its status, and the update you made for the PR comment.
+
+## 7. Remove empty placeholder sections
+
+Remove empty placeholder sections from `__VERSION__.adoc`.
+
+## 8. Post the summary comment
+
+Post one comment on the PR that summarizes the issues found and the actions taken. Format it as follows:
+
+1. Add a separate table for each search query from section 2. Each table must include the determined category, whether the release note is Prime only, and the related issues or pull requests.
+2. Add a warning that the `rancher/rancher-prime` query was not run and must be checked manually. Include the query link from the PR body.
+3. Add a summary or table of the removed or deprecated items identified for `__VERSION__`. Include all occurrences found under `versions/__MINOR_VERSION__/`, as described in section 5.
+4. Add a table of the long-standing known issues closed in the past 45 days, as described in section 6. Include the date and a summary of the latest updates.
+5. Report any `/backport __VERSION__` or `/forwardport __VERSION__` comments found in section 6.
+6. Add a table of the long-standing known issues marked as ported in section 6. Include the port issue link, its status, and the update made to `__VERSION__.adoc`. Identify the issues removed because the port issue is closed.

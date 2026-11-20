@@ -1,7 +1,7 @@
 = Enabling Cluster Agent Scheduling Customization
 :description: Enable cluster agent scheduling customization by activating the feature in Rancher UI and configuring default Priority Class and Pod Disruption Budget settings
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/enable-cluster-agent-scheduling-customization.adoc 
 :page-product-path: cluster-deployment/enable-cluster-agent-scheduling-customization.adoc
@@ -83,4 +83,4 @@ These objects are maintained by Rancher and must not be modified or deleted. The
 
 Before enabling this feature on a downstream cluster, cluster administrators should assess their current RBAC configuration to prevent common access to the `cattle-cluster-agent-priority-class`. In cases where external users have access to a cluster, such as when offering clusters as a service, it is recommended to limit access to the `cattle-cluster-agent-priority-class` object to prevent changes or deletion.
 
-Similar considerations do not need to be made for the `cattle-cluster-agent-pod-disruption-budget` object, as Pod Disruption Budgets are namespaced objects. Rancher will create the `cattle-cluster-agent-pod-disruption-budget` in the privileged `cattle-system` namespace.
+Similar considerations do not need to be made for the `cattle-cluster-agent-pod-disruption-budget` object, as Pod Disruption Budgets are namespaced objects. {rancher-product-name} will create the `cattle-cluster-agent-pod-disruption-budget` in the privileged `cattle-system` namespace.

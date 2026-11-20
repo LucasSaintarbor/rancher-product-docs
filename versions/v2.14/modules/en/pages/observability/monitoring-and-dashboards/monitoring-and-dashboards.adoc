@@ -1,6 +1,6 @@
 = Monitoring and Dashboards
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-25
+:revdate: 2026-10-20
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/monitoring-and-alerting/index.adoc 
 :page-product-path: observability/monitoring-and-dashboards/monitoring-and-dashboards.adoc
@@ -47,8 +47,6 @@ endif::[]
 The `rancher-monitoring` application can quickly deploy leading open-source monitoring and alerting solutions onto your cluster.
 
 Introduced in Rancher v2.5, the application is powered by https://prometheus.io/[Prometheus], https://grafana.com/grafana/[Grafana],  https://prometheus.io/docs/alerting/latest/alertmanager/[Alertmanager], the https://github.com/prometheus-operator/prometheus-operator[Prometheus Operator], and the https://github.com/DirectXMan12/k8s-prometheus-adapter[Prometheus adapter.]
-
-For information on V1 monitoring and alerting, available in Rancher v2.2 up to v2.4, please see the Rancher v2.0--v2.4 docs on xref:[cluster monitoring], xref:[alerting], xref:[notifiers] and other xref:[tools].
 
 Using the `rancher-monitoring` application, you can quickly deploy leading open-source monitoring and alerting solutions onto your cluster.
 

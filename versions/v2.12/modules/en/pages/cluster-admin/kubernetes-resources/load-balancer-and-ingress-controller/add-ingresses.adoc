@@ -2,7 +2,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2025-08-05
+:revdate: 2026-10-14
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/add-ingresses.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/load-balancer-and-ingress-controller/add-ingresses.adoc
@@ -15,7 +15,7 @@ ifeval::["{build-type}" == "community"]
 :xref-ingress-configuration: xref:how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/ingress-configuration.adoc
 endif::[]
 
-Ingresses can be added for workloads to provide load balancing, SSL termination and host/path based routing. When using ingresses in a project, you can program the ingress hostname to an external DNS by setting up a Global DNS entry.
+Ingresses can be added for workloads to provide load balancing, SSL termination and host/path based routing.
 
 . In the upper left corner, click *☰ > Cluster Management*.
 . Go to the cluster that you want to add an ingress to and click *Explore*.

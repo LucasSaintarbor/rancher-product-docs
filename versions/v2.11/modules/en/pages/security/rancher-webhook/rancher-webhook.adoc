@@ -1,7 +1,7 @@
 = {rancher-product-name} Webhook
 :description: Learn how to use the Webhook to manage Kubernetes resources and enhance security for Rancher-managed clusters
 :page-languages: [en, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-28
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-webhook.adoc 
 :page-product-path: security/rancher-webhook/rancher-webhook.adoc
@@ -26,6 +26,11 @@ NOTE: Rancher manages deployment and upgrade of the webhook. Under most circumst
 | Rancher Version | Webhook Version | Availability in Prime | Availability in Community
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
+| v2.11.19
+| v0.7.12
+| &#10003;
+| &cross;
+
 | v2.11.18
 | v0.7.12
 | &#10003;

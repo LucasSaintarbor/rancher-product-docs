@@ -1,6 +1,6 @@
 = Guide to Ingress NGINX Retirement
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/guide-to-ingress-nginx-retirement.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/load-balancer-and-ingress-controller/guide-to-ingress-retirement.adoc
@@ -28,7 +28,7 @@ ifeval::["{build-type}" != "community"]
 SUSE provides extended support timelines and clear migration paths to Traefik. 
 endif::[]
 ifeval::["{build-type}" == "community"]
-Rancher provides clear migration paths to Traefik.
+{rancher-product-name} provides clear migration paths to Traefik.
 endif::[]
 
 This guide centralizes the information on how to proceed based on your specific deployment scenario.
@@ -47,7 +47,7 @@ For organizations that cannot migrate immediately, {rancher-product-name} LTS pr
 endif::[]
 
 ifeval::["{build-type}" == "community"]
-Rancher and RKE2 life cycles align with the upstream retirement schedule.
+{rancher-product-name} and RKE2 life cycles align with the upstream retirement schedule.
 
 [IMPORTANT]
 ====
@@ -62,7 +62,7 @@ ifeval::["{build-type}" != "community"]
 For organizations ready to move, SUSE offers a supported path to Traefik. 
 endif::[]
 ifeval::["{build-type}" == "community"]
-Rancher and RKE2 life cycles align with the upstream retirement schedule.
+{rancher-product-name} and RKE2 life cycles align with the upstream retirement schedule.
 endif::[]
 
 Traefik includes a compatibility layer that can interpret many existing Ingress NGINX annotations. Identify your cluster environment below to find the correct migration approach.

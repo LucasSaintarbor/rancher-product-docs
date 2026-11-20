@@ -1,7 +1,7 @@
 = Configure Active Directory (AD)
 :description: Configure Rancher to use Active Directory for user authentication, allowing access control based on AD groups and enabling users to log in with AD credentials
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-09-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-active-directory.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-active-directory.adoc
@@ -16,7 +16,7 @@ endif::[]
 
 If your organization uses Microsoft Active Directory Domain Services (AD DS) as a central user repository, you can configure {rancher-product-name} to communicate with an Active Directory (AD) server to authenticate users. This integration allows administrators to manage cluster and project access using externally defined Active Directory users and groups, while allowing users to sign in to the Rancher UI with their domain credentials.
 
-Rancher uses LDAP to communicate with the Active Directory server. The authentication flow for Active Directory is therefore the same as for the {xref-openldap}[OpenLDAP authentication] integration.
+{rancher-product-name} uses LDAP to communicate with the Active Directory server. The authentication flow for Active Directory is therefore the same as for the {xref-openldap}[OpenLDAP authentication] integration.
 
 [NOTE]
 .External authentication concepts
@@ -118,8 +118,7 @@ Rancher supports two bind mechanisms when communicating with Active Directory:
 ====
 Setting `bindMechanism` to `ntlm` over an unencrypted LDAP connection causes Rancher to reject the configuration.
 
-To use NTLM bind, enable either *TLS* (LDAPS on port 636) or *StartTLS* (port 389).
-====
+{rancher-product-name} uses LDAP queries to search for and retrieve information about users and groups within the Active Directory. The attribute mappings configured in this section are used to construct search filters and resolve group membership. It is therefore paramount that the provided settings reflect the reality of your AD domain.
 
 [NOTE]
 .Domains with NTLM disabled

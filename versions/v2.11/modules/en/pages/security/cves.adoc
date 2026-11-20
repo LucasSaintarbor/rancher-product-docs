@@ -1,7 +1,7 @@
 = Security Advisories and CVEs
 :description: Rancher publishes security advisories and CVEs to inform the community about resolved security issues in its products and provides access to new advisories
 :page-languages: [en, zh]
-:revdate: 2026-09-23
+:revdate: 2026-10-29
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/security-advisories-and-cves.adoc 
 :page-product-path: security/cves.adoc
@@ -17,6 +17,21 @@ Rancher is committed to informing the community of security issues in our produc
 [cols="20%,50%,15%,15%"]
 |===
 | ID | Description | Date | Resolution
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-f9gf-wh3x-jx3v[CVE-2026-88809]
+| Fixed a security vulnerability in the Rancher meta proxy endpoint where the destination allowlist could not prevent a request from being forwarded, allowing an authenticated user to reach internal services through the Rancher server. The allowlist is now enforced in the request handler.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-x82x-2qj6-5rm2[CVE-2026-88811]
+| Fixed a security vulnerability in the Rancher Manager meta proxy where the caller's own Rancher credentials were not consistently removed from requests forwarded to third-party cloud provider hosts, allowing a signed-in user's session credential or an API client's Rancher token to be disclosed to the receiving host. The proxy now strips the caller's credentials on every request path.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
+
+| https://github.com/rancher/rancher/security/advisories/GHSA-8x6f-2v58-x6p7[CVE-2026-104623]
+| Fixed a security vulnerability in Rancher where the authorization check protecting the local cluster shell was not applied to every API route that could reach it, allowing any authenticated user, including users with no permissions on the `local` cluster, to obtain an unprivileged shell pod on the management cluster. The authorization check is now enforced consistently for all request forms.
+| 29 October 2026
+| Rancher v2.15.3, v2.14.7, v2.13.11, v2.12.15, v2.11.19
 
 | https://github.com/rancher/rancher/security/advisories/GHSA-992f-xh8r-jg2f[CVE-2026-88804]
 | Fixed a security vulnerability in Rancher where public UI settings exposed on unauthenticated read-only API routes could be modified by a remote unauthenticated user, allowing content to be stored that executes in the browser of users opening the Rancher login page and potentially exposing the local administrator bootstrap password or an active administrator session. The unauthenticated settings routes are now strictly read-only.

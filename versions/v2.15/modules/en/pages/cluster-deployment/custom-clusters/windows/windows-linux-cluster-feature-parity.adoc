@@ -17,10 +17,6 @@ The following chart describes the feature parity between Windows and Linux on Ra
 |
 |
 
-| RKE
-| Supported
-| Supported
-
 | RKE2
 | Supported
 | Supported

@@ -1,7 +1,7 @@
 = {rancher-product-name} Webhook
 :description: Learn how to use the Webhook to manage Kubernetes resources and enhance security for Rancher-managed clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-webhook.adoc 
 :page-product-path: security/rancher-webhook/rancher-webhook.adoc
@@ -16,7 +16,7 @@ Rancher-Webhook is an essential component of Rancher that works in conjunction w
 
 It integrates with Kubernetes' extensible admission controllers, as described in the https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/[Kubernetes documentation], which allows Rancher-Webhook to inspect specific requests sent to the Kubernetes API server, and add custom validations and mutations to the requests that are specific to Rancher. Rancher-Webhook manages the resources to be validated using the `rancher.cattle.io` `ValidatingWebhookConfiguration` and the `rancher.cattle.io` `MutatingWebhookConfiguration` objects, and will override any manual edits.
 
-Rancher deploys Rancher-Webhook as a separate deployment and service in both local and downstream clusters. Rancher manages Rancher-Webhook using Helm. It's important to note that Rancher may override modifications made by users to the Helm release. To safely modify these values see <<_customizing_rancher_webhook_configuration,Customizing Rancher-Webhook Configuration>>.
+{rancher-product-name} deploys Rancher-Webhook as a separate deployment and service in both local and downstream clusters. {rancher-product-name} manages Rancher-Webhook using Helm. It's important to note that Rancher may override modifications made by users to the Helm release. To safely modify these values see <<_customizing_rancher_webhook_configuration,Customizing Rancher-Webhook Configuration>>.
 
 Each Rancher version is designed to be compatible with a single version of the webhook. The compatible versions are provided below for convenience.
 
@@ -33,7 +33,7 @@ NOTE: Rancher manages deployment and upgrade of the webhook. Under most circumst
 == Why Do We Need It?
 
 Rancher-Webhook is crucial for Rancher to protect clusters against malicious attacks and enable various features.
-Rancher relies on the Rancher-Webhook as an integral part of its functionality. Without the webhook, Rancher would not be a complete product.
+{rancher-product-name} relies on the Rancher-Webhook as an integral part of its functionality. Without the webhook, Rancher would not be a complete product.
 It provides essential protection for Rancher-managed clusters, preventing security vulnerabilities and ensuring the consistency and stability of the cluster.
 
 [#_what_resources_does_the_webhook_validate]
@@ -78,7 +78,7 @@ data:
   rancher-webhook: '{"port": 9553, "priorityClassName": "system-node-critical"}'
 ----
 
-Rancher redeploys the Rancher-Webhook chart when changes to the ConfigMap values are detected.
+{rancher-product-name} redeploys the Rancher-Webhook chart when changes to the ConfigMap values are detected.
 
 [#_customizing_rancher_webhook_during_rancher_installation]
 === Customizing Rancher-Webhook During Rancher Installation

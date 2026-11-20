@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-09-23
+:revdate: 2026-10-28
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-webhook.adoc 
 :page-product-path: security/rancher-webhook/rancher-webhook.adoc
@@ -28,6 +28,11 @@ NOTE: Rancher manages deployment and upgrade of the webhook. Under most circumst
 | Rancher Version | Webhook Version | Availability in Prime | Availability in Community
 
 // DO NOT EDIT THIS LINE, REQUIRED BY RELEASE SCRIPT.
+| v2.13.11
+| v0.9.11
+| &#10003;
+| &cross;
+
 | v2.13.10
 | v0.9.10
 | &#10003;

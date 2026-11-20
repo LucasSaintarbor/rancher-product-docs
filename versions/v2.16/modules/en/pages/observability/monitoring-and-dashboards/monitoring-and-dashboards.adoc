@@ -1,6 +1,6 @@
 = Monitoring and Dashboards
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/monitoring-and-alerting/index.adoc 
 :page-product-path: observability/monitoring-and-dashboards/monitoring-and-dashboards.adoc
@@ -49,12 +49,12 @@ endif::[]
 
 [IMPORTANT]
 ====
-Starting in Rancher v2.15.0, new monitoring installations use the decoupled `rancher-monitoring-dashboards` chart.
+Starting in {rancher-product-name} v2.15.0, new monitoring installations use the decoupled `rancher-monitoring-dashboards` chart.
 
-Rancher maintains the legacy `rancher-monitoring` chart to support existing deployments, but it does not receive new updates. Use the `rancher-monitoring-dashboards` chart for ongoing updates and support.
+{rancher-product-name} maintains the legacy `rancher-monitoring` chart to support existing deployments, but it does not receive new updates. Use the `rancher-monitoring-dashboards` chart for ongoing updates and support.
 ====
 
-The `rancher-monitoring-dashboards` chart provides Grafana dashboards and Rancher UI integration for external Prometheus monitoring stacks, such as `kube-prometheus-stack`.
+The `rancher-monitoring-dashboards` chart provides Grafana dashboards and {rancher-product-name} UI integration for external Prometheus monitoring stacks, such as `kube-prometheus-stack`.
 
 * *No bundled runtime:* Operates without depending on Rancher-shipped `kube-prometheus-stack` images or components. It operates independently and does not require installing the legacy `rancher-monitoring` chart. It installs a dashboard-only version of `rancher-monitoring`.
 * *Prerequisites:* Requires uninstalling the `rancher-monitoring` chart and using a Prometheus infrastructure. Although several configurations are supported, installing `kube-prometheus-stack` is the simplest method.
@@ -74,13 +74,14 @@ If you need to preserve or migrate existing data, refer to the official Grafana 
 * https://prometheus.io/docs/prometheus/latest/querying/api/#snapshot[Prometheus | TSDB Admin APIs - Snapshot]
 * https://prometheus.io/docs/prometheus/latest/storage/[Prometheus | Storage]
 
+ifeval::["{build-type}" == "community"]
 [#_rancher_monitoring_dashboards_installation]
 === Rancher Monitoring Dashboards Installation
 
 This section guides you through setting up your Prometheus stack and installing the `rancher-monitoring-dashboards` chart.
 
 [#_install_kube_prometheus_stack_chart]
-==== Install `kube-prometheus-stack` chart
+==== Install the `kube-prometheus-stack` chart
 
 Before installing the `rancher-monitoring-dashboards` chart, you must first set up the underlying monitoring infrastructure using the https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack[`kube-prometheus-stack`] chart:
 
@@ -91,6 +92,7 @@ Before installing the `rancher-monitoring-dashboards` chart, you must first set 
 UI::
 +
 --
+
 . Select *☰ > Cluster Management*.
 . Locate your cluster and click *Explore*.
 . In the left navigation menu, select *Apps > Repositories*.
@@ -98,16 +100,19 @@ UI::
 . Enter a *Name* (such as `prometheus-community`).
 . In the *Index URL* field, enter `https://prometheus-community.github.io/helm-charts`.
 . Click *Add Repository*.
+
 --
 
 Helm::
 +
 --
+
 [,shell]
 ----
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ----
+
 --
 ======
 +
@@ -164,6 +169,7 @@ By default, the rancher-monitoring-dashboards chart does not enable metric scrap
 UI::
 +
 --
+
 . Select *☰ > Cluster Management*.
 . Locate your cluster and click *Explore*.
 . In the left navigation menu, select *Apps > Charts*.
@@ -178,11 +184,13 @@ UI::
 . Click *Next*.
 . Select and specify additional deployment options.
 . Click *Install*.
+
 --
 
 Helm::
 +
 --
+
 [,shell]
 ----
 helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack \
@@ -192,6 +200,7 @@ helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack \
   --wait \
   -f values.yaml
 ----
+
 --
 ======
 +
@@ -211,7 +220,274 @@ To deploy the `rancher-monitoring-dashboards` chart using the Rancher UI:
 . Optional: Customize any chart installation values as needed.
 . Click *Install*.
 
-*Result:* Rancher deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
+*Result:* {rancher-product-name} deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
+endif::[]
+ifeval::["{build-type}" != "community"]
+[#_rancher_monitoring_dashboards_installation]
+=== Rancher Monitoring Dashboards Installation
+
+This section guides you through setting up your Prometheus stack and installing the `rancher-monitoring-dashboards` chart using the xref:integrations/fleet/appco.adoc[SUSE Application Collection (AppCo)].
+
+[#_create_the_appco_credentials]
+==== Create the AppCo credentials
+
+First create the secret that will be used by Kubernetes to pull the images and login to Helm to pull the required chart from SUSE AppCo. The secret needs to be created in the `cattle-monitoring-system` namespace where the chart is installed.
+
+Run the following commands to create the secret:
+
+[,shell]
+----
+kubectl create namespace cattle-monitoring-system
+
+kubectl create secret docker-registry application-collection --docker-server=dp.apps.rancher.io --docker-username=<your_username> --docker-password=<your_password> --namespace cattle-monitoring-system
+----
+
+Run the following command to login to Helm, replacing `<your_username>` and `<your_password>` with your SUSE AppCo credentials:
+
+[,shell]
+----
+helm registry login dp.apps.rancher.io -u <your_username> -p <your_password>
+----
+
+[#_install_kube_prometheus_stack_chart]
+==== Install the `kube-prometheus-stack` chart
+
+. Create the `kube-prometheus-stack` `values.yaml` file. Configure the file with the following required settings to ensure `kube-prometheus-stack` integrates properly and supports embedded dashboards in `rancher-monitoring-dashboards`.
++
+[,yaml]
+----
+grafana:
+  # NOTE: Do NOT set root_url or serve_from_sub_path here!
+  grafana.ini:
+    security:
+      allow_embedding: true
+    auth:
+      disable_login_form: false
+    auth.anonymous:
+      enabled: true
+      org_role: Viewer
+    dashboards:
+      default_home_dashboard_path: /tmp/dashboards/rancher-default-home.json
+    users:
+      auto_assign_org_role: Viewer
+# Prometheus configuration to pick up all ServiceMonitors
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+# No metric exporter by default
+
+kubeEtcd:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+
+kubeControllerManager:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+
+kubeScheduler:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+
+kubeProxy:
+  enabled: true
+  serviceMonitor:
+    enabled: false
+----
+
+. Install the `kube-prometheus-stack` chart in the `cattle-monitoring-system` namespace through the Rancher UI or via the Helm CLI, applying the `values.yaml` file from the previous step:
++
+[tabs,sync-group-id=UIorHelm CLI]
+======
+UI::
++
+--
+
+. Select *☰ > Cluster Management*.
+. Locate your cluster and click *Explore*.
+. In the left navigation menu, select *Apps > Charts*.
+. Locate and select the *kube-prometheus-stack* chart.
+. Click *Install this version*.
+. In the *Namespace* dropdown, select *cattle-monitoring-system*. If the namespace does not exist:
+.. Select *Create a New Namespace* and enter `cattle-monitoring-system`.
+.. In the *Name* field, enter `kube-prometheus-stack`.
+.. Select *Customize Helm options before install*.
+. Click *Next*.
+. Select *Edit YAML* and paste or upload your `values.yaml` file.
+. Click *Next*.
+. Select and specify additional deployment options.
+. Click *Install*.
+
+--
+
+Helm::
++
+--
+
+[,shell]
+----
+helm install kube-prometheus-stack oci://dp.apps.rancher.io/charts/prometheus-operator \
+  --namespace cattle-monitoring-system \
+  --create-namespace \
+  --debug \
+  --wait \
+  --set global.imagePullSecrets={application-collection} \
+  -f values.yaml
+----
+
+--
+======
++
+*Result:* The Prometheus monitoring infrastructure is deployed in the `cattle-monitoring-system` namespace.
+
+[#_install_rancher_monitoring_dashboards_chart]
+==== Install `rancher-monitoring-dashboards` chart
+
+To deploy the `rancher-monitoring-dashboards` chart using the Rancher UI:
+
+. Select *☰ > Cluster Management*.
+. Locate your cluster and click *Explore*.
+. In the left navigation menu, select *Apps > Charts*.
+. Locate and select the latest *rancher-monitoring-dashboards* chart.
+. Click *Install*.
+. Click *Next*.
+. The default `values.yaml` sets the upstream services name to the default value provided by the upstream `kube-prometheus-stack` and NGINX image. When using values provided by the SUSE Application Collection, you must modify the names of the services and the images. Check the https://apps.rancher.io/[SUSE AppCo] website for the latest patch of each image minor to take advantage of images with lower CVE impact when configuring. The following is an example with modified chart values:
++
+.Click to expand
+[%collapsible]
+======
+[,yaml]
+----
+alertmanagerProxy:
+  enabled: true
+  upstreamPort: 9093
+  upstreamService: kube-prometheus-stack-prom-alertmanager
+commonLabels: {}
+dashboardArtifacts:
+  annotations: {}
+  cleanupOnUninstall: false
+  enabled: true
+  groups:
+    backupRestore: true
+    fleet: true
+    ingressNginx: true
+    logging:
+      fluentbit: true
+      fluentd: true
+    performance: true
+    rancherCore: true
+  label: grafana_dashboard
+  labelValue: '1'
+  namespace: cattle-dashboards
+  useExistingNamespace: false
+dashboardIntegration:
+  grafanaURL: ''
+  prometheusURL: ''
+defaultRules:
+  create: false
+etcd:
+  enabled: false
+extraManifests: []
+global:
+  cattle:
+    clusterId: ''
+    clusterName: ''
+  clusterDomain: cluster.local
+  disableProxyIPv6: false
+  imagePullSecrets: ["application-collection"]
+  kubectl:
+    pullPolicy: IfNotPresent
+    repository: rancher/kuberlr-kubectl
+    tag: v7.0.1 #The latest minor/version from https://github.com/rancher/kuberlr-kubectl/releases
+  rbac:
+    create: true
+    userRoles:
+      aggregateToDefaultRoles: true
+      create: true
+grafana:
+  defaultDashboards:
+    namespace: cattle-dashboards
+  defaultDashboardsEnabled: true
+  enabled: false
+  forceDeployDashboards: false
+  sidecar:
+    dashboards:
+      annotations: {}
+      label: grafana_dashboard
+      labelValue: '1'
+grafanaProxy:
+  enabled: true
+  proxyPath: >-
+    /api/v1/namespaces/cattle-monitoring-system/services/http:rancher-monitoring-grafana:80/proxy
+  upstreamPort: 80
+  upstreamService: kube-prometheus-stack-grafana
+hardened:
+  enabled: false
+  k3s:
+    networkPolicy:
+      enabled: false
+hardenedNodeExporter:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+kubeTargetVersionOverride: ''
+monitoringProxy:
+  affinity: {}
+  image:
+    pullPolicy: IfNotPresent
+    repository: dp.apps.rancher.io/containers/nginx
+    tag: 1.31.5
+  nodeSelector: {}
+  replicas: 1
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+  tolerations: []
+nodeExporter:
+  enabled: false
+prometheusProxy:
+  enabled: true
+  upstreamPort: 9090
+  upstreamService: kube-prometheus-stack-prom-prometheus
+rancherMonitoring:
+  enabled: true
+  prometheusServiceAccount: kube-prometheus-stack-prom-prometheus
+  selector: {}
+----
+
+Depending on your distribution you will also need to add the following modifications to your `values.yaml` file:
+
+[,yaml]
+.K3s:
+----
+k3sServer:
+  enabled: true
+etcd:
+  enabled: false
+----
+
+[,yaml]
+.RKE2 or distributions with etcd:
+----
+etcd:
+  enabled: true
+k3sServer:
+  enabled: false
+----
+======
+
+. Click *Install*.
+
+*Result:* {rancher-product-name} deploys the `rancher-monitoring-dashboards` chart and integrates the dashboards into the Rancher UI.
+endif::[]
 
 [#_customization_and_overrides]
 === Customization and Overrides
@@ -279,23 +555,23 @@ k3sServer:
 [#_faq]
 === FAQ
 
-*Q*: What is the new chart being introduced? +
+*Q*: What is the new chart being introduced?
 
 *A*: The `rancher-monitoring-dashboards` chart includes only dashboard artifacts and Rancher UI integration metadata. It does not include Prometheus, Grafana, Alertmanager, exporters, or PushProx. To deploy a full monitoring runtime, install `kube-prometheus-stack` separately from the Prometheus Community Helm repository.
 
-*Q*: Will the legacy `rancher-monitoring` chart still be available? +
+*Q*: Will the legacy `rancher-monitoring` chart still be available?
 
-*A*: Yes. Rancher v2.15 retains the Rancher v2.14 version of the `rancher-monitoring` chart, but you cannot install it directly as a new installation. Rancher v2.15 also includes an updated monitoring version available exclusively for upgrades.
+*A*: Yes. {rancher-product-name} v2.15 retains the {rancher-product-name} v2.14 version of the `rancher-monitoring` chart, but you cannot install it directly as a new installation. {rancher-product-name} v2.15 also includes an updated monitoring version available exclusively for upgrades.
 
-*Q*: What happens to existing installations when upgrading to Rancher v2.15? +
+*Q*: What happens to existing installations when upgrading to Rancher v2.15?
 
 *A*: You can upgrade existing installations to the updated monitoring release in Rancher v2.15. To migrate fully to the new dashboards-only chart, follow the standard upstream migration path for Prometheus and Grafana.
 
-*Q*: How does the Rancher UI locate Grafana and Prometheus? +
+*Q*: How does the Rancher UI locate Grafana and Prometheus?
 
 *A*: In this release, monitoring service URLs (such as `rancher-monitoring-<service>`) remain hardcoded in the Rancher UI. Support for configurable, user-provided URLs is planned for a future release.
 
-*Q*: How does the Rancher UI monitoring installation workflow change? +
+*Q*: How does the Rancher UI monitoring installation workflow change?
 
 *A*: The Rancher UI installation workflow uses `kube-prometheus-stack` for runtime configuration options. The `rancher-monitoring-dashboards` chart exposes values only for dashboards and Rancher UI integration.
 
@@ -310,8 +586,6 @@ The `rancher-monitoring` chart is no longer available in the UI for new installs
 The `rancher-monitoring` application can quickly deploy leading open-source monitoring and alerting solutions onto your cluster.
 
 Introduced in Rancher v2.5, the application is powered by https://prometheus.io/[Prometheus], https://grafana.com/grafana/[Grafana],  https://prometheus.io/docs/alerting/latest/alertmanager/[Alertmanager], the https://github.com/prometheus-operator/prometheus-operator[Prometheus Operator], and the https://github.com/DirectXMan12/k8s-prometheus-adapter[Prometheus adapter.]
-
-For information on V1 monitoring and alerting, available in Rancher v2.2 up to v2.4, please see the Rancher v2.0--v2.4 docs on xref:[cluster monitoring], xref:[alerting], xref:[notifiers] and other xref:[tools].
 
 Using the `rancher-monitoring` application, you can quickly deploy leading open-source monitoring and alerting solutions onto your cluster.
 
@@ -332,6 +606,320 @@ The monitoring application:
 * Exposes collected metrics from Prometheus to the Kubernetes Custom Metrics API via Prometheus Adapter for use in HPA.
 
 See {xref-how-monitoring-works}[How Monitoring Works] for an explanation of how the monitoring components work together.
+
+ifeval::["{build-type}" != "community"]
+[#_deploying_prometheus_federator_with_suse_application_collection]
+=== Deploying Prometheus Federator with SUSE Application Collection
+
+[IMPORTANT]
+====
+* **Mandatory Image Configuration:** Default component images (Grafana, Prometheus, Alertmanager, etc.) are no longer provided by the chart. You must explicitly supply image repositories and tags in your configuration.
+* The `chartSource.repo` URL must point strictly to the repository root directory, do not append `/index.yaml` to the URL: +https://raw.githubusercontent.com/rancher/ob-team-charts/refs/heads/main+.
+* Ensure you create the AppCo secret in the namespace `cattle-project-<project_id>-monitoring` and note this must be done for all projects. Include the `imagePullSecrets` in your `values.yaml` file to pull images from the SUSE AppCo registry:
++
+[,yaml]
+----
+helmProjectOperator:
+  valuesOverride:
+    global:
+      imagePullSecrets:
+        - name: application-collection
+    grafana:
+      imagePullSecrets:
+        - name: application-collection
+----
+====
+
+If installing using the UI ensure all required fields under the **Project Monitoring Chart** and **Grafana Chart** tabs are filled respective to your `values.yaml` configuration, note the example UI view below. This changes the **images**, not the chart. At the moment it is not possible to choose what version of the Grafana chart is installed.
+
+image::UI-prometheus-example.png[UI Prometheus Charts Example]
+
+To supply the required Prometheus, Grafana, and Alertmanager images via Helm, specify them under `helmProjectOperator.valuesOverride` when deploying Prometheus Federator. Check the https://apps.rancher.io/[SUSE AppCo] website for the latest patch of each image minor to take advantage of images with lower CVE impact when configuring:
+
+[,yaml]
+----
+helmProjectOperator:
+  valuesOverride:
+    grafana:
+      downloadDashboardsImage:
+        repository: dp.apps.rancher.io/containers/curl
+        tag: 8.14.1
+      image:
+        repository: dp.apps.rancher.io/containers/grafana
+        tag: 12.3.1
+      imageRenderer:
+        image:
+          repository: dp.apps.rancher.io/containers/grafana-image-renderer
+          tag: v5.1.0
+      initChownData:
+        image:
+          repository: dp.apps.rancher.io/containers/bci-busybox
+          tag: 1.31.1
+      sidecar:
+        image:
+          repository: dp.apps.rancher.io/containers/k8s-sidecar
+          tag: 2.1.2
+  chartSource:
+    name: rancher-project-monitoring
+    repo: https://raw.githubusercontent.com/rancher/ob-team-charts/refs/heads/main
+    version: 1.0.0
+----
+
+[#_pushprox_alternative_using_prometheus_agent]
+=== Pushprox alternative using Prometheus Agent
+
+Previous versions of `rancher-monitoring` relied on a Rancher-maintained fork of PushProx to scrape metrics from components that bind exclusively to port `127.0.0.1`. These components include:
+
+* `kube-proxy`
+* `etcd`
+* `kube-scheduler`
+* `kube-controller-manager`
+
+This localhost binding strategy is standard across Kubernetes distributions, including K3s and RKE2, and aligns with CIS benchmark recommendations. Upstream PushProx lacks the custom features present in the Rancher fork, making it an unsuitable replacement.
+
+Note that authentication behavior varies across components:
+
+* `kube-scheduler` and `kube-controller-manager` require a valid bearer token for scrape requests.
+* `kube-proxy` and `etcd` do not enforce authentication, which remains secure because scrape requests operate entirely over the local loopback interface.
+
+To collect these local metrics, deploy a Prometheus Agent on each control-plane node. The agent scrapes all four targets over loopback and forwards the collected metrics to the primary Prometheus instance via `remote_write`. This approach avoids creating new listening ports or exposing control-plane network interfaces, offering a safer alternative to tools like `socat`.
+
+. First enable `remote-write` on the previously installed `kube-prometheus-stack chart`:
++
+[,shell]
+----
+helm upgrade kube-prometheus-stack oci://dp.apps.rancher.io/charts/prometheus-operator \
+    -n cattle-monitoring-system --reuse-values \
+    --set prometheus.prometheusSpec.enableRemoteWriteReceiver=true \
+    --wait
+----
+
+. Create the service that the Prometheus Agent will use to send metrics to the main Prometheus instance:
++
+[,shell]
+----
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-prometheus-stack-prom-prometheus-write
+  namespace: cattle-monitoring-system
+spec:
+  selector:
+    app.kubernetes.io/name: prometheus
+    operator.prometheus.io/name: kube-prometheus-stack-prom-prometheus
+  ports:
+    - name: remote-write
+      port: 9091
+      targetPort: 9091
+----
+
+. Create the CRD for the Prometheus Agent:
++
+[,shell]
+----
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: PrometheusAgent
+metadata:
+  name: control-plane-agent
+  namespace: cattle-monitoring-system
+spec:
+  replicas: <number_of_replicas>
+  hostNetwork: true
+  listenLocal: true
+  serviceAccountName: kube-prometheus-stack-prom-prometheus
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
+  tolerations:
+    - operator: Exists
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: prometheus-agent
+              operator.prometheus.io/name: control-plane-agent
+          topologyKey: kubernetes.io/hostname
+  scrapeConfigSelector:
+    matchLabels:
+      control-plane-agent: "true"
+  remoteWrite:
+    - url: https://kube-prometheus-stack-prom-prometheus-write.cattle-monitoring-system.svc:9091/api/v1/write
+      authorization:
+        type: Bearer
+        credentialsFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+      tlsConfig:
+        insecureSkipVerify: true
+----
+
+. Create the `ScrapeConfig` that matches the `scrapeConfigSelector` above:
++
+[,shell]
+----
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: control-plane-agent-kube-proxy
+  namespace: cattle-monitoring-system
+  labels:
+    control-plane-agent: "true"
+spec:
+  jobName: kube-proxy
+  staticConfigs:
+    - targets: ["127.0.0.1:10249"]
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: control-plane-agent-kube-etcd
+  namespace: cattle-monitoring-system
+  labels:
+    control-plane-agent: "true"
+spec:
+  jobName: kube-etcd
+  staticConfigs:
+    - targets: ["127.0.0.1:2381"]
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: control-plane-agent-kube-scheduler
+  namespace: cattle-monitoring-system
+  labels:
+    control-plane-agent: "true"
+spec:
+  jobName: kube-scheduler
+  scheme: HTTPS
+  tlsConfig:
+    insecureSkipVerify: true
+  authorization:
+    credentials:
+      name: kube-prometheus-stack-prom-prometheus-token
+      key: token
+  staticConfigs:
+    - targets: ["127.0.0.1:10259"]
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: control-plane-agent-kube-controller-manager
+  namespace: cattle-monitoring-system
+  labels:
+    control-plane-agent: "true"
+spec:
+  jobName: kube-controller-manager
+  scheme: HTTPS
+  tlsConfig:
+    insecureSkipVerify: true
+  authorization:
+    credentials:
+      name: kube-prometheus-stack-prom-prometheus-token
+      key: token
+  staticConfigs:
+    - targets: ["127.0.0.1:10257"]
+----
+
+At this point, the Prometheus Agent is fully configured to scrape metrics from the control-plane components and forward them to the existing Prometheus instance.
+
+[#_optional_security_hardening]
+==== Optional Security Hardening
+
+Prometheus' `remote_write` receiver (`--web.enable-remote-write-receiver`) lacks built-in authentication capabilities, and `prometheus-operator` does not currently provide a CRD field to configure receiver authentication. For more details on this limitation, refer to the https://github.com/prometheus-operator/prometheus-operator/issues/4200[upstream prometheus-operator issue].
+
+Leaving the receiver unauthenticated exposes the endpoint and increases the cluster's attack surface. To mitigate this risk, deploy `kube-rbac-proxy` as a sidecar container to enforce RBAC authentication and authorization in front of the `remote_write` receiver.
+
+. First create the `configmap` that will hold the configuration file for the proxy:
++
+[,shell]
+----
+ kubectl create configmap kube-rbac-proxy-remote-write-config \
+   -n cattle-monitoring-system \
+   --from-literal=config-file.yaml='authorization:
+   resourceAttributes:
+     namespace: cattle-monitoring-system
+     apiVersion: v1
+     resource: services
+     subresource: remote-write
+     name: kube-prometheus-stack-prom-prometheus-write'
+----
+
+. Give the appropriate permissions to the `serviceAccount`:
++
+[,shell]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kube-prometheus-stack-prom-prometheus-auth-delegator
+subjects:
+  - kind: ServiceAccount
+    name: kube-prometheus-stack-prom-prometheus
+    namespace: cattle-monitoring-system
+roleRef:
+  kind: ClusterRole
+  name: system:auth-delegator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: control-plane-agent-remote-write
+rules:
+  - apiGroups: [""]
+    resources: ["services/remote-write"]
+    resourceNames: ["kube-prometheus-stack-prom-prometheus-write"]
+    verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: control-plane-agent-remote-write
+subjects:
+  - kind: ServiceAccount
+    name: kube-prometheus-stack-prom-prometheus
+    namespace: cattle-monitoring-system
+roleRef:
+  kind: ClusterRole
+  name: control-plane-agent-remote-write
+  apiGroup: rbac.authorization.k8s.io
+----
+
+. Lastly, in the `kube-prometheus-stack` chart, under `prometheus.PrometheusSpec.containers` add the following:
++
+[,yaml]
+----
+ containers:
+   - name: kube-rbac-proxy-remote-write
+     image: dp.apps.rancher.io/containers/kube-rbac-proxy:0.23.0  
+     args:
+       - --secure-listen-address=0.0.0.0:9091
+       - --upstream=http://127.0.0.1:9090/
+       - --config-file=/etc/kube-rbac-proxy/config-file.yaml
+       - --logtostderr=true
+       - --v=2
+     ports:
+       - containerPort: 9091
+         name: remote-write
+     volumeMounts:
+       - name: kube-rbac-proxy-config
+         mountPath: /etc/kube-rbac-proxy
+     resources:
+       requests: { cpu: 10m, memory: 32Mi }
+       limits: { cpu: 100m, memory: 64Mi }
+ volumes:
+   - name: kube-rbac-proxy-config
+     configMap:
+       name: kube-rbac-proxy-remote-write-config
+----
++
+[IMPORTANT]
+====
+
+* Port numbers 10249, 10257, 10259, 2381, node role labels, and whether kube-proxy is loopback-bound can differ by distribution and Kubernetes version. Check with `ss -tln` on a node directly before using the configuration outside of K3s or RKE2.
+
+* Resources requests and limits are examples and should be configured based on the cluster size and workload requirements.
+====
+
+endif::[]
 
 [#_default_components_and_deployments]
 == Default Components and Deployments
@@ -367,8 +955,7 @@ For more information on configuring access to monitoring, see {xref-rancher-moni
 
 [NOTE]
 ====
-
-Rancher and Project read permissions don't necessarily apply to monitoring resources. See xref:./rbac-for-monitoring.adoc#_additional_monitoring_clusterroles[monitoring-ui-view] for more details.
+{rancher-product-name} and Project read permissions don't necessarily apply to monitoring resources. See xref:./rbac-for-monitoring.adoc#_additional_monitoring_clusterroles[monitoring-ui-view] for more details.
 ====
 
 
