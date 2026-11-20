@@ -148,12 +148,12 @@ The table below details the parameters for the group schema configuration.
 |===
 
 [#_principal_identifier_attributes]
-== Principal identifier attributes
+== Principal Identifier Attributes
 
 include::shared:ROOT:partial$en/ldap-principal-id-attributes.adoc[]
 
 [#_identifier_attributes_with_okta_and_shibboleth]
-=== Identifier attributes with Okta and Shibboleth
+=== Identifier Attributes with Okta and Shibboleth
 
 When you configure OpenLDAP for user and group search with Okta or Shibboleth, the principal IDs come from the SAML assertion, not from OpenLDAP. In this case, the identifier attributes have different rules:
 

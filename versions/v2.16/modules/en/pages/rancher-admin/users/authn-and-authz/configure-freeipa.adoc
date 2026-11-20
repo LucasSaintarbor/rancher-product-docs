@@ -68,7 +68,7 @@ The default field value `uid|sn|givenName`, but you can configure this field to 
 With this search attribute, Rancher creates search filters for users and groups, but you _cannot_ add your own search filters in this field.
 ====
 +
-To keep principal IDs stable when entries move in the directory, set *User Identifier Attribute* and *Group Identifier Attribute*. You cannot change these attributes after you enable the provider. For more information, see <<_principal_identifier_attributes,Principal identifier attributes>>.
+To keep principal IDs stable when entries move in the directory, set *User Identifier Attribute* and *Group Identifier Attribute*. You cannot change these attributes after you enable the provider. For more information, see <<_principal_identifier_attributes,Principal Identifier attributes>>.
 
 
 . Enter your FreeIPA username and password in *Authenticate with FreeIPA* to confirm that Rancher is configured to use FreeIPA authentication.
@@ -80,6 +80,6 @@ To keep principal IDs stable when entries move in the directory, set *User Ident
 * You are signed into Rancher with your FreeIPA account (i.e., the _external principal_).
 
 [#_principal_identifier_attributes]
-== Principal identifier attributes
+== Principal Identifier Attributes
 
 include::shared:ROOT:partial$en/ldap-principal-id-attributes.adoc[]

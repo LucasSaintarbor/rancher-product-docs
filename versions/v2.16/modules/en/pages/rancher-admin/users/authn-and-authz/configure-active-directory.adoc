@@ -200,7 +200,7 @@ The table below details the parameters for the group schema configuration.
 '''
 
 [#_principal_identifier_attributes]
-==== Principal identifier attributes
+==== Principal Identifier Attributes
 
 include::shared:ROOT:partial$en/ldap-principal-id-attributes.adoc[]
 
