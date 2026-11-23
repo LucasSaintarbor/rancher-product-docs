@@ -1,0 +1,18 @@
+By default, {rancher-product-name} uses a directory entry's distinguished name (DN) as the user or group principal ID. Because a DN reflects the entry's path in the directory, moving or renaming the entry changes its DN. When an entry's DN changes, {rancher-product-name} treats the entry as a new principal, and permissions assigned to the previous principal no longer apply.    
+
+To keep principal IDs stable across directory moves, configure *User Identifier Attribute* and *Group Identifier Attribute* in the *Customize Schema* section. {rancher-product-name} then uses the specified attribute's value as the principal ID instead of the DN. For example, use `sAMAccountName` in Active Directory or `uid` for users in OpenLDAP and FreeIPA. Leave the attributes empty to keep using the DN.
+
+Select attributes that meet the following requirements:
+
+* The value is unique across all users (for the user attribute) or across all groups (for the group attribute).
+* The value remains unchanged when an entry moves to a different container or organizational unit in the directory.
+* Every user and group entry contains the specified attribute. Users cannot log in if their entry lacks the user identifier attribute.
+* Both values are valid LDAP attribute names.
+
+[IMPORTANT]
+.Changing identifier attributes after enabling the provider
+====
+You cannot modify identifier attributes while an authentication provider is enabled. To change them, disable the provider, update the attributes, and re-enable the provider. By default, disabling a provider deletes its associated users, role bindings, and other provider resources.
+
+To retain existing users and bindings, add the `management.cattle.io/auth-provider-cleanup: user-locked` annotation to the provider before disabling it. Retained users and bindings keep their previous principal IDs, which no longer match active directory entries. After you re-enable the provider, users receive new principal IDs upon their next login, and you must reassign their permissions. For more information, see {xref-authn-authz}#_disabling_an_auth_provider[Disabling an auth provider].
+====
