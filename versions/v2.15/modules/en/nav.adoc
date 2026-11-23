@@ -1,7 +1,9 @@
 * xref:release-notes.adoc[Release Notes]
+ifeval::["{build-type}" != "srfa"]
 ** xref:release-notes/v2.15.3.adoc[]
 ** xref:release-notes/v2.15.2.adoc[]
 ** xref:release-notes/v2.15.1.adoc[]
+endif::[]
 * About Rancher
 ** xref:about-rancher/what-is-rancher.adoc[]
 ** xref:about-rancher/prime.adoc[]

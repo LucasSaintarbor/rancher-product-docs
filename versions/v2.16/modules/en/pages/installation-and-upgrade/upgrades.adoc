@@ -1,7 +1,7 @@
 = Upgrades
 :description: Upgrade Rancher server on Kubernetes using Helm, including air-gapped installations, by following prerequisites and steps for backup, repo update, and cert-manager
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-06
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/upgrades.adoc 
 :page-product-path: installation-and-upgrade/upgrades.adoc
@@ -204,7 +204,7 @@ endif::[]
 [#_3_review_rancher_feature_chart_versions_before_upgrade]
 === 3. Review Rancher Feature Chart Versions Before Upgrade
 
-Rancher feature charts follow specific release lines that align with Rancher versions. Major versions of feature charts correspond to Rancher minor versions and follow a defined versioning scheme.
+{rancher-product-name} feature charts follow specific release lines that align with {rancher-product-name} versions. Major versions of feature charts correspond to Rancher minor versions and follow a defined versioning scheme.
 
 Before upgrading Rancher, review any installed Rancher feature charts and upgrade them to the latest available version within their current chart release line. This helps ensure compatibility and avoids potential issues during or after the Rancher upgrade.
 

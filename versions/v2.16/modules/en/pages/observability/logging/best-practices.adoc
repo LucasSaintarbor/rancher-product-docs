@@ -1,7 +1,7 @@
 = Logging Best Practices
 :description: Learn best practices for cluster-level and application logging in Rancher, including setting up ClusterOutput objects and ClusterFlows
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-managed-clusters/logging-best-practices.adoc 
 :page-product-path: observability/logging/best-practices.adoc
@@ -14,7 +14,7 @@ In this guide, we recommend best practices for cluster-level logging and applica
 
 Before Rancher v2.5, logging in Rancher has historically been a pretty static integration. There were a fixed list of aggregators to choose from (ElasticSearch, Splunk, Kafka, Fluentd and Syslog), and only two configuration points to choose (Cluster-level and Project-level).
 
-Rancher provides a flexible experience for log aggregation. With the logging feature, administrators and users alike can deploy logging that meets fine-grained collection criteria while offering a wider array of destinations and configuration options.
+{rancher-product-name} provides a flexible experience for log aggregation. With the logging feature, administrators and users alike can deploy logging that meets fine-grained collection criteria while offering a wider array of destinations and configuration options.
 
 "Under the hood", Rancher logging uses the https://github.com/kube-logging/logging-operator[Logging operator]. We provide manageability of this operator (and its resources), and tie that experience in with managing your Rancher clusters.
 

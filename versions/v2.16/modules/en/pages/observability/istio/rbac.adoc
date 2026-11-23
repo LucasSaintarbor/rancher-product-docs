@@ -1,7 +1,7 @@
 = Role-based Access Control
 :description: Learn the permissions required for Role-based Access Control in Istio, including ClusterRoles and actions such as installing the Istio app
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-10-01
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/istio/rbac-for-istio.adoc 
 :page-product-path: observability/istio/rbac.adoc
@@ -56,7 +56,7 @@ Istio creates three `ClusterRoles` and adds Istio CRD access to the following de
 | Read-only
 |===
 
-Rancher will continue to use cluster-owner, cluster-member, project-owner, project-member, etc as role names, but will utilize default roles to determine access. For each default K8s `ClusterRole` there are different Istio CRD permissions and K8s actions (Create ( C ), Get ( G ), List ( L ), Watch ( W ), Update ( U ), Patch ( P ), Delete( D ), All ( * )) that can be performed.
+{rancher-product-name} will continue to use cluster-owner, cluster-member, project-owner, project-member, etc as role names, but will utilize default roles to determine access. For each default K8s `ClusterRole` there are different Istio CRD permissions and K8s actions (Create ( C ), Get ( G ), List ( L ), Watch ( W ), Update ( U ), Patch ( P ), Delete( D ), All ( * )) that can be performed.
 
 [cols="2,1,1,1"]
 |===

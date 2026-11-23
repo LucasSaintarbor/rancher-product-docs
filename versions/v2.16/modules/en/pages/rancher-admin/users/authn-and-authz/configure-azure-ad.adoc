@@ -1,7 +1,7 @@
 = Configure Microsoft Entra ID
 :description: Configure Microsoft Entra ID authentication in Rancher by following setup steps in the Microsoft Azure portal and Rancher, including registering
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-28
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-azure-ad.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-azure-ad.adoc
@@ -21,7 +21,7 @@ endif::[]
 [#_microsoft_graph_api]
 == Microsoft Entra ID (Microsoft Graph API)
 
-Microsoft Graph API is the required flow for configuring Microsoft Entra ID (formerly Azure AD) authentication in Rancher. The sections below assist <<_new_user_setup,new users>> in configuring Microsoft Entra ID with a new instance and guide existing app owners in <<_migrating_from_azure_ad_graph_api_to_microsoft_graph_api,migrating to the Microsoft Graph API flow>>.
+Microsoft Graph API is the required flow for configuring Microsoft Entra ID (formerly Azure AD) authentication in {rancher-product-name}. The sections below assist <<_new_user_setup,new users>> in configuring Microsoft Entra ID with a new instance and guide existing app owners in <<_migrating_from_azure_ad_graph_api_to_microsoft_graph_api,migrating to the Microsoft Graph API flow>>.
 
 [#_new_user_setup]
 === New User Setup
@@ -224,7 +224,7 @@ When managing multiple Rancher domains, additional Redirect URIs must be configu
 [#_migrating_from_azure_ad_graph_api_to_microsoft_graph_api]
 === Migrating from Azure AD Graph API to Microsoft Graph API
 
-The legacy **Azure AD Graph API** has been retired by Microsoft. Rancher setups using the legacy endpoints must update to **Microsoft Graph API** to prevent authentication failures.
+The legacy **Azure AD Graph API** has been retired by Microsoft. {rancher-product-name} setups using the legacy endpoints must update to **Microsoft Graph API** to prevent authentication failures.
 
 [#_updating_endpoints_in_the_rancher_ui]
 ==== Updating Endpoints in the Rancher UI
@@ -330,7 +330,7 @@ Filtering out a group membership prevents Rancher from seeing that the user belo
 [#_azure_ad_roles_claims]
 == Microsoft Entra ID Roles Claims
 
-Rancher supports the `roles` claim provided in the Microsoft Entra ID OIDC token, enabling centralized Role-Based Access Control (RBAC) mapping.
+{rancher-product-name} supports the `roles` claim provided in the Microsoft Entra ID OIDC token, enabling centralized Role-Based Access Control (RBAC) mapping.
 
 By mapping `roles` claims, administrators can:
 
@@ -347,4 +347,4 @@ For example, consider the following role structure in Microsoft Entra ID:
 | User A, User C
 |===
 
-When User A logs into Rancher using Microsoft Entra ID, their OIDC token includes a `roles` claim containing `["project-alpha-dev"]`. Rancher processes the token and adds `project-alpha-dev` to User A's internal list of user groups and roles. Because an administrator created a Project Role Binding that maps the Entra ID role `project-alpha-dev` to the Rancher `Dev Member` role for Project Alpha, User A is automatically granted `Dev Member` permissions.
+When User A logs into Rancher using Microsoft Entra ID, their OIDC token includes a `roles` claim containing `["project-alpha-dev"]`. {rancher-product-name} processes the token and adds `project-alpha-dev` to User A's internal list of user groups and roles. Because an administrator created a Project Role Binding that maps the Entra ID role `project-alpha-dev` to the Rancher `Dev Member` role for Project Alpha, User A is automatically granted `Dev Member` permissions.

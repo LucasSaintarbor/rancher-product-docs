@@ -1,7 +1,7 @@
 = Creating a Google Compute Engine cluster
 :description: Create a Google Compute Engine cluster using Rancher by following steps to set up cloud credentials and define machine pools
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-19
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/launch-kubernetes-with-rancher/use-new-nodes-in-an-infra-provider/create-a-google-compute-engine-cluster.adoc 
 :page-product-path: cluster-deployment/infra-providers/gce/gce.adoc
@@ -22,11 +22,11 @@ ifeval::["{build-type}" == "community"]
 :xref-infra-gce-machine-config: xref:reference-guides/cluster-configuration/downstream-cluster-configuration/machine-configuration/google-gce.adoc
 endif::[]
 
-In this section, you'll learn how to use Rancher to provision an {url-rke2-landing-page}[RKE2] or {url-k3s-landing-page}[K3s] Kubernetes cluster on the Google Cloud Platform (GCP) using Google Compute Engine (GCE) through Rancher.
+In this section, you'll learn how to use {rancher-product-name} to provision an {url-rke2-landing-page}[RKE2] or {url-k3s-landing-page}[K3s] Kubernetes cluster on the Google Cloud Platform (GCP) using Google Compute Engine (GCE) through Rancher.
 
 First, you will enable the GCE node driver in the Rancher UI. Then, you follow the steps to create a GCP service account with the necessary permissions, and generate a JSON key file. This key file will be used to create a cloud credential in Rancher. 
 
-Then, you will create a GCE cluster in Rancher, and when configuring the cluster, you will define machine pools for it. Each machine pool will have a Kubernetes role of etcd, controlplane, or worker. Rancher will install RKE2 onto the new nodes, and it will set up each node with the Kubernetes role defined by the machine pool.
+Then, you will create a GCE cluster in Rancher, and when configuring the cluster, you will define machine pools for it. Each machine pool will have a Kubernetes role of etcd, controlplane, or worker. {rancher-product-name} will install RKE2 onto the new nodes, and it will set up each node with the Kubernetes role defined by the machine pool.
 
 . <<_enable_the_gce_node_driver>>
 . <<_create_a_cloud_credential>>
@@ -83,7 +83,7 @@ The GCE node driver is not enabled by default in Rancher. You must enable it bef
 
 **Result:**
 
-Your cluster is created and assigned a state of **Provisioning**. Rancher is standing up your cluster.
+Your cluster is created and assigned a state of **Provisioning**. {rancher-product-name} is standing up your cluster.
 
 You can access your cluster after its state is updated to **Active**.
 
@@ -105,7 +105,7 @@ In order for ACE to work as expected, you must specify this port in the Rancher 
 [#_internal_firewall_rules]
 === Internal Firewall Rules
 
-Rancher will automatically create a firewall rule and network tag to facilitate communication between cluster nodes internally within the specified VPC network. This rule will contain the minimum number of ports required to create an RKE2/K3s cluster.
+{rancher-product-name} will automatically create a firewall rule and network tag to facilitate communication between cluster nodes internally within the specified VPC network. This rule will contain the minimum number of ports required to create an RKE2/K3s cluster.
 
 If you need to extend the number of ports exposed internally between cluster nodes, a new firewall rule should be manually created, and the associated network tag assigned to the relevant machine pools. If desired, the automatic creation of the internal firewall rule can be disabled for each given machine pool when creating or updating the cluster.
 

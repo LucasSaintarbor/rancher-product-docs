@@ -1,7 +1,7 @@
 = iSCSI Volumes
 :description: Install the iSCSI initiator tool on each cluster node to resolve kubelet connection failures to iSCSI volumes
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-15
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/create-kubernetes-persistent-storage/manage-persistent-storage/install-iscsi-volumes.adoc 
 :page-product-path: cluster-admin/manage-clusters/persistent-storage/install-iscsi-volumes.adoc
@@ -12,9 +12,9 @@ ifeval::["{build-type}" == "community"]
 :xref-launch-k8s-with-rancher: xref:how-to-guides/new-user-guides/launch-kubernetes-with-rancher/index.adoc
 endif::[]
 
-In {xref-launch-k8s-with-rancher}[Rancher Launched Kubernetes clusters] that store data on iSCSI volumes, you may experience an issue where kubelets fail to automatically connect with iSCSI volumes. This failure is likely due to an incompatibility issue involving the iSCSI initiator tool. You can resolve this issue by installing the iSCSI initiator tool on each of your cluster nodes.
+In {xref-launch-k8s-with-rancher}[{rancher-product-name} launched Kubernetes clusters] that store data on iSCSI volumes, you may experience an issue where kubelets fail to automatically connect with iSCSI volumes. This failure is likely due to an incompatibility issue involving the iSCSI initiator tool. You can resolve this issue by installing the iSCSI initiator tool on each of your cluster nodes.
 
-Rancher Launched Kubernetes clusters storing data on iSCSI volumes leverage the http://www.open-iscsi.com/[iSCSI initiator tool], which is embedded in the kubelet's `rancher/hyperkube` Docker image. From each kubelet (i.e., the _initiator_), the tool discovers and launches sessions with an iSCSI volume (i.e., the _target_). However, in some instances, the versions of the iSCSI initiator tool installed on the initiator and the target may not match, resulting in a connection failure.
+Rancher launched Kubernetes clusters storing data on iSCSI volumes leverage the http://www.open-iscsi.com/[iSCSI initiator tool], which is embedded in the kubelet's `rancher/hyperkube` Docker image. From each kubelet (i.e., the _initiator_), the tool discovers and launches sessions with an iSCSI volume (i.e., the _target_). However, in some instances, the versions of the iSCSI initiator tool installed on the initiator and the target may not match, resulting in a connection failure.
 
 If you encounter this issue, you can work around it by installing the initiator tool on each node in your cluster. You can install the iSCSI initiator tool by logging into your cluster nodes and entering one of the following commands:
 

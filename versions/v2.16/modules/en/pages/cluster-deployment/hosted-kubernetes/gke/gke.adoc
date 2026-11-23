@@ -1,7 +1,7 @@
 = Creating a GKE Cluster
 :description: Create a GKE cluster using Rancher by setting up a service account, creating cloud credentials, and configuring the cluster using a Google project ID,
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-19
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-clusters-from-hosted-kubernetes-providers/gke.adoc 
 :page-product-path: cluster-deployment/hosted-kubernetes/gke/gke.adoc
@@ -85,7 +85,7 @@ Use Rancher to set up and configure your Kubernetes cluster. To successfully cre
 
 *Result:* You have successfully deployed a GKE cluster.
 
-Your cluster is created and assigned a state of *Provisioning*. Rancher is standing up your cluster.
+Your cluster is created and assigned a state of *Provisioning*. {rancher-product-name} is standing up your cluster.
 
 You can access your cluster after its state is updated to *Active*.
 

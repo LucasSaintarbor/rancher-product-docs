@@ -1,11 +1,12 @@
 = Configuring Native CAPI Infrastructure Providers to Provision RKE2 Clusters
 :description: Configure native CAPI infrastructure providers to provision RKE2 clusters using Rancher UI or kubectl
-:revdate: 2026-08-11
+:revdate: 2026-11-16
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/capi-infrastructure-providers.adoc
 :page-product-path: cluster-deployment/configuration/capi-infrastructure-providers.adoc 
 ifeval::["{build-type}" != "community"]
 :url-CAPI-docs: https://documentation.suse.com/cloudnative/cluster-api/latest/en/index.html
+:url-CAPI-provider-install: https://documentation.suse.com/cloudnative/cluster-api/latest/en/user/providers.html
 :xref-enable-experimental-features: xref:rancher-admin/experimental-features/experimental-features.adoc
 :xref-user-data-security: xref:security/rancher-security-best-practices.adoc#_restrict_access_to_user-data
 :xref-cloud-credentials: xref:rancher-admin/users/settings/manage-cloud-credentials.adoc
@@ -13,6 +14,7 @@ ifeval::["{build-type}" != "community"]
 endif::[]
 ifeval::["{build-type}" == "community"]
 :url-CAPI-docs: https://turtles.docs.rancher.com/turtles/stable/en/index.html
+:url-CAPI-provider-install: https://turtles.docs.rancher.com/turtles/stable/en/user/clusterclass.html
 :xref-enable-experimental-features: xref:how-to-guides/advanced-user-guides/enable-experimental-features/index.adoc
 :xref-user-data-security: xref:reference-guides/rancher-security/rancher-security-best-practices.adoc#_restrict_access_to_user-data
 :xref-cloud-credentials: xref:reference-guides/user-settings/manage-cloud-credentials.adoc
@@ -35,11 +37,14 @@ This guide provides steps for provisioning through the Rancher UI as well as exa
 Provisioning with a native CAPI infrastructure provider and Rancher as a bootstrap and control plane provider is distinct from using {url-CAPI-docs}[{turtles-product-name}] and the https://caprke2.docs.rancher.com/[CAPRKE2] provider to provision a RKE2 cluster and subsequently import it into Rancher.
 ====
 
-[CAUTION]
-====
-By default, the `Standard User` and `Create Clusters` {xref-global-permissions}[global permissions] allow creating and then updating CAPI infrastructure objects in the `fleet-default` namespace.
+By default, the `Standard User` and `Create Clusters` {xref-global-permissions}[global permissions] allow assigned users to create and update CAPI infrastructure objects in the `fleet-default` namespace. These permissions also allow users to get and list namespaced `capiproviders` resources in the `turtles-capi.cattle.io` API group.
 
-Manually created infrastructure provider identity objects, such as `AWSClusterStaticIdentity` or `VSphereClusterIdentity`, that target the `fleet-default` namespace can be used through CAPI infrastructure objects such as `AWSCluster` or `VsphereCluster`.
+[WARNING]
+.Plain-text credentials in CAPIProvider resources
+====
+Do not store credentials or other sensitive values in the `.spec.variables` field of a `CAPIProvider` resource. Values in this field are stored in plain text and can be viewed by any user who has permission to access provider configurations.
+
+To securely manage credentials, use provider-specific identity objects, such as `AWSClusterStaticIdentity` or `VSphereClusterIdentity`. Create these identity objects and reference them directly from infrastructure cluster objects, such as `AWSCluster` or `VSphereCluster`.
 ====
 
 [#_limitations_and_requirements]
@@ -72,7 +77,7 @@ The logs for the infrastructure provider deployment (e.g. `capa-controller-manag
 [#_installing_the_infrastructure_provider]
 == Installing the infrastructure provider
 
-Rancher allows installing the required infrastructure provider through {turtles-product-name}. Refer to the {url-CAPI-docs}[documentation] to install the CAPA or CAPV provider.
+Rancher allows installing the required infrastructure provider through {turtles-product-name}. Refer to the {url-CAPI-provider-install}[documentation] to install the CAPA or CAPV provider.
 
 [#_provisioning_a_cluster_via_the_rancher_ui]
 == Provisioning a cluster via the Rancher UI

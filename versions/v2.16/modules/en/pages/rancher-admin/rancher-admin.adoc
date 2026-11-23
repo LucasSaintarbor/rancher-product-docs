@@ -1,7 +1,7 @@
 = Authentication, Permissions and Global Settings
 :description: Configure authentication methods, manage user permissions, and set global security policies to control access and customize settings for Rancher
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-02
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/index.adoc 
 :page-product-path: rancher-admin/rancher-admin.adoc
@@ -56,7 +56,7 @@ For more information how authentication works and how to configure each provider
 [#_authorization]
 == Authorization
 
-Within Rancher, each person authenticates as a _user_, which is a login that grants you access to Rancher. Once the user logs in to Rancher, their _authorization_, or their access rights within the system, is determined by the user's role. Rancher provides built-in roles to allow you to easily configure a user's permissions to resources, but Rancher also provides the ability to customize the roles for each Kubernetes resource.
+Within Rancher, each person authenticates as a _user_, which is a login that grants you access to Rancher. Once the user logs in to Rancher, their _authorization_, or their access rights within the system, is determined by the user's role. {rancher-product-name} provides built-in roles to allow you to easily configure a user's permissions to resources, but {rancher-product-name} also provides the ability to customize the roles for each Kubernetes resource.
 
 For more information how authorization works and how to customize roles, see {xref-manage-rbac}[Roles Based Access Control (RBAC)].
 
@@ -104,4 +104,4 @@ Click *☰* in the top left corner, then select *Global Settings*, to view and c
 [#_enabling_experimental_features]
 === Enabling Experimental Features
 
-Rancher includes some features that are experimental and/or disabled by default. Feature flags allow you to enable these features. For more information, refer to the section about {xref-experimental-features}[feature flags.]
+{rancher-product-name} includes some features that are experimental and/or disabled by default. Feature flags allow you to enable these features. For more information, refer to the section about {xref-experimental-features}[feature flags.]

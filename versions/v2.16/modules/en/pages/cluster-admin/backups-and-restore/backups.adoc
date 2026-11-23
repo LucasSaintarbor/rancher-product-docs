@@ -1,7 +1,7 @@
 = Backing up a Cluster
 :description: Learn how to back up a cluster using etcd snapshots, configure regular backups, and store them on S3 for remote access and restoration
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/back-up-rancher-launched-kubernetes-clusters.adoc 
 :page-product-path: cluster-admin/backups-and-restore/backups.adoc
@@ -12,9 +12,9 @@ ifeval::["{build-type}" == "community"]
 :xref-launch-k8s-with-rancher: xref:how-to-guides/new-user-guides/launch-kubernetes-with-rancher/index.adoc
 endif::[]
 
-In the Rancher UI, etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] can be easily performed.
+In the {rancher-product-name} UI, etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] can be easily performed.
 
-Rancher recommends configuring recurrent `etcd` snapshots for all production clusters. Additionally, one-time snapshots can be taken as well.
+{rancher-product-name} recommends configuring recurrent `etcd` snapshots for all production clusters. Additionally, one-time snapshots can be taken as well.
 
 Snapshots of the etcd database are taken and saved either <<_local_backup_target,locally onto the etcd nodes>> or to a <<_s3_backup_target,S3 compatible target>>. The advantages of configuring S3 is that if all etcd nodes are lost, your snapshot is saved remotely and can be used to restore the cluster.
 
@@ -316,7 +316,7 @@ Although the `S3` target offers advantages over local backup, it does require ex
 [CAUTION]
 ====
 
-If you use an S3 backup target, make sure that every cluster has its own bucket or folder. Rancher populates snapshot information from any available snapshot listed in the S3 bucket or folder configured for that cluster.
+If you use an S3 backup target, make sure that every cluster has its own bucket or folder. {rancher-product-name} populates snapshot information from any available snapshot listed in the S3 bucket or folder configured for that cluster.
 ====
 
 

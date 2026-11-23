@@ -1,7 +1,7 @@
 = OpenLDAP Configuration Reference
 :description: Configure OpenLDAP server parameters by entering the address, port, and protocol, setting the user and group search base, and customizing schema mappings
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-openldap/openldap-config-reference.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/openldap/reference.adoc
@@ -24,7 +24,7 @@ ____
 == Background: OpenLDAP Authentication Flow
 
 . When a user attempts to login with LDAP credentials, Rancher creates an initial bind to the LDAP server using a service account with permissions to search the directory and read user/group attributes.
-. Rancher then searches the directory for the user by using a search filter based on the provided username and configured attribute mappings.
+. {rancher-product-name} then searches the directory for the user by using a search filter based on the provided username and configured attribute mappings.
 . Once the user has been found, they are authenticated with another LDAP bind request using the user's DN and provided password.
 . Once authentication succeeded, Rancher then resolves the group memberships both from the membership attribute in the user's object and by performing a group search based on the configured user mapping attribute.
 

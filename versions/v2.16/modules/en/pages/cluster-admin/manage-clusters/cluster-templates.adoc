@@ -1,7 +1,7 @@
 = Cluster Templates
 :description: Create cluster templates to provision new nodes on a cloud provider, install Kubernetes using Helm charts, and clone and fork the templates
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-11-04
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/manage-cluster-templates.adoc 
 :page-product-path: cluster-admin/manage-clusters/cluster-templates.adoc
@@ -31,7 +31,7 @@ Cluster templates can use any Kubernetes distribution. For now, we provide an ex
 [#_versioning]
 === Versioning
 
-Rancher doesn't manage version control for cluster templates. Version control is handled in the repository containing the template's Helm chart.
+{rancher-product-name} doesn't manage version control for cluster templates. Version control is handled in the repository containing the template's Helm chart.
 
 [#__rke2_product_name_cluster_template]
 == {rke2-product-name} Cluster Template
@@ -52,7 +52,7 @@ In this section, you'll learn how to add the cluster template to the `local` clu
 ====
 
 
-. Go to a cluster template example repository. Rancher's examples are in https://github.com/rancher/cluster-template-examples[this GitHub repository.]
+. Go to a cluster template example repository. {rancher-product-name}'s examples are in https://github.com/rancher/cluster-template-examples[this GitHub repository.]
 . Fork the repository.
 . Optional: Edit the cluster options by editing the `values.yaml` file. For help editing the file, see the cluster template's Helm chart README.
 . Add the chart repository to Rancher. Click *☰ > Cluster Management*.
@@ -62,7 +62,7 @@ In this section, you'll learn how to add the cluster template to the `local` clu
 . Enter a name for the cluster template repository.
 . Click *Git Repository containing Helm chart definitions.*
 . In the *Git Repo URL* field, enter the URL for the repository. For example, `+https://github.com/rancher/cluster-template-examples.git+`.
-. In the *Git Branch* field, enter the branch to use as the source for the template. Rancher's example repository uses `main`.
+. In the *Git Branch* field, enter the branch to use as the source for the template. {rancher-product-name}'s example repository uses `main`.
 . Click *Create.*
 
 *Result:* The cluster template available from the *Apps* in Rancher's `local` cluster. It can now be used to deploy clusters.

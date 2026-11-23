@@ -1,7 +1,7 @@
 = Tips for Running {rancher-product-name}
 :description: Learn how to set up high-availability Rancher, minimize third-party software on the upstream cluster, and avoid running container registries on the same cluster
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/best-practices/rancher-server/tips-for-running-rancher.adoc 
 :page-product-path: installation-and-upgrade/best-practices/tips-for-running-rancher.adoc
@@ -16,7 +16,7 @@ ifeval::["{build-type}" == "community"]
 :xref-rancher-on-vsphere: xref:reference-guides/best-practices/rancher-server/on-premises-rancher-in-vsphere.adoc
 endif::[]
 
-This guide is geared toward use cases where Rancher is used to manage downstream Kubernetes clusters. The high-availability setup is intended to prevent losing access to downstream clusters if the Rancher server is not available.
+This guide is geared toward use cases where {rancher-product-name} is used to manage downstream Kubernetes clusters. The high-availability setup is intended to prevent losing access to downstream clusters if the Rancher server is not available.
 
 A high-availability Kubernetes installation, defined as an installation of Rancher on a Kubernetes cluster with at least three nodes, should be used in any production installation of Rancher, as well as any installation deemed "important." Multiple Rancher instances running on multiple nodes ensure high availability that cannot be accomplished with a single node environment.
 
@@ -29,7 +29,7 @@ When you set up your high-availability Rancher installation, consider the follow
 
 We generally recommend running Rancher on a dedicated cluster, free of other workloads, to avoid potential performance and compatibility issues.
 
-Rancher, especially when managing a growing number of clusters, nodes, and workloads, places a significant load on core Kubernetes components like `etcd` and `kube-apiserver` on the upstream cluster. Third-party software can interfere with the performance of these components and Rancher, potentially leading to instability.
+{rancher-product-name}, especially when managing a growing number of clusters, nodes, and workloads, places a significant load on core Kubernetes components like `etcd` and `kube-apiserver` on the upstream cluster. Third-party software can interfere with the performance of these components and Rancher, potentially leading to instability.
 
 Furthermore, third-party software can functionally interfere with Rancher. To minimize compatibility risks, deploy only essential Kubernetes system components and Rancher on the upstream cluster.
 

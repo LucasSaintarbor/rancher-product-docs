@@ -1,7 +1,7 @@
 = {rancher-product-name} HA
 :description: Check your Rancher Kubernetes installation for high availability by verifying pods, ingress, and configuration settings
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: troubleshooting/other-troubleshooting-tips/rancher-ha.adoc 
 :page-product-path: installation-and-upgrade/troubleshooting/rancher-ha.adoc
@@ -12,14 +12,14 @@ ifeval::["{build-type}" == "community"]
 :xref-helm-chart-options: xref:getting-started/installation-and-upgrade/installation-references/helm-chart-options.adoc
 endif::[]
 
-The commands/steps listed on this page can be used to check your Rancher Kubernetes Installation.
+The commands/steps listed on this page can be used to check your {rancher-product-name} Kubernetes Installation.
 
 Make sure you configured the correct kubeconfig (for example, `export KUBECONFIG=$PWD/kube_config_cluster.yml`).
 
 [#_check_rancher_pods]
 == Check Rancher Pods
 
-Rancher pods are deployed as a Deployment in the `cattle-system` namespace.
+{rancher-product-name} pods are deployed as a Deployment in the `cattle-system` namespace.
 
 Check if the pods are running on all nodes:
 

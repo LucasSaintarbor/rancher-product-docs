@@ -1,7 +1,7 @@
 = Cluster Tools for Logging, Monitoring, and Visibility
 :description: Provide cluster tools for logging, monitoring, and visibility that capture logs, track cluster performance, set up alerts, check compliance, and support Istio
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-05
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-cluster-tools.adoc 
 :page-product-path: observability/rancher-cluster-tools.adoc
@@ -18,7 +18,7 @@ ifeval::["{build-type}" == "community"]
 :xref-compliance-scans-howto: xref:how-to-guides/advanced-user-guides/compliance-scan-guides/index.adoc
 endif::[]
 
-Rancher contains a variety of tools that aren't included in Kubernetes to assist in your DevOps operations. Rancher can integrate with external services to help your clusters run more efficiently. Tools are divided into following categories:
+{rancher-product-name} contains a variety of tools that aren't included in Kubernetes to assist in your DevOps operations. {rancher-product-name} can integrate with external services to help your clusters run more efficiently. Tools are divided into following categories:
 
 [#_logging]
 == Logging
@@ -31,7 +31,7 @@ Logging is helpful because it allows you to:
 * Stay informed of events like a container crashing, a pod eviction, or a node dying
 * More easily debug and troubleshoot problems
 
-Rancher can integrate with Elasticsearch, splunk, kafka, syslog, and fluentd.
+{rancher-product-name} can integrate with Elasticsearch, splunk, kafka, syslog, and fluentd.
 
 For more information, refer to the logging documentation {xref-logging}[here.]
 
@@ -53,13 +53,13 @@ For more information, refer to the monitoring documentation {xref-monitoring-and
 
 https://istio.io/[Istio] is an open-source tool that makes it easier for DevOps teams to observe, control, troubleshoot, and secure the traffic within a complex network of microservices.
 
-Rancher's integration with Istio was improved in Rancher v2.5.
+{rancher-product-name}'s integration with Istio was improved in Rancher v2.5.
 
 For more information, refer to the Istio documentation {xref-istio}[here.]
 
 [#_compliance_scans]
 == Compliance Scans
 
-Rancher can run a security scan to check whether Kubernetes is deployed according to security best practices as defined in most recognized Kubernetes Security Benchmarks, such as STIG.
+{rancher-product-name} can run a security scan to check whether Kubernetes is deployed according to security best practices as defined in most recognized Kubernetes Security Benchmarks, such as STIG.
 
 For more information, refer to the Compliance scan documentation {xref-compliance-scans-howto}[here.]

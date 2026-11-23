@@ -1,7 +1,7 @@
 = Certificate Rotation
 :description: Rotate certificates for services and restart related components automatically via the Rancher UI
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/manage-clusters/rotate-certificates.adoc 
 :page-product-path: cluster-admin/manage-clusters/rotate-certificates.adoc
@@ -45,7 +45,7 @@ For users who didn't rotate their webhook certificates, and they have expired af
 [#_certificate_rotation]
 == Certificate Rotation
 
-Rancher launched Kubernetes clusters have the ability to rotate the auto-generated certificates through the UI.
+{rancher-product-name} launched Kubernetes clusters have the ability to rotate the auto-generated certificates through the UI.
 
 . In the upper left corner, click *☰ > Cluster Management*.
 . On the *Clusters* page, go to the cluster you want to rotate certificates for and click *⋮ > Rotate Certificates*.

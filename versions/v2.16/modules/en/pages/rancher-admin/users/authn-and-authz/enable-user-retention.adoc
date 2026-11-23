@@ -1,7 +1,7 @@
 = Enabling User Retention
 :description: Enable user retention to automatically disable or delete inactive user accounts using kubectl to configure required settings
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/enable-user-retention.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/enable-user-retention.adoc
@@ -24,7 +24,7 @@ To enable user retention, you must set `user-retention-cron`. You must also set 
 [#_configuring_rancher_to_delete_users_disable_users_or_combine_operations]
 == Configuring Rancher to Delete Users, Disable Users, or Combine Operations
 
-Rancher uses two global user retention settings to determine if and when users are disabled or deleted after a certain period of inactivity. Disabled accounts must be re-enabled before users can log in again. If an account is deleted without being disabled, users may be able to log in through external authentication and the deleted account will be recreated.
+{rancher-product-name} uses two global user retention settings to determine if and when users are disabled or deleted after a certain period of inactivity. Disabled accounts must be re-enabled before users can log in again. If an account is deleted without being disabled, users may be able to log in through external authentication and the deleted account will be recreated.
 
 The global settings, `disable-inactive-user-after` and  `delete-inactive-user-after`, do not block one another from running.
 

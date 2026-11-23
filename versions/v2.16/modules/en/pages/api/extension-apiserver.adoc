@@ -1,12 +1,12 @@
 = Extension API Server
 :description: Configure the Kubernetes API Aggregation Layer to register the Extension API Server and ensure correct operation
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-20
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: api/extension-apiserver.adoc 
 :page-product-path: api/extension-apiserver.adoc
 
-Rancher extends Kubernetes with additional APIs by registering an extension API server using the https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/[Kubernetes API Aggregation Layer].
+{rancher-product-name} extends Kubernetes with additional APIs by registering an extension API server using the https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/[Kubernetes API Aggregation Layer].
 
 [#_aggregation_layer_is_required]
 == Aggregation Layer is Required

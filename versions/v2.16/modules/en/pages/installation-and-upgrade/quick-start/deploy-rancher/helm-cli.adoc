@@ -1,7 +1,7 @@
 = Helm CLI Quick Start
 :description: Use Helm CLI to install and configure a Kubernetes cluster by running commands on a Linux machine and access the cluster using the kubeconfig file
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-20
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: getting-started/quick-start-guides/deploy-rancher-manager/helm-cli.adoc 
 :page-product-path: installation-and-upgrade/quick-start/deploy-rancher/helm-cli.adoc
@@ -22,7 +22,7 @@ endif::[]
 
 These instructions capture a quick way to set up a proof-of-concept Rancher installation.
 
-These instructions assume you have a Linux virtual machine that you will communicate with from your local workstation. Rancher will be installed on the Linux machine. You will need to retrieve the IP address of that machine so that you can access Rancher from your local workstation. Rancher is designed to manage Kubernetes clusters remotely, so any Kubernetes cluster that Rancher manages in the future will also need to be able to reach this IP address.
+These instructions assume you have a Linux virtual machine that you will communicate with from your local workstation. {rancher-product-name} will be installed on the Linux machine. You will need to retrieve the IP address of that machine so that you can access Rancher from your local workstation. {rancher-product-name} is designed to manage Kubernetes clusters remotely, so any Kubernetes cluster that {rancher-product-name} manages in the future will also need to be able to reach this IP address.
 
 We don't recommend installing Rancher locally because it creates a networking problem. Installing Rancher on localhost does not allow Rancher to communicate with downstream Kubernetes clusters, so on localhost you wouldn't be able to test Rancher's cluster provisioning or cluster management functionality.
 
@@ -33,7 +33,7 @@ The full installation requirements are {xref-install-reqs}[here].
 [#_install_k3s_product_name_on_linux]
 == Install {k3s-product-name} on Linux
 
-Rancher needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
+{rancher-product-name} needs to be installed on a supported Kubernetes version. To find out which versions of Kubernetes are supported for your Rancher version, refer to the https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/[Rancher Support Matrix].
 
 To specify the K3s (Kubernetes) version, use the INSTALL_K3S_VERSION (e.g., `INSTALL_K3S_VERSION="v1.24.10+k3s1"`) environment variable when running the K3s installation script.
 

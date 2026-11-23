@@ -1,7 +1,7 @@
 = Deprecated Features in {rancher-product-name}
 :description: Find information about Ranchers deprecation policy, where to find deprecated features, and what to expect when marked for deprecation
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-27
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: faq/deprecated-features.adoc 
 :page-product-path: faq/deprecated-features.adoc
@@ -14,7 +14,7 @@ The official deprecation policy is documented in the https://www.suse.com/suppor
 [#_where_can_i_find_out_which_features_have_been_deprecated_in_rancher]
 == Where can I find out which features have been deprecated in Rancher?
 
-Rancher will publish deprecated features as part of the https://github.com/rancher/rancher/releases[release notes] for Rancher found on GitHub. Please consult the following patch releases for deprecated features:
+{rancher-product-name} will publish deprecated features as part of the https://github.com/rancher/rancher/releases[release notes] for Rancher found on GitHub. Please consult the following patch releases for deprecated features:
 
 |===
 | Patch Version | Release Date

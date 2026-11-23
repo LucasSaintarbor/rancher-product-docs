@@ -1,7 +1,7 @@
 = {rancher-product-name} Security Guides
 :description: Find security guides for that explain how to ensure compliance, harden clusters, manage access controls, and follow best practices
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-06-25
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-security/index.adoc 
 :page-product-path: security/security-overview.adoc
@@ -78,7 +78,7 @@ NeuVector is an open-source, container-focused security application that is now 
 [#_running_a_compliance_security_scan_on_a_kubernetes_cluster]
 == Running a Compliance Security Scan on a Kubernetes Cluster
 
-Rancher leverages https://github.com/aquasecurity/kube-bench[kube-bench] to run a security scan to check whether Kubernetes is deployed according to security best practices.
+{rancher-product-name} leverages https://github.com/aquasecurity/kube-bench[kube-bench] to run a security scan to check whether Kubernetes is deployed according to security best practices.
 
 When Rancher runs a Compliance scan on a cluster, it generates a report showing the results of each test, including a summary with the number of passed, skipped and failed tests. The report also includes remediation steps for any failed tests.
 
@@ -114,7 +114,7 @@ Each version of Rancher's self-assessment guide corresponds to specific versions
 [#_third_party_penetration_test_reports]
 == Third-party Penetration Test Reports
 
-Rancher periodically hires third parties to perform security audits and penetration tests of the Rancher software stack. The environments under test follow the Rancher provided hardening guides at the time of the testing. Previous penetration test reports are available below.
+{rancher-product-name} periodically hires third parties to perform security audits and penetration tests of the {rancher-product-name} software stack. The environments under test follow the Rancher provided hardening guides at the time of the testing. Previous penetration test reports are available below.
 
 Results:
 
@@ -126,7 +126,7 @@ Please note that new reports are no longer shared or made publicly available.
 [#_rancher_security_advisories_and_cves]
 == Rancher Security Advisories and CVEs
 
-Rancher is committed to informing the community of security issues in our products. For the list of CVEs (Common Vulnerabilities and Exposures) for issues we have resolved, refer to {xref-cves}[this page.]
+{rancher-product-name} is committed to informing the community of security issues in our products. For the list of CVEs (Common Vulnerabilities and Exposures) for issues we have resolved, refer to {xref-cves}[this page.]
 
 [#_kubernetes_security_best_practices]
 == Kubernetes Security Best Practices

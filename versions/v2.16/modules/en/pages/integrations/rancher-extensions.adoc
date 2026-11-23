@@ -1,7 +1,7 @@
 = Extensions
 :description: Learn how to install, update, and manage extensions to enhance the Rancher UI and configure extension support
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-05-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: integrations-in-rancher/rancher-extensions.adoc 
 :page-product-path: integrations/rancher-extensions.adoc
@@ -15,7 +15,7 @@ ifeval::["{build-type}" == "community"]
 :xref-helm-charts-in-rancher: xref:how-to-guides/new-user-guides/helm-charts-in-rancher/index.adoc
 endif::[]
 
-Extensions allow users, developers, partners, and customers to extend and enhance the Rancher UI. In addition, users can make changes and create enhancements to their UI functionality independent of Rancher releases. Extensions will enable users to build on top of Rancher to better tailor it to their respective environments. Note that users will also have the ability to update to new versions as well as roll back to a previous version.
+Extensions allow users, developers, partners, and customers to extend and enhance the {rancher-product-name} UI. In addition, users can make changes and create enhancements to their UI functionality independent of Rancher releases. Extensions will enable users to build on top of Rancher to better tailor it to their respective environments. Note that users will also have the ability to update to new versions as well as roll back to a previous version.
 
 Extensions are Helm charts that can only be installed once into a cluster; therefore, these charts have been simplified and separated from the general Helm charts listed under *Apps*.
 
@@ -32,7 +32,7 @@ ____
 [#_enabling_extension_support_in_rancher]
 == Enabling Extension Support in Rancher
 
-Rancher v2.9.0 and later includes extension support.
+{rancher-product-name} v2.9.0 and later includes extension support.
 
 You can confirm if extension support is enabled by checking the `uiextension` feature flag. Any changes to this feature flag cause the Rancher pod to restart.
 
@@ -43,7 +43,7 @@ When you enable extension support for the first time, it creates resources, such
 
 By default, Rancher caches every extension file in the file system. You can change that behavior by setting `plugin.noCache` to `true`.
 
-Rancher does have a cached file size limit of 30MB. If an extension has a file bigger than that, the cache is disabled and `plugin.noCache` is set to `true`, regardless of user input.
+{rancher-product-name} does have a cached file size limit of 30MB. If an extension has a file bigger than that, the cache is disabled and `plugin.noCache` is set to `true`, regardless of user input.
 
 [#_installing_extensions]
 == Installing Extensions
@@ -137,7 +137,7 @@ If you intend to work with extensions in an air-gapped environment, you must per
 [#_accessing_rancher_ui_extensions_in_an_air_gapped_environment]
 === Accessing Rancher UI Extensions in an Air-Gapped Environment
 
-Rancher provides some extensions, such as Kubewarden and Elemental, through the `ui-plugin-catalog` container image at https://hub.docker.com/r/rancher/ui-plugin-catalog/tags. If you're trying to install these extensions in an air-gapped environment, you must make the `ui-plugin-catalog` image accessible.
+{rancher-product-name} provides some extensions, such as Kubewarden and Elemental, through the `ui-plugin-catalog` container image at https://hub.docker.com/r/rancher/ui-plugin-catalog/tags. If you're trying to install these extensions in an air-gapped environment, you must make the `ui-plugin-catalog` image accessible.
 
 . Mirror the `ui-plugin-catalog` image to a private registry:
 +

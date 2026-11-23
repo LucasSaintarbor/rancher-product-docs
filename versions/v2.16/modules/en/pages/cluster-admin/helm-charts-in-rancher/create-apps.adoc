@@ -1,7 +1,7 @@
 = Creating Apps
 :description: Create apps using Rancher and Helm charts by adding files like app-readme.md and questions.yaml to simplify deployment and organize charts in Git
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-14
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/helm-charts-in-rancher/create-apps.adoc 
 :page-product-path: cluster-admin/helm-charts-in-rancher/create-apps.adoc
@@ -16,7 +16,7 @@ For a complete walkthrough of developing charts, see the https://helm.sh/docs/ch
 [#_chart_types]
 == Chart Types
 
-Rancher supports two different types of charts: Helm charts and Rancher charts.
+{rancher-product-name} supports two different types of charts: Helm charts and {rancher-product-name} charts.
 
 [#_helm_charts]
 === Helm Charts
@@ -26,9 +26,9 @@ Native Helm charts include an application along with other software required to 
 [#_rancher_charts]
 === Rancher Charts
 
-Rancher charts are native Helm charts with two files that enhance user experience: `app-readme.md` and `questions.yaml`. Read more about them in <<_additional_files_for_rancher_charts,Additional Files for Rancher Charts.>>
+{rancher-product-name} charts are native Helm charts with two files that enhance user experience: `app-readme.md` and `questions.yaml`. Read more about them in <<_additional_files_for_rancher_charts,Additional Files for Rancher Charts.>>
 
-Rancher charts add simplified chart descriptions and configuration forms to make the application deployment easy. Rancher users do not need to read through the entire list of Helm variables to understand how to launch an application.
+{rancher-product-name} charts add simplified chart descriptions and configuration forms to make the application deployment easy. {rancher-product-name} users do not need to read through the entire list of Helm variables to understand how to launch an application.
 
 [#_chart_directory_structure]
 == Chart Directory Structure
@@ -57,7 +57,7 @@ The following table demonstrates the directory structure for a Git repository. T
 [#_additional_files_for_rancher_charts]
 == Additional Files for Rancher Charts
 
-Before you create your own custom catalog, you should have a basic understanding about how a Rancher chart differs from a native Helm chart. Rancher charts differ slightly from Helm charts in their directory structures. Rancher charts include two files that Helm charts do not.
+Before you create your own custom catalog, you should have a basic understanding about how a Rancher chart differs from a native Helm chart. {rancher-product-name} charts differ slightly from Helm charts in their directory structures. {rancher-product-name} charts include two files that Helm charts do not.
 
 * `app-readme.md`
 +
@@ -79,7 +79,7 @@ image::helm-app-2.6.png[values.yaml]
 [#_annotations]
 ==== Annotations
 
-Rancher supports additional annotations that you can add to the `Chart.yaml` file. These annotations allow you to define application dependencies or configure additional UI defaults:
+{rancher-product-name} supports additional annotations that you can add to the `Chart.yaml` file. These annotations allow you to define application dependencies or configure additional UI defaults:
 
 |===
 | Annotation | Description | Example

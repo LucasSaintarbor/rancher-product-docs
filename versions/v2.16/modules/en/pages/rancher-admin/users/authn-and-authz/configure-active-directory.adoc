@@ -1,7 +1,7 @@
 = Configure Active Directory (AD)
 :description: Configure Rancher to use Active Directory for user authentication, allowing access control based on AD groups and enabling users to log in with AD credentials
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-09-22
+:revdate: 2026-11-13
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-active-directory.adoc 
 :page-product-path: rancher-admin/users/authn-and-authz/configure-active-directory.adoc
@@ -16,7 +16,7 @@ endif::[]
 
 If your organization uses Microsoft Active Directory as central user repository, you can configure Rancher to communicate with an Active Directory server to authenticate users. This allows Rancher admins to control access to clusters and projects based on users and groups managed externally in the Active Directory, while allowing end-users to authenticate with their AD credentials when logging in to the Rancher UI.
 
-Rancher uses LDAP to communicate with the Active Directory server. The authentication flow for Active Directory is therefore the same as for the {xref-openldap}[OpenLDAP authentication] integration.
+{rancher-product-name} uses LDAP to communicate with the Active Directory server. The authentication flow for Active Directory is therefore the same as for the {xref-openldap}[OpenLDAP authentication] integration.
 
 [NOTE]
 ====
@@ -110,7 +110,7 @@ If you are unsure about the correct values to enter in the  user/group Search Ba
 
 In the section titled `2. Customize Schema` you must provide Rancher with a correct mapping of user and group attributes corresponding to the schema used in your directory.
 
-Rancher uses LDAP queries to search for and retrieve information about users and groups within the Active Directory. The attribute mappings configured in this section are used to construct search filters and resolve group membership. It is therefore paramount that the provided settings reflect the reality of your AD domain.
+{rancher-product-name} uses LDAP queries to search for and retrieve information about users and groups within the Active Directory. The attribute mappings configured in this section are used to construct search filters and resolve group membership. It is therefore paramount that the provided settings reflect the reality of your AD domain.
 
 [NOTE]
 ====
