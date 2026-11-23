@@ -7,12 +7,14 @@
 :page-product-path: cluster-admin/backups-and-restore/backups.adoc
 ifeval::["{build-type}" != "community"]
 :xref-launch-k8s-with-rancher: xref:cluster-deployment/launch-kubernetes-with-rancher.adoc
+:xref-register-existing: xref:cluster-deployment/register-existing-clusters.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-launch-k8s-with-rancher: xref:how-to-guides/new-user-guides/launch-kubernetes-with-rancher/index.adoc
+:xref-register-existing: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
 endif::[]
 
-In the {rancher-product-name} UI, etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] can be easily performed.
+In the {rancher-product-name} UI, etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] and supported imported RKE2 and K3s clusters with day 2 operations enabled can be easily performed.
 
 {rancher-product-name} recommends configuring recurrent `etcd` snapshots for all production clusters. Additionally, one-time snapshots can be taken as well.
 
@@ -41,21 +43,21 @@ Because the Kubernetes version is now included in the snapshot, it is possible t
 RKE2/K3s::
 +
 --
-Rancher delegates snapshot creation to the downstream Kubernetes engine. When the Kubernetes engine creates a snapshot, it includes three components:
+Rancher delegates snapshot creation to the downstream Kubernetes engine. When the Kubernetes engine creates a snapshot, it typically includes:
 
 * The cluster data in etcd
 * The Kubernetes version
-* The cluster configuration
+* Supported cluster configuration
 
-Because the Kubernetes version is included in the snapshot, it is possible to restore a cluster to a prior Kubernetes version while also restoring an etcd snapshot.
+Because the Kubernetes version and cluster configuration can be included in the snapshot, it is possible to restore a cluster to a prior Kubernetes version and configuration while also restoring an etcd snapshot. Note that not every snapshot contains all restorable configuration, especially for imported clusters.
 --
 ======
 
-The multiple components of the snapshot allow you to select from the following options if you need to restore a cluster from a snapshot:
+The multiple components of the snapshot allow you to select from the following options if you need to restore a cluster from a snapshot (the available choices depend on the snapshot and cluster configuration):
 
 * *Restore just the etcd contents:* This restore is similar to restoring to snapshots in Rancher before v2.4.0.
 * *Restore etcd and Kubernetes version:* This option should be used if a Kubernetes upgrade is the reason that your cluster is failing, and you haven't made any cluster configuration changes.
-* *Restore etcd, Kubernetes versions and cluster configuration:* This option should be used if you changed both the Kubernetes version and cluster configuration when upgrading.
+* *Restore etcd, Kubernetes versions and cluster configuration:* This option should be used if you changed both the Kubernetes version and cluster configuration when upgrading. For imported clusters, this option restores supported captured fields, not necessarily every cluster setting.
 
 It is always recommended to take a new snapshot before performing any configuration changes or upgrades.
 
@@ -217,7 +219,9 @@ Set the schedule for how you want recurring snapshots to be taken as well as how
 
 By default, {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] are configured to take recurring snapshots (saved to local disk) every 5 hours starting at 12 AM. To protect against local disk failure, using the <<_s3_backup_target,S3 Target>> or replicating the path on disk is advised.
 
-During cluster provisioning or editing the cluster, the configuration for snapshots can be found under *Cluster Configuration*. Click on *etcd*.
+During cluster provisioning or editing a Rancher-launched cluster, the configuration for snapshots can be found under *Cluster Configuration*. Click on *etcd*.
+
+For supported imported RKE2 and K3s clusters, you configure snapshots differently. See {xref-register-existing}#_configuring_imported_cluster_snapshots[Configuring Automatic Snapshots and S3 Storage].
 
 |===
 | Option | Description | Default Value
@@ -309,7 +313,7 @@ By default, the `local` backup target is selected. The benefits of this option i
 [#_s3_backup_target]
 === S3 Backup Target
 
-We recommend that you use the `S3` backup target. It lets you store snapshots externally, on an S3 compatible backend. Since the snapshots aren't stored locally, you can still restore the cluster even if you lose all etcd nodes.
+We recommend that you use the `S3` backup target. An S3-compatible target stores snapshots externally, providing a recovery copy outside the etcd nodes. For supported imported RKE2 and K3s clusters, snapshots can also be present locally when S3 storage is configured.
 
 Although the `S3` target offers advantages over local backup, it does require extra configuration.
 
@@ -347,6 +351,8 @@ If you use an S3 backup target, make sure that every cluster has its own bucket 
 | A custom certificate used to access private S3 backends
 |
 |===
+
+For supported imported RKE2 and K3s clusters, S3 retention can be configured separately from local retention; if no S3 retention is specified, the cluster's etcd retention value is used.
 
 [#_using_a_custom_ca_certificate_for_s3]
 === Using a custom CA certificate for S3
