@@ -1,0 +1,116 @@
+ifeval::["{build-type}" != "community"]
+:xref-register-existing-clusters: xref:cluster-deployment/register-existing-clusters.adoc
+:xref-use-kubectl-and-kubeconfig: xref:cluster-admin/manage-clusters/access-clusters/use-kubectl-and-kubeconfig.adoc
+:xref-add-users-to-clusters: xref:cluster-admin/manage-clusters/access-clusters/add-users-to-clusters.adoc
+:xref-nodes-and-machine-pools: xref:cluster-admin/manage-clusters/nodes-and-machine-pools.adoc
+:xref-manage-persistent-storage: xref:cluster-admin/manage-clusters/persistent-storage/manage-persistent-storage.adoc
+:xref-projects-and-namespaces: xref:cluster-admin/manage-clusters/projects-and-namespaces.adoc
+:xref-helm-charts-in-rancher: xref:cluster-admin/helm-charts-in-rancher/helm-charts-in-rancher.adoc
+:xref-monitoring-and-dashboards: xref:observability/monitoring-and-dashboards/monitoring-and-dashboards.adoc
+:xref-logging: xref:observability/logging/logging.adoc
+:xref-istio: xref:observability/istio/istio.adoc
+:xref-how-to: xref:security/compliance-scans/how-to.adoc
+:xref-rotate-certificates: xref:cluster-admin/manage-clusters/rotate-certificates.adoc
+:xref-backups: xref:cluster-admin/backups-and-restore/backups.adoc
+:xref-restore: xref:cluster-admin/backups-and-restore/restore.adoc
+:xref-clean-cluster-nodes: xref:cluster-admin/manage-clusters/clean-cluster-nodes.adoc
+endif::[]
+ifeval::["{build-type}" == "community"]
+:xref-register-existing-clusters: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
+:xref-use-kubectl-and-kubeconfig: xref:how-to-guides/new-user-guides/manage-clusters/access-clusters/use-kubectl-and-kubeconfig.adoc
+:xref-add-users-to-clusters: xref:how-to-guides/new-user-guides/manage-clusters/access-clusters/add-users-to-clusters.adoc
+:xref-nodes-and-machine-pools: xref:how-to-guides/new-user-guides/manage-clusters/nodes-and-machine-pools.adoc
+:xref-manage-persistent-storage: xref:how-to-guides/new-user-guides/manage-clusters/create-kubernetes-persistent-storage/index.adoc
+:xref-projects-and-namespaces: xref:how-to-guides/new-user-guides/manage-clusters/projects-and-namespaces.adoc
+:xref-helm-charts-in-rancher: xref:how-to-guides/new-user-guides/helm-charts-in-rancher/index.adoc
+:xref-monitoring-and-dashboards: xref:integrations-in-rancher/monitoring-and-alerting/index.adoc
+:xref-logging: xref:integrations-in-rancher/logging/index.adoc
+:xref-istio: xref:integrations-in-rancher/istio/index.adoc
+:xref-how-to: xref:how-to-guides/advanced-user-guides/compliance-scan-guides/index.adoc
+:xref-rotate-certificates: xref:how-to-guides/new-user-guides/manage-clusters/rotate-certificates.adoc
+:xref-backups: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/back-up-rancher-launched-kubernetes-clusters.adoc
+:xref-restore: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/restore-rancher-launched-kubernetes-clusters-from-backup.adoc
+:xref-clean-cluster-nodes: xref:how-to-guides/new-user-guides/manage-clusters/clean-cluster-nodes.adoc
+endif::[]
+
+|===
+| Action | Rancher Launched Kubernetes Clusters | EKS, GKE and AKS Clusters^1^ | Other Hosted Kubernetes Clusters | Non-EKS or GKE Registered Clusters
+
+| {xref-use-kubectl-and-kubeconfig}[Using kubectl and a kubeconfig file to Access a Cluster]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| {xref-add-users-to-clusters}[Managing Cluster Members]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| Editing and Upgrading Clusters
+| ✓
+| ✓
+| ✓
+| ✓^2^
+
+| {xref-nodes-and-machine-pools}[Managing Nodes]
+| ✓
+| ✓
+| ✓
+| ✓^3^
+
+| {xref-manage-persistent-storage}[Managing Persistent Volumes and Storage Classes]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| {xref-projects-and-namespaces}[Managing Projects, Namespaces and Workloads]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| {xref-helm-charts-in-rancher}[Using App Catalogs]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| Configuring Tools ({xref-monitoring-and-dashboards}[Alerts, Notifiers, Monitoring], {xref-logging}[Logging], {xref-istio}[Istio])
+| ✓
+| ✓
+| ✓
+| ✓
+
+| {xref-how-to}[Running Security Scans]
+| ✓
+| ✓
+| ✓
+| ✓
+
+| {xref-rotate-certificates}[Ability to rotate certificates]
+| ✓
+| ✓
+|
+| ✓^5^
+
+| Ability to {xref-backups}[backup] and {xref-restore}[restore] Rancher-launched clusters
+| ✓
+| ✓
+|
+| ✓^4^
+
+| {xref-clean-cluster-nodes}[Cleaning Kubernetes components when clusters are no longer reachable from Rancher]
+| ✓
+|
+|
+|
+|===
+
+. Registered EKS, GKE and AKS clusters have the same options available as EKS, GKE and AKS clusters created from the Rancher UI. The  difference is that when a registered cluster is deleted from the Rancher UI, it is not destroyed.
+. Cluster configuration options can't be edited for registered clusters, except for {xref-register-existing-clusters}[K3s and RKE2 clusters.]
+. For registered cluster nodes, the Rancher UI exposes the ability to cordon, drain, and edit the node.
+. For registered clusters using etcd as a control plane, snapshots must be taken manually outside of the Rancher UI to use for backup and recovery, except for supported imported RKE2 and K3s clusters with day 2 operations enabled.
+. For supported imported RKE2 and K3s clusters with day 2 operations enabled, certificates can be rotated through the Rancher UI.

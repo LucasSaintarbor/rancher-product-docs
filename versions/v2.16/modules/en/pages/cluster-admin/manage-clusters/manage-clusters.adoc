@@ -31,7 +31,7 @@ This section assumes a basic familiarity with Docker and Kubernetes. For a brief
 After clusters have been {xref-cluster-deployment}[provisioned into Rancher], {xref-cluster-project-roles}#_cluster_roles[cluster owners] will need to manage these clusters. There are many different options of how to manage your cluster.
 
 ifeval::["{build-type}" != "srfa"]
-include::shared:ROOT:partial$en/cluster-capabilities-updated-table.adoc[]
+include::shared:ROOT:partial$en/cluster-capabilities-updated-table-v2.16.adoc[]
 endif::[]
 ifeval::["{build-type}" == "srfa"]
 include::shared:ROOT:partial$en/cluster-capabilities-updated-table-srfa.adoc[]

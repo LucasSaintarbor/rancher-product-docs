@@ -44,7 +44,7 @@ The options and settings available for an existing imported cluster change based
 The following table summarizes the options and settings available for Rancher launched or existing imported cluster types:
 
 ifeval::["{build-type}" != "srfa"]
-include::shared:ROOT:partial$en/cluster-capabilities-updated-table.adoc[]
+include::shared:ROOT:partial$en/cluster-capabilities-updated-table-v2.16.adoc[]
 endif::[]
 ifeval::["{build-type}" == "srfa"]
 include::shared:ROOT:partial$en/cluster-capabilities-updated-table-srfa.adoc[]
