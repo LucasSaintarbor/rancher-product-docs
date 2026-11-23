@@ -197,10 +197,11 @@ The wildcard verb `*` also includes the `bind` and `escalate` verbs. This means 
 [WARNING]
 .Review hosted-administration GlobalRoles
 ====
+In hosted deployments, GlobalRoles such as `Hosted Administrator` can be customized. Review their effective rules and inherited cluster roles before assigning them, and grant them only to trusted users and groups with rules scoped to the specific resources and verbs required:
 
-In hosted deployments, GlobalRoles such as `Hosted Administrator` can be customized. Review their effective rules and inherited roles before assigning them. A role with broad `bind` access to `globalroles` and permission to create `globalrolebindings` can grant users or groups a privileged GlobalRole. The `escalate` verb allows a user to add permissions to a GlobalRole, and the wildcard verb (`*`) includes both `bind` and `escalate`.
-
-A GlobalRole that inherits `cluster-owner` grants cluster-owner access on all current and future downstream clusters. Treat broad GlobalRole management and inherited cluster-owner access as administrative permissions. Grant them only to trusted users and groups, and scope rules to the specific resources and verbs required.
+* *Role assignment (`bind`):* A role with broad `bind` access to `globalroles` and `create` permission on `globalrolebindings` can assign privileged GlobalRoles to any user or group.
+* *Privilege escalation (`escalate`):* The `escalate` verb allows users to add permissions to a GlobalRole beyond what they currently hold. The wildcard verb (`*`) includes both `bind` and `escalate`.
+* *Downstream cluster access:* A GlobalRole that inherits `cluster-owner` grants full `cluster-owner` permissions on all current and future downstream clusters.
 ====
 
 ===== Custom GlobalRole Examples
