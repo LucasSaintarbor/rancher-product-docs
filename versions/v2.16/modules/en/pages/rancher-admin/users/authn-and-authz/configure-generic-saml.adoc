@@ -70,7 +70,7 @@ Follow these steps to configure Generic SAML in {rancher-product-name}:
 Your browser pop-up blocker can prevent the identity provider (IdP) login page from opening. If the login page does not appear, disable the pop-up blocker for this site or allow pop-ups in your browser settings.
 ====
 
-*Result:* {rancher-product-name} is configured to work with your SAML IdP. Your users can now log into Rancher using their IdP credentials.
+*Result:* {rancher-product-name} is configured to work with your SAML IdP. Your users can now log into {rancher-product-name} using their IdP credentials.
 
 [#_saml_provider_caveats]
 === SAML provider caveats
@@ -109,7 +109,7 @@ Example: `email`
 Example: `groups`
 
 | Entity ID Field
-| The entity ID of Rancher as a service provider. It must match the entity ID configured in the IdP application. +
+| The entity ID of {rancher-product-name} as a service provider. It must match the entity ID configured in the IdP application. +
  +
 Default: `+https://yourRancherHostURL/v1-saml/genericsaml/saml/metadata+`
 
@@ -165,7 +165,7 @@ Select *Allow IdP-initiated login* only if your users need to start the login fr
 [TIP]
 .IdP-initiated login behavior
 ====
-After an IdP-initiated login, {rancher-product-name} logs the user in but doesn't redirect the browser to the Rancher UI. The browser shows a blank page. To continue, open the Rancher URL in the browser.
+After an IdP-initiated login, {rancher-product-name} logs the user in but doesn't redirect the browser to the {rancher-product-name} UI. The browser shows a blank page. To continue, open the Rancher URL in the browser.
 ====
 
 [WARNING]
