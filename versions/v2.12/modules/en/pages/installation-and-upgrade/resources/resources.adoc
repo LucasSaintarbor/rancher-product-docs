@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2025-08-05
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/resources/index.adoc 
 :page-product-path: installation-and-upgrade/resources/resources.adoc
@@ -22,15 +22,6 @@ ifeval::["{build-type}" == "community"]
 :xref-tuning-etcd-for-large-installs: xref:how-to-guides/advanced-user-guides/tune-etcd-for-large-installs.adoc
 :xref-custom-root-ca-cert: xref:getting-started/installation-and-upgrade/resources/custom-ca-root-certificates.adoc
 :xref-local-system-chart: xref:getting-started/installation-and-upgrade/resources/local-system-charts.adoc
-endif::[]
-
-ifeval::["{build-type}" == "community"]
-[#_docker_installations]
-== Docker Installations
-
-The xref:getting-started/installation-and-upgrade/index.adoc#_docker_install[single-node Docker installation] is for Rancher users that are wanting to test out Rancher. Instead of running on a Kubernetes cluster using Helm, you install the Rancher server component on a single node using a `docker run` command.
-
-Since there is only one node and a single Docker container, if the node goes down, there is no copy of the etcd data available on other nodes and you will lose all the data of your Rancher server.
 endif::[]
 
 == Air-Gapped Installations

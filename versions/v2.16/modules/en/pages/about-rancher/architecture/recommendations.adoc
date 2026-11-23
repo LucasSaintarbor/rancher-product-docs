@@ -1,7 +1,7 @@
 = Architecture Recommendations
 :description: Learn about architecture recommendations for installing Rancher, including cluster separation, high availability, and load balancer configurations
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-08-22
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-manager-architecture/architecture-recommendations.adoc 
 :page-product-path: about-rancher/architecture/recommendations.adoc
@@ -19,8 +19,6 @@ ifeval::["{build-type}" == "community"]
 :xref-cluster-deployment: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/index.adoc
 :xref-register-clusters: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
 endif::[]
-
-If you are installing Rancher on a single node, the main architecture recommendation that applies to your installation is that the node running Rancher should be <<_separation_of_rancher_and_user_clusters,separate from downstream clusters.>>
 
 [#_separation_of_rancher_and_user_clusters]
 == Separation of Rancher and User Clusters

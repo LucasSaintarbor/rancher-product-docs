@@ -2,7 +2,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-07-15
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-requirements/index.adoc 
 :page-product-path: installation-and-upgrade/requirements/requirements.adoc
@@ -247,32 +247,6 @@ These requirements apply to hosted Kubernetes clusters such as Amazon Elastic Ku
 |===
 
 (*): Large deployments require that you {xref-tuning-rancher-at-scale}[follow best practices] for adequate performance.
-
-ifeval::["{build-type}" == "community"]
-
-=== Docker
-
-The following table lists minimum CPU and memory requirements for a xref:[single Docker node installation of Rancher].
-
-Please note that a Docker installation is only suitable for development or testing purposes and is not meant to be used in production environments.
-
-|===
-| Managed Infrastructure Size | Maximum Number of Clusters | Maximum Number of Nodes | vCPUs | RAM
-
-| Small
-| 5
-| 50
-| 1
-| 4 GB
-
-| Medium
-| 15
-| 200
-| 2
-| 8 GB
-|===
-
-endif::[]
 
 == Ingress
 

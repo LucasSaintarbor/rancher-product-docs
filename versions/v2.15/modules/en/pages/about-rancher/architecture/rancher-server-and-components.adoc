@@ -1,7 +1,7 @@
 = {rancher-product-name} Server and Components
-:description: Learn how to deploy and manage Rancher Server and its components to run and oversee Kubernetes clusters, including single-node options
+:description: Learn how to deploy and manage Rancher Server and its components to run and oversee Kubernetes clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2025-10-01
+:revdate: 2026-11-18
 :page-revdate: {revdate}
 :page-community-path: reference-guides/rancher-manager-architecture/rancher-server-and-components.adoc 
 :page-product-path: about-rancher/architecture/rancher-server-and-components.adoc
@@ -9,13 +9,11 @@ ifeval::["{build-type}" != "community"]
 :xref-launch-k8s-with-rancher: xref:cluster-deployment/launch-kubernetes-with-rancher.adoc
 :xref-cluster-deployment: xref:cluster-deployment/cluster-deployment.adoc
 :xref-hosted-k8s-clusters: xref:cluster-deployment/hosted-kubernetes/hosted-kubernetes.adoc
-:xref-migrate-cluster: xref:rancher-admin/back-up-restore-and-disaster-recovery/migrate-to-a-new-cluster.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-launch-k8s-with-rancher: xref:how-to-guides/new-user-guides/launch-kubernetes-with-rancher/index.adoc
 :xref-cluster-deployment: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/index.adoc
 :xref-hosted-k8s-clusters: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-clusters-from-hosted-kubernetes-providers/index.adoc
-:xref-migrate-cluster: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/migrate-rancher-to-new-cluster.adoc
 endif::[]
 
 The majority of Rancher 2.x software runs on the Rancher Server. Rancher Server includes all the software components used to manage the entire Rancher deployment.
@@ -29,11 +27,7 @@ The diagram shows how users can manipulate both {xref-launch-k8s-with-rancher}[R
 .Managing Kubernetes Clusters through Rancher's Authentication Proxy
 image::rancher-architecture-rancher-api-server.svg[Architecture]
 
-You can install Rancher on a single node, or on a high-availability Kubernetes cluster.
-
-A high-availability Kubernetes installation is recommended for production.
-
-A Docker installation of Rancher is recommended only for development and testing purposes. The ability to migrate Rancher to a high-availability cluster depends on the Rancher version.
+We recommend installing Rancher on a high-availability Kubernetes cluster.
 
 To see deployed resources, run the following command:
 
@@ -47,6 +41,5 @@ If you have administrator privileges, you can also see these resources listed in
 . Click *☰* and select a cluster.
 . Select *More Resources* from the side navigation menu to view deployed resources by type.
 . Select *Cluster* > *Projects/Namespaces* from the side navigation menu, then select a namespace,  to view deployed resources by namespace.
-The Rancher backup operator can be used to migrate Rancher from the single Docker container install to an installation on a high-availability Kubernetes cluster. For details, refer to the documentation on {xref-migrate-cluster}[migrating Rancher to a new cluster].
 
-The Rancher server, regardless of the installation method, should always run on nodes that are separate from the downstream user clusters that it manages. If Rancher is installed on a high-availability Kubernetes cluster, it should run on a separate cluster from the cluster(s) it manages.
+The Rancher server should always run on a separate cluster from the downstream user clusters that it manages.
