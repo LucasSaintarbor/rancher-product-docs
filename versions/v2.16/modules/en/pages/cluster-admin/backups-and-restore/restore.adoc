@@ -10,15 +10,17 @@ ifeval::["{build-type}" != "community"]
 :xref-clean-cluster-nodes: xref:cluster-admin/manage-clusters/clean-cluster-nodes.adoc
 :xref-ds-backup: xref:cluster-admin/backups-and-restore/backups.adoc
 :xref-ds-backup-restore: xref:cluster-admin/backups-and-restore/backups-and-restore.adoc
+:xref-register-existing: xref:cluster-deployment/register-existing-clusters.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-launch-k8s-with-rancher: xref:how-to-guides/new-user-guides/launch-kubernetes-with-rancher/index.adoc
 :xref-clean-cluster-nodes: xref:how-to-guides/new-user-guides/manage-clusters/clean-cluster-nodes.adoc
 :xref-ds-backup: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/back-up-rancher-launched-kubernetes-clusters.adoc
 :xref-ds-backup-restore: xref:getting-started/installation-and-upgrade/upgrade-and-roll-back-kubernetes.adoc
+:xref-register-existing: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
 endif::[]
 
-Etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] can be easily performed. Snapshots of the etcd database are taken and saved either locally onto the etcd nodes or to a S3 compatible target. The advantages of configuring S3 is that if all etcd nodes are lost, your snapshot is saved remotely and can be used to restore the cluster.
+Etcd backup and recovery for {xref-launch-k8s-with-rancher}[Rancher launched Kubernetes clusters] and supported imported RKE2 and K3s clusters with day 2 operations enabled can be easily performed. Snapshots of the etcd database are taken and saved either locally onto the etcd nodes or to a S3 compatible target. The advantages of configuring S3 is that if all etcd nodes are lost, your snapshot is saved remotely and can be used to restore the cluster.
 
 {rancher-product-name} recommends enabling the {xref-ds-backup}#_configuring_recurring_snapshots[ability to set up recurring snapshots of etcd], but {xref-ds-backup}#_one_time_snapshots[one-time snapshots] can easily be taken as well. {rancher-product-name} allows restore from <<_restoring_a_cluster_from_a_snapshot,saved snapshots>>.
 
@@ -38,11 +40,16 @@ The list of all available snapshots for the cluster is available.
 
 If your Kubernetes cluster is broken, you can restore the cluster from a snapshot.
 
-Snapshots are composed of the cluster data in etcd, the Kubernetes version, and the cluster configuration in the `cluster.yml.` These components allow you to select from the following options when restoring a cluster from a snapshot:
+Snapshots are composed of the cluster data in etcd, the Kubernetes version, and the cluster configuration (such as the `cluster.yml` for RKE clusters). These components allow you to select from the following options when restoring a cluster from a snapshot:
 
 * *Restore just the etcd contents:* This restore is similar to restoring to snapshots in Rancher before v2.4.0.
 * *Restore etcd and Kubernetes version:* This option should be used if a Kubernetes upgrade is the reason that your cluster is failing, and you haven't made any cluster configuration changes.
 * *Restore etcd, Kubernetes versions and cluster configuration:* This option should be used if you changed both the Kubernetes version and cluster configuration when upgrading.
+
+[NOTE]
+====
+For imported RKE2 and K3s clusters with day 2 operations enabled, the available restore types depend on the snapshot and cluster configuration. The cluster-configuration option restores supported captured fields, not necessarily every cluster setting.
+====
 
 When rolling back to a prior Kubernetes version, the {xref-ds-backup-restore}#_configuring_the_upgrade_strategy[upgrade strategy options] are ignored. Worker nodes are not cordoned or drained before being reverted to the older Kubernetes version, so that an unhealthy cluster can be more quickly restored to a healthy state.
 
@@ -52,6 +59,9 @@ When rolling back to a prior Kubernetes version, the {xref-ds-backup-restore}#_c
 To restore snapshots from S3, the cluster needs to be configured to {xref-ds-backup}#_configuring_recurring_snapshots[take recurring snapshots on S3.]
 ====
 
+For supported imported RKE2 and K3s clusters, refer to the {xref-register-existing}#_restoring_an_etcd_snapshot[imported-cluster restore procedure].
+
+For Rancher-launched clusters, follow these steps to restore a snapshot:
 
 . In the upper left corner, click *☰ > Cluster Management*.
 . In the *Clusters* page, go to the cluster where you want to view the snapshots and click the name of the cluster.
@@ -63,7 +73,7 @@ To restore snapshots from S3, the cluster needs to be configured to {xref-ds-bac
 *Result:* The cluster will go into `updating` state and the process of restoring the `etcd` nodes from the snapshot will start. The cluster is restored when it returns to an `active` state.
 
 [#_restoring_a_cluster_from_a_snapshot_when_the_controlplane_etcd_are_completely_unavailable]
-== Restoring a Cluster From a Snapshot When the controlplane/etcd Are Completely Unavailable
+== Restoring a Rancher-Launched Cluster From a Snapshot When the controlplane/etcd Are Completely Unavailable
 
 In a disaster recovery scenario, the control plane and etcd nodes managed by Rancher in a downstream cluster may no longer be available or functioning. The cluster can be rebuilt by adding control plane and etcd nodes again, followed by restoring from an available snapshot.
 
