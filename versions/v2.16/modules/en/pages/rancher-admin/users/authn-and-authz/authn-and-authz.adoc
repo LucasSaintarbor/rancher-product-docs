@@ -23,6 +23,7 @@ ifeval::["{build-type}" != "community"]
 :xref-configure-google-oauth: xref:rancher-admin/users/authn-and-authz/configure-google-oauth.adoc
 :xref-shibboleth-saml: xref:rancher-admin/users/authn-and-authz/shibboleth-saml/shibboleth-saml.adoc
 :xref-configure-generic-oidc: xref:rancher-admin/users/authn-and-authz/configure-generic-oidc.adoc
+:xref-configure-generic-saml: xref:rancher-admin/users/authn-and-authz/configure-generic-saml.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-manage-rbac: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/manage-role-based-access-control-rbac/index.adoc
@@ -41,6 +42,7 @@ ifeval::["{build-type}" == "community"]
 :xref-configure-google-oauth: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-google-oauth.adoc
 :xref-shibboleth-saml: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/configure-shibboleth-saml/index.adoc
 :xref-configure-generic-oidc: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-oidc.adoc 
+:xref-configure-generic-saml: xref:how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authentication-config/configure-generic-saml.adoc
 endif::[]
 
 One of the key features that Rancher adds to Kubernetes is centralized user authentication. This feature allows your users to use one set of credentials to authenticate with any of your Kubernetes clusters.
@@ -79,6 +81,7 @@ The Rancher authentication proxy integrates with the following external authenti
 | {xref-configure-google-oauth}[Google OAuth]
 | {xref-shibboleth-saml}[Shibboleth]
 | {xref-configure-generic-oidc}[Generic (OIDC)]
+| {xref-configure-generic-saml}[Generic (SAML)]
 |===
 
 [#_users_and_groups]
