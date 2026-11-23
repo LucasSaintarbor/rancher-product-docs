@@ -10,12 +10,14 @@ ifeval::["{build-type}" != "community"]
 :xref-rancher-restore-config: xref:rancher-admin/back-up-restore-and-disaster-recovery/configuration/restore.adoc
 :xref-rancher-backup-config: xref:rancher-admin/back-up-restore-and-disaster-recovery/configuration/backup.adoc
 :xref-rancher-upgrades: xref:installation-and-upgrade/upgrades.adoc
+:xref-capi-pnp: xref:cluster-deployment/configuration/capi-infrastructure-providers.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-backup-cluster: xref:how-to-guides/new-user-guides/backup-restore-and-disaster-recovery/back-up-rancher.adoc
 :xref-rancher-restore-config: xref:reference-guides/backup-restore-configuration/restore-configuration.adoc
 :xref-rancher-backup-config: xref:reference-guides/backup-restore-configuration/backup-configuration.adoc
 :xref-rancher-upgrades: xref:getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/upgrades.adoc
+:xref-capi-pnp: xref:how-to-guides/advanced-user-guides/capi-infrastructure-providers.adoc
 endif::[]
 
 The Rancher Backups chart is our solution for disaster recovery and migration. This chart allows you to take backups of your Kubernetes resources and save them to a variety of persistent storage locations.
@@ -96,7 +98,7 @@ This section outlines the guidelines for the proper usage of the Rancher Backups
 === Backups
 
 * Some user generated resources will not be backed up unless they can are captured by the default resourceSet or the resourceSet was altered to capture them.
- ** We provide a label `resources.cattle.io/backup:true` that when added to a secret in any namespace, will result in it being backed up.
+ ** To back up a secret in any namespace, add the `resources.cattle.io/backup:"true"` label to the secret.
 * Backups are non-mutating
 * Backups are only of the local cluster
 
@@ -117,6 +119,23 @@ Migration have some more nuance since we are restoring to a different cluster. T
 * Install the *same* version of Rancher from the backup *after* the backup has been restored.
 * If you choose to provision the new cluster on a different Kubernetes version know that this can cause a wide variety of unsupported behaviors because the Kubernetes API available may be different from the one you took a backup from. This can lead to deprecated resources being restored which will cause issues.
 * You should *not* perform any upgrades during a migration.
+
+[#_capi_provider_resources]
+=== CAPI Provider Resources
+
+`ResourceSet` objects select specific Cluster API (CAPI) provider resources for backup, for example, Cluster API Provider AWS (CAPA) or Cluster API Provider vSphere (CAPV) infrastructure providers. {turtles-product-name} clusters and {rancher-product-name}-provisioned clusters that use {xref-capi-pnp}[native CAPI providers] require these resources. For the exact list of included resources, inspect the `ResourceSet` definition.
+
+[IMPORTANT]
+.CAPI backup limitations
+====
+The backup operator does not automatically save all CAPI objects:
+
+* To include the following objects in a backup, add the `resources.cattle.io/backup:"true"` label to their manifests:
+** Secrets used by external control plane providers, such as Cluster API Provider RKE2 (CAPRKE2), including kubeconfigs and certificates for each downstream cluster. List these secrets with the `cluster.x-k8s.io/cluster-name:<cluster-name>` label selector. Manually select these secrets only for clusters created with {turtles-product-name}. Do not select them for {rke2-product-name} and {k3s-product-name} clusters provisioned directly by {rancher-product-name}.
+** User-defined namespace objects that store {turtles-product-name} cluster CAPI resources.
+** Credential secrets referenced by user-created identity objects, such as `VSphereClusterIdentity`.
+* Providers and their configurations (such as `CAPIProvider` and `ClusterctlConfig`) are excluded from backups. You must reinstall them when migrating {rancher-product-name}.
+====
 
 [#_edge_cases_and_improper_usage]
 == Edge Cases and Improper Usage
