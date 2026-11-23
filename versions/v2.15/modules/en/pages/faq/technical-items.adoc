@@ -1,7 +1,7 @@
 = Technical FAQ
 :description: Answer technical questions about resetting passwords, managing clusters, enabling logging, and fixing common issues with Rancher and Kubernetes
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-30
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: faq/technical-items.adoc 
 :page-product-path: faq/technical-items.adoc
@@ -36,15 +36,6 @@ Kubernetes install (Helm):
  New password for default administrator (user-xxxxx):
  <new_password>
 
-ifeval::["{build-type}" == "product"]
-Kubernetes install (Helm - *Applicable to Rancher Prime v2.13.1*):
-
- $ KUBECONFIG=./kube_config_cluster.yml
- $ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig $KUBECONFIG -n cattle-system get pods -l app=rancher-prime --no-headers | head -1 | awk '{ print $1 }') -c rancher-prime -- reset-password
- New password for default administrator (user-xxxxx):
- <new_password>
-endif::[]
-
 [#_i_deleted_deactivated_the_last_admin_how_can_i_fix_it]
 == I deleted/deactivated the last admin, how can I fix it?
 
@@ -61,15 +52,6 @@ Kubernetes install (Helm):
  $ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig $KUBECONFIG -n cattle-system get pods -l app=rancher | grep '1/1' | head -1 | awk '{ print $1 }') -- ensure-default-admin
  New password for default administrator (user-xxxxx):
  <new_password>
-
-ifeval::["{build-type}" == "product"]
-Kubernetes install (Helm - *Applicable to Rancher Prime v2.13.1*):
-
- $ KUBECONFIG=./kube_config_cluster.yml
- $ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig $KUBECONFIG -n cattle-system get pods -l app=rancher-prime | grep '1/1' | head -1 | awk '{ print $1 }') -- ensure-default-admin
- New password for default administrator (user-xxxxx):
- <new_password>
-endif::[]
 
 [#_how_can_i_enable_debug_logging]
 == How can I enable debug logging?

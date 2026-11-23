@@ -1,7 +1,7 @@
 = About Provisioning Drivers
 :description: Learn about provisioning drivers for deploying hosted Kubernetes clusters and managing infrastructure providers in Rancher
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-07-28
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/about-provisioning-drivers/index.adoc 
 :page-product-path: rancher-admin/global-configuration/provisioning-drivers/provisioning-drivers.adoc
@@ -89,5 +89,5 @@ Rancher supports several major cloud providers, but by default, these node drive
 
 There are several other node drivers that are disabled by default, but are packaged in Rancher:
 
-* {xref-harvester-overview}#_harvester_node_driver/[{harvester-product-name}], available as of Rancher v2.6.1
-* {xref-infra-gce}[Google GCE], available as of Rancher v2.12.0
+* {xref-harvester-overview}#_harvester_node_driver/[{harvester-product-name}]
+* {xref-infra-gce}[Google GCE]

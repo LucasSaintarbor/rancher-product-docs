@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2025-08-26
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/ui-server-side-pagination.adoc 
 :page-product-path: rancher-admin/global-configuration/ui-server-side-pagination.adoc
@@ -13,11 +13,6 @@ Server-Side Pagination (SSP) is a Rancher feature to provide significant perform
 Note that SSP is optional, **enabled by default**, and it can be disabled via the feature flag `ui-sql-cache`.
 
 == Disk Space
-
-[IMPORTANT]
-====
-It is crucial that you review the available disk space on your nodes and plan accordingly before upgrading to Rancher v2.12.0 and later to avoid potential disk pressure and pod eviction issues.
-====
 
 The SSP relies on a caching mechanism that introduces a new requirement for ephemeral disk space on your cluster nodes. This cache, an internal SQLite database, is stored within the container's file system. This affects the nodes running the **Rancher server pods** (`rancher` in the `cattle-system` namespace on the local cluster) and the nodes running the **Rancher agent pods** (`cattle-cluster-agent` in the `cattle-system` namespace on all downstream clusters).
 

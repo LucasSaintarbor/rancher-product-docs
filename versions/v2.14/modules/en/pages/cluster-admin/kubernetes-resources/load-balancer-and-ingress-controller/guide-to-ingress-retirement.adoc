@@ -1,6 +1,6 @@
 = Guide to Ingress NGINX Retirement
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-03-25
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/guide-to-ingress-nginx-retirement.adoc 
 :page-product-path: cluster-admin/kubernetes-resources/load-balancer-and-ingress-controller/guide-to-ingress-retirement.adoc
@@ -88,16 +88,6 @@ When migrating a Rancher local cluster, the Rancher Ingress resource requires sp
 === Downstream RKE2 Clusters (Provisioned by Rancher)
 
 For RKE2 clusters provisioned and managed by {rancher-product-name}, migration options are integrated directly into the user interface.
-
-[NOTE]
-====
-ifeval::["{build-type}" != "community"]
-This migration option is only possible in Rancher v2.13.5+ and v2.14.
-endif::[]
-ifeval::["{build-type}" == "community"]
-This migration option is only possible in Rancher v2.14.0+.
-endif::[]
-====
 
 The cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management screen.
 

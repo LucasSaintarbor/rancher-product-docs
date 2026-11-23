@@ -1,7 +1,7 @@
 = Authenticated Private Registries
 :description: Configure authenticated private registries globally or for specific clusters in Rancher to manage image pull secrets and access internal resources
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-11-13
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/authenticated-private-registries.adoc
 :page-product-path: rancher-admin/global-configuration/authenticated-private-registries.adoc
@@ -22,7 +22,7 @@ Changing global registry settings can redeploy downstream cluster components, su
 This page explains how authenticated private registries behave and are configured in local and downstream clusters. For instructions on setting up a private registry, see *{xref-private-registries}[configuring a global default private registry].*
 ====
 
-Starting in Rancher v2.15.0, you can configure authenticated private registries at the global or cluster level. This configuration is useful when your environment requires authenticated access to an internal registry, meets specific compliance requirements, or pulls images from credential-protected public registries.
+Starting in Rancher v2.15, you can configure authenticated private registries at the global or cluster level. This configuration is useful when your environment requires authenticated access to an internal registry, meets specific compliance requirements, or pulls images from credential-protected public registries.
 
 You can use an authenticated registry in Rancher in two ways:
 

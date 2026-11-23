@@ -3,7 +3,7 @@
 ifeval::["{build-type}" != "srfa"]
 :page-languages: [en, zh]
 endif::[]
-:revdate: 2026-07-14
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: how-to-guides/advanced-user-guides/istio-setup-guide/set-up-istio-gateway.adoc 
 :page-product-path: observability/istio/guides/set-up-istio-gateway.adoc
@@ -16,7 +16,7 @@ endif::[]
 
 [WARNING]
 ====
-https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12.0; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
+https://github.com/rancher/charts/tree/release-v2.11/charts/rancher-istio[Rancher-Istio] has been deprecated since Rancher v2.12; turn to the https://apps.rancher.io[SUSE Application Collection] build of Istio for enhanced security (included in SUSE Rancher Prime subscriptions).
 Detailed information can be found in https://forums.suse.com/t/deprecation-of-rancher-istio/45043[this announcement].
 ====
 

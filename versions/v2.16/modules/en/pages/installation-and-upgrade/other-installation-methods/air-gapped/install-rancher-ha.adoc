@@ -1,7 +1,7 @@
 = 4. Install {rancher-product-name}
 :description: Install Rancher on a Kubernetes cluster in an air-gapped environment by adding the Helm chart repository, configuring TLS secrets, and setting up high availability
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-11-18
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/other-installation-methods/air-gapped-helm-cli-install/install-rancher-ha.adoc
 :page-product-path: installation-and-upgrade/other-installation-methods/air-gapped/install-rancher-ha.adoc
@@ -454,7 +454,7 @@ The installation is complete.
 [#_optional_install_rancher_with_an_authenticated_default_registry]
 === Optional: Install Rancher with an Authenticated Default Registry
 
-Starting in Rancher v2.15.0, Rancher supports an authenticated `systemDefaultRegistry` using Kubernetes image pull secrets. This configuration differs from the top-level `imagePullSecrets` and `image.repository` values, which apply only to the primary Rancher deployment. For details on working with global registries and pull secrets across local and downstream clusters, see {xref-authenticated-private-registries}[Authenticated Private Registries].
+Rancher supports an authenticated `systemDefaultRegistry` using Kubernetes image pull secrets. This configuration differs from the top-level `imagePullSecrets` and `image.repository` values, which apply only to the primary Rancher deployment. For details on working with global registries and pull secrets across local and downstream clusters, see {xref-authenticated-private-registries}[Authenticated Private Registries].
 
 [#_using_an_authenticated_global_registry_with_pull_secrets]
 ==== Using an Authenticated Global Registry with Pull Secrets

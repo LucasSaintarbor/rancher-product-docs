@@ -1,7 +1,7 @@
 = Deploying applications from the SUSE Application Collection
 :description: Deploy applications from the SUSE Application Collection using the Rancher UI to authenticate configure and distribute curated bundles to downstream clusters
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-08-13
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 
 {fleet-product-name} provides a dedicated deployment flow for the **SUSE Application Collection**, serving as a third option alongside GitRepos and standard HelmOps under **App Bundles**. Built on a specialized HelmOps configuration, this flow allows you to browse, configure, and distribute curated application bundles across downstream clusters natively through the Rancher UI without creating a GitRepo.
@@ -9,15 +9,15 @@
 [#_prerequisites]
 == Prerequisites
 
-* SUSE Rancher Prime v2.15.1 or later.
-* An active account on https://apps.rancher.io/[].
+* SUSE Rancher Prime v2.15 or later.
+* An active account on https://apps.rancher.io/.
 
 [#_authenticating_with_the_suse_application_collection]
 == Authenticating with the SUSE Application Collection
 
 Before deploying applications for the first time, you must authenticate SUSE Rancher Prime with your SUSE Application Collection account:
 
-. Log in to https://apps.rancher.io/[].
+. Log in to https://apps.rancher.io/.
 . Select your user profile/login menu and generate a new **Access Token**.
 . Copy the access token for use in the Rancher UI setup.
 

@@ -1,7 +1,7 @@
 = Feature Flags
 :description: Feature flags let users enable or disable optional features, experimental tools, and legacy options in Rancher, such as managing cluster roles
 :page-languages: [en, de, es, fr, ja, pt, zh]
-:revdate: 2026-09-30
+:revdate: 2026-11-20
 :page-revdate: {revdate}
 :page-community-path: getting-started/installation-and-upgrade/installation-references/feature-flags.adoc 
 :page-product-path: installation-and-upgrade/references/feature-flags.adoc
@@ -69,14 +69,14 @@ If the external auth provider becomes unavailable whilst this flag is active, it
 ====
 This `managed-system-upgrade-controller` flag is intended for **internal use only** and does not have an associated Feature CR. Use with caution.
 
-To control whether Rancher should manage the Kubernetes version of imported RKE2/K3s clusters, it is recommended to use the {xref-register-clusters}#_configuring_version_management_for_rke2_and_k3s_clusters[imported-cluster-version-management] feature that is available in Rancher v2.11.0 or newer.
+To control whether Rancher should manage the Kubernetes version of imported RKE2/K3s clusters, it is recommended to use the {xref-register-clusters}#_configuring_version_management_for_rke2_and_k3s_clusters[imported-cluster-version-management] feature that is available in Rancher v2.11 or newer.
 ====
 
 [WARNING]
 ====
 If the `managed-system-upgrade-controller` flag was **disabled** in Rancher v2.10.x, and any imported RKE2/K3s clusters were upgraded **outside of Rancher**, follow the steps below to prevent the unexpected installation of the system-upgrade-controller app and to ensure the {xref-register-clusters}#_configuring_version_management_for_rke2_and_k3s_clusters[imported-cluster-version-management] feature works correctly:
 
-. Upgrade Rancher to v2.11.0 or newer, making sure to **retain** the `managed-system-upgrade-controller=false` feature flag in Helm values if it was set during the v2.10.x installation.
+. Upgrade Rancher to v2.11 or newer, making sure to **retain** the `managed-system-upgrade-controller=false` feature flag in Helm values if it was set during the v2.10.x installation.
 . After Rancher is fully up and running, disable the `imported-cluster-version-management` setting. You can do this either through the Rancher UI by clicking **☰ > Global Settings > Settings > imported-cluster-version-management**, or by editing the corresponding `Setting.management.cattle.io/v3` custom resource via kubectl.
 . Perform a second Helm upgrade, this time omitting the `managed-system-upgrade-controller=false` feature flag.
 
@@ -100,31 +100,31 @@ The following table shows the availability and default values for some feature f
 | `aggregated-roletemplates`
 | `Disabled`
 | Experimental
-| v2.11.0
+| v2.11
 | This flag value is locked on install and can't be changed.
 
 | `clean-stale-secrets`
 | `Active`
 | GA
-| v2.11.0
+| v2.11
 |
 
 | `cluster-shell`
 | `Active`
 | GA
-| v2.15.0
+| v2.15
 |
 
 | `continuous-delivery`
 | `Active`
 | GA
-| v2.6.0
+| v2.6
 |
 
 | `crt-token-ttl-rotation`
 | `Enabled`
 | GA
-| v2.15.0
+| v2.15
 | 
 
 | `external-rules`
@@ -136,13 +136,13 @@ The following table shows the availability and default values for some feature f
 | `fleet`
 | `Active`
 | Can no longer be disabled
-| v2.6.0
+| v2.6
 |
 
 | `fleet`
 | `Active`
 | GA
-| v2.5.0
+| v2.5
 |
 
 | `harvester`
@@ -154,72 +154,72 @@ The following table shows the availability and default values for some feature f
 | `harvester-baremetal-container-workload`
 | `Disabled`
 | GA
-| v2.15.0
+| v2.15
 | 
 
 | `hide-local-auth-provider`
 | `Disabled`
 | GA
-| v2.15.0
+| v2.15
 | See the <<hide-local-auth-provider-warning,warning>> above about the risk of being locked out of the UI, API, and CLI.
 
 | `imperative-api-extension`
 | `Active`
 | GA
-| v2.11.0
+| v2.11
 |
 
 | `imported-day-2-ops`
 | `Active`
 | GA
-| v2.15.0
+| v2.15
 | Enables day 2 operations for imported RKE2 and K3s clusters. Changing this flag requires a Rancher restart. See {xref-cluster-deployment-register-existing-clusters}#_day_2_operations_for_imported_rke2_and_k3s_clusters[Day 2 Operations for Imported RKE2 and K3s Clusters] for more information.
 
 | `legacy`
 | `Disabled` for new installs, `Active` for upgrades
 | GA
-| v2.6.0
+| v2.6
 |
 
 | `managed-system-upgrade-controller`
 | `Active`
 | GA
-| v2.10.0
+| v2.10
 |
 
 | `node-shell`
 | `Active`
 | GA
-| v2.15.0
+| v2.15
 |
 
 | `pod-shell`
 | `Active`
 | GA
-| v2.15.0
+| v2.15
 |
 
 | `rke2`
 | `Active`
 | Experimental
-| v2.6.0
+| v2.6
 |
 
 | `token-hashing`
 | `Disabled` for new installs, `Active` for upgrades
 | GA
-| v2.6.0
+| v2.6
 |
 
 | `uiextension`
 | `Active`
 | GA
-| v2.9.0
+| v2.9
 |
 
 | `ui-sql-cache`
 | `Active`
 | Can no longer be disabled. See {xref-ui-server-side-pagination}[UI Server-Side Pagination] for more information.
-| v2.9.0
+| v2.9
 |
 |===
