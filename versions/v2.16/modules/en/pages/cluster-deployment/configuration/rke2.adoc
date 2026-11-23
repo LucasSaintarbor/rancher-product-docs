@@ -688,7 +688,20 @@ machineSelectorFiles:
 The secret or configmap must meet the following requirements:
 
 . It must be in the `fleet-default` namespace where the Cluster object exists.
-. It must have the annotation `rke.cattle.io/object-authorized-for-clusters: cluster-name1,cluster-name2`, which permits the target clusters to use it.
+. It must have the annotation `rke.cattle.io/object-authorized-for-clusters: cluster-name1,cluster-name2`, or the annotation `rke.cattle.io/object-authorized-for-clusters-selector: <label-selector>`, which permits the target clusters to use it. The selector is compared with the labels of the Cluster object. An empty selector permits every cluster in the namespace, and an invalid selector permits no cluster.
+. The user who adds or changes the reference in `machineSelectorFiles` must have a `get` permission on the secret or configmap. Changing the labels of a cluster also requires having a `get` permission on the secrets and configmaps it references that have the selector annotation.
+
+[WARNING]
+====
+Removing a user's access to a secret or configmap does not stop clusters from receiving it. Rancher checks the user's permission only when a reference is added or changed, or when cluster labels change. After that, the secret or configmap is delivered to every cluster allowed by its annotations.
+
+To stop a cluster from receiving a secret or configmap:
+
+- Remove the cluster name from the `rke.cattle.io/object-authorized-for-clusters` annotation.
+- If the secret or configmap has the `rke.cattle.io/object-authorized-for-clusters-selector` annotation, change the selector so it no longer matches the cluster's labels.
+- If the cluster already received the contents, replace them with new values (for example, new credentials or keys). Files that were already written to the cluster's nodes are not removed.
+====
+
 
 [TIP]
 ====
