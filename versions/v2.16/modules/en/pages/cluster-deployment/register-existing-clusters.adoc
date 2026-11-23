@@ -244,7 +244,7 @@ You can perform Day 2 operations directly from the Rancher UI on the following c
 * RKE2 and K3s clusters imported into Rancher using the *Generic* option.
 * RKE2 clusters provisioned with https://caprke2.docs.rancher.com/[CAPRKE2] and imported into Rancher by {xref-turtles}[{turtles-product-name}].
 
-The available operations are rotating encryption keys and creating, viewing, and restoring local `etcd` snapshots.
+The available operations include certificate rotation, encryption-key rotation, and creating, viewing, and restoring `etcd` snapshots. Supported imported RKE2 and K3s clusters can use local or S3-compatible snapshot storage.
 
 {rancher-product-name} coordinates these operations across the applicable server nodes. You don't need to run the corresponding RKE2 or K3s commands manually on each node.
 
@@ -262,11 +262,13 @@ Before you perform a Day 2 operation, ensure that the following prerequisites ar
 * *Feature Flag:* The `imported-day-2-ops` feature flag is active by default.
 * *Cluster Enablement:* Day 2 operations are enabled for the cluster. See <<_configuring_day_2_operations,Configuring Day 2 Operations>>.
 * *Cluster Health:* The cluster is in the *Active* state, its Kubernetes API is reachable, and the {xref-about-rancher-agents}#_rancher_system_agent[`rancher-system-agent`] has registered on every cluster node.
+// NOTE: Reconcile this version-management prerequisite with the restore UI's behavior when version management is disabled before publishing.
 * *Version Management:* For clusters imported using the *Generic* option, version management is enabled so Rancher can install or update the required `rancher-system-agent` support. See <<_configuring_version_management_for_rke2_and_k3s_clusters,Configuring Version Management for RKE2 and K3s Clusters>>.
 * *Installation Layout:* Clusters imported using the *Generic* option use the standard RKE2 or K3s installation layout, including the default data and configuration directories and systemd service names. Custom data directories, custom configuration paths, and IPv6-only server networking aren't supported.
 * *Datastore:* For snapshot and restore operations, the cluster uses embedded `etcd`. K3s clusters that use SQLite or an external datastore aren't supported for these operations.
-* *Snapshot Storage:* Day 2 snapshot operations support only local `etcd` snapshots. Creating or restoring S3-backed snapshots isn't supported.
-* *Server Token:* For snapshot and restore operations, every applicable `etcd` server node has a non-empty `token:` value in `/etc/rancher/rke2/config.yaml`, `/etc/rancher/k3s/config.yaml`, or a YAML or JSON file under `/etc/rancher/rke2/config.yaml.d/` or `/etc/rancher/k3s/config.yaml.d/`. A token supplied only through an environment variable, command-line argument, `token-file`, `/var/lib/rancher/rke2/server/token`, or `/var/lib/rancher/k3s/server/token` doesn't meet this prerequisite.
+* *Snapshot Storage:* For S3-backed snapshots, configure an accessible S3-compatible target and credentials for the cluster.
+// NOTE: Verify the exact complete list of supported token sources before publishing.
+* *Server Token:* For snapshot and restore operations, every applicable `etcd` server node has a configured server token.
 * *Secrets Encryption:* For encryption-key rotation, secrets encryption is enabled in the RKE2 or K3s configuration.
 * *Permissions:* Your Rancher account is a global administrator, a *Cluster Owner*, or has an equivalent custom role with access to the `operation.cattle.io` resources.
 
@@ -325,6 +327,23 @@ If the annotation is absent or has another value, the cluster also inherits the 
 When you disable day 2 operations, Rancher waits for the current operation to finish before removing the support resources. When you re-enable the functionality, allow time for Rancher to reconcile those resources before starting an operation.
 ====
 
+[#_certificate_rotation]
+=== Certificate Rotation
+
+Rancher can rotate certificates for supported imported RKE2 and K3s clusters. A successful snapshot is not required to start certificate rotation.
+
+[CAUTION]
+====
+Certificate rotation can restart cluster components and temporarily affect availability. Schedule the operation during a maintenance window.
+====
+
+. Click *☰ > Cluster Management*.
+. Locate the cluster and click *⋮ > Rotate Certificates*.
+. Choose to rotate all services or select the services to rotate.
+. Confirm the operation.
+. Click the *Operations* tab and monitor the certificate rotation operation.
+. After the operation succeeds, verify that the cluster, nodes, and workloads are active.
+
 [#_encryption_key_rotation]
 === Encryption Key Rotation
 
@@ -353,6 +372,26 @@ Don't make cluster configuration changes while key rotation is in progress.
 [#_managing_etcd_snapshots_and_restores]
 === Managing `etcd` Snapshots and Restores
 
+[#_configuring_imported_cluster_snapshots]
+==== Configuring Automatic Snapshots and S3 Storage
+
+You can configure automatic snapshots, their cron schedule, and retention for supported imported RKE2 and K3s clusters. You can also configure an S3-compatible target for snapshots.
+
+. Click *☰ > Cluster Management*.
+. Open the imported cluster's configuration for editing.
+. In the day 2 operations settings, enable automatic backups and set the cron schedule and local snapshot retention count.
+. To store snapshots in S3, enable *Save Backups to S3* and provide the required bucket, endpoint, credentials, and any TLS settings.
+. Configure S3 retention if needed, then save the cluster configuration.
+
+[IMPORTANT]
+====
+Applying snapshot configuration can restart RKE2 or K3s server services on the affected etcd nodes. Plan the change accordingly.
+====
+
+Verify that snapshots appear in the intended storage locations. For S3 storage, use a separate bucket or folder for each cluster.
+
+// NOTE: Confirm the exact cluster edit action and section labels against the v2.16 UI. Don’t copy the Rancher-launched cluster defaults into this procedure without verifying the imported-cluster defaults.
+
 [#_taking_an_etcd_snapshot]
 ==== Taking an `etcd` Snapshot
 
@@ -374,7 +413,7 @@ To view the snapshots discovered for the cluster:
 . Click *☰ > Cluster Management*.
 . Click the name of the cluster.
 . Click the *Snapshots* tab.
-. Snapshots are grouped by storage location. The table displays local snapshots associated with the cluster, including the following details when available:
+. Snapshots are grouped by storage location. The table displays snapshots associated with the cluster, including the following details when available:
 
 * *State:* The snapshot creation state.
 * *Name:* The snapshot identifier or filename.
@@ -396,10 +435,21 @@ You can restore only successful snapshots created after the cluster was imported
 
 . Click *☰ > Cluster Management* and select the cluster.
 . Click the *Snapshots* tab.
-. Locate the local snapshot to restore, then click *⋮ > Restore*.
+. Locate the snapshot to restore, then click *⋮ > Restore*.
+. Select an available *Restore Type*:
++
+* *Only etcd* restores the etcd contents.
+* *Kubernetes version and etcd* also restores the Kubernetes version captured in the snapshot.
+* *Cluster config, Kubernetes version and etcd* also restores supported cluster configuration captured in the snapshot.
++
+The available choices depend on the snapshot and cluster configuration.
 . Review the confirmation prompt, then click *Restore*.
 . Click the *Operations* tab and wait for the snapshot restore operation to reach the *Succeeded* state.
 . Verify that the cluster is in the *Active* state and that the expected workloads are available.
+
+If you selected a version-restoring option, verify the Kubernetes version on the cluster and its nodes.
+
+// NOTE: The dashboard implementation offers only Only etcd when version management is disabled, but the existing guide currently lists version management as a prerequisite for generic imported day 2 operations. Resolve that distinction before stating when users can encounter that option.
 
 [#_configuring_version_management_for_rke2_and_k3s_clusters]
 == Configuring Version Management for {rke2-product-name} and {k3s-product-name} Clusters
