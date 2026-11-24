@@ -7,9 +7,11 @@
 :page-product-path: cluster-admin/manage-clusters/rotate-certificates.adoc
 ifeval::["{build-type}" != "community"]
 :xref-expired-webhook-cert-rotation: xref:security/rancher-webhook/expired-webhook-certificate-rotation.adoc
+:xref-register-existing-clusters: xref:cluster-deployment/register-existing-clusters.adoc
 endif::[]
 ifeval::["{build-type}" == "community"]
 :xref-expired-webhook-cert-rotation: xref:troubleshooting/other-troubleshooting-tips/expired-webhook-certificate-rotation.adoc
+:xref-register-existing-clusters: xref:how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/register-existing-clusters.adoc
 endif::[]
 
 [CAUTION]
@@ -55,14 +57,9 @@ For users who didn't rotate their webhook certificates, and they have expired af
 [#_certificate_rotation_for_imported_rke2_and_k3s_clusters]
 == Certificate Rotation for Imported RKE2 and K3s Clusters
 
-For supported imported RKE2 and K3s clusters with day 2 operations enabled, Rancher coordinates certificate rotation through an operation. A successful snapshot is not required to start the operation.
+For supported imported RKE2 and K3s clusters with day 2 operations enabled, Rancher coordinates certificate rotation through an operation.
 
-. In the upper left corner, click *☰ > Cluster Management*.
-. On the *Clusters* page, locate the cluster and click *⋮ > Rotate Certificates*.
-. Choose to rotate all services or select the services to rotate.
-. Confirm the operation.
-. Open the cluster's *Operations* tab and monitor the operation.
-. After it succeeds, verify that the cluster, nodes, and workloads are active.
+For complete steps, see {xref-register-existing-clusters}#_certificate_rotation[Certificate Rotation in Registering Existing Clusters].
 
 For K3s, the service names include `k3s-controller` and `k3s-server` instead of `rke2-controller` and `rke2-server`. The imported-cluster operation also supports `supervisor`.
 
