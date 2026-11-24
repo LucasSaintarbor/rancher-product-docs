@@ -123,6 +123,7 @@ endif::[]
 **** xref:rancher-admin/users/settings/manage-cloud-credentials.adoc[]
 ifeval::["{build-type}" != "srfa"]
 ** Globale Konfiguration
+*** xref:rancher-admin/global-configuration/content-security-policy.adoc[]
 *** xref:rancher-admin/global-configuration/custom-branding.adoc[]
 *** xref:rancher-admin/global-configuration/notification-center.adoc[]
 *** xref:rancher-admin/global-configuration/global-default-private-registry.adoc[]

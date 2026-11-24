@@ -1,0 +1,81 @@
+= Content Security Policy
+:description: Configure the Content-Security-Policy header that Rancher serves with the UI
+:page-languages: [en, de, es, fr, ja, pt, zh]
+:revdate: 2026-10-02
+:page-revdate: {revdate}
+:page-community-path: how-to-guides/advanced-user-guides/content-security-policy.adoc
+:page-product-path: rancher-admin/global-configuration/content-security-policy.adoc
+
+{rancher-product-name} serves a https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP[Content Security Policy] (CSP) response header with the UI. A CSP specifies allowed page content and framing sources. This header restricts cross-site scripting (XSS) and clickjacking attacks.
+
+The server includes this header in every response, including the UI and the `/v1` and `/v3` APIs.
+
+Endpoints serving untrusted third-party content override this with a stricter policy: `default-src 'none'; style-src 'unsafe-inline'; sandbox`. Chart icon downloads and the `/meta/proxy` endpoint use this restriction. Updating the `ui-csp-policy` setting does not affect these endpoints.
+
+[#_default_policy]
+== Default Policy
+
+{rancher-product-name} sends the following policy by default:
+
+[,text]
+----
+base-uri 'self'; object-src 'none'; frame-ancestors 'self'
+----
+
+`base-uri 'self'`:: Restricts the `<base>` element to the {rancher-product-name} origin. This prevents injected `<base>` tags from redirecting relative URLs to an external host.
+`object-src 'none'`:: Blocks `<object>`, `<embed>`, and `<applet>` content.
+`frame-ancestors 'self'`:: Restricts UI framing to same-origin pages.
+
+[NOTE]
+====
+The default policy does not include a `script-src` directive or a `default-src` directive. This means inline scripts are not disabled by default. If your security requirements mandate disabling inline scripts (for example, by enforcing a `script-src` directive without `'unsafe-inline'`), you can do so by configuring a custom policy. Because adding strict script restrictions can potentially impact {rancher-product-name} UI functionality, always test your custom policy in a non-production environment first.
+====
+
+[#_change_the_policy]
+== Change the Policy
+
+The policy is stored in the `ui-csp-policy` setting. To prevent administrators from accidentally locking themselves out of the {rancher-product-name} UI if a restrictive policy breaks the interface, this setting is intentionally omitted from the *Global Settings* UI page. 
+
+You must edit the corresponding `Setting.management.cattle.io/v3` custom resource directly using `kubectl`:
+
+[,shell]
+----
+kubectl edit settings.management.cattle.io ui-csp-policy
+----
+
+Set the `value` field to the desired policy:
+
+[,yaml]
+----
+apiVersion: management.cattle.io/v3
+kind: Setting
+metadata:
+  name: ui-csp-policy
+value: "base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+----
+
+{rancher-product-name} evaluates this setting on every request. Changes take effect immediately without a system restart.
+
+[IMPORTANT]
+====
+An overly restrictive policy can break the {rancher-product-name} UI. Be aware that strict policies might also cause unexpected behaviors with non-{rancher-product-name} hosted embeds, integrations (such as Fleet and Harvester), Apps & Marketplace, UI extensions, and external cloud provider dashboards (such as EKS, AKS, and GKE). Always thoroughly test custom policies in a non-production environment first to ensure all required components function as expected.
+
+If a broken policy locks you out of the interface, you must use `kubectl` access to the local cluster to revert the policy and recover UI access.
+====
+
+[#_disable_the_header]
+== Disable the CSP header
+
+To stop sending the CSP header, set the `value` field to `none`:
+
+[,shell]
+----
+kubectl patch settings.management.cattle.io ui-csp-policy --type merge -p '{"value":"none"}'
+----
+
+Clearing the `value` field restores the default policy instead of removing the header. Setting `value` explicitly to `none` acts as the sentinel to disable the header. The sentinel value is case-insensitive and ignores surrounding whitespace, so `None` and `NONE` function identically.
+
+[NOTE]
+====
+Only a standalone `none` value disables the header. Standard source expressions using `'none'` (such as `object-src 'none'`) function normally within a policy string.
+====
