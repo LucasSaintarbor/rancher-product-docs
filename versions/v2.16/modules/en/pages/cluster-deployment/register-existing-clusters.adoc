@@ -330,7 +330,7 @@ When you disable day 2 operations, Rancher waits for the current operation to fi
 [#_certificate_rotation]
 === Certificate Rotation
 
-Rancher can rotate certificates for supported imported RKE2 and K3s clusters. A successful snapshot is not required to start certificate rotation.
+Rancher v2.16.0 or later can rotate certificates for supported imported RKE2 and K3s clusters. A successful snapshot is not required to start certificate rotation.
 
 [CAUTION]
 ====
@@ -339,10 +339,16 @@ Certificate rotation can restart cluster components and temporarily affect avail
 
 . Click *☰ > Cluster Management*.
 . Locate the cluster and click *⋮ > Rotate Certificates*.
-. Choose to rotate all services or select the services to rotate.
-. Confirm the operation.
+. Select one of the following:
+** **All services** - Rotate certificates for all services on all nodes.
+** **Selected services** - Rotate an individual service and choose one of the services from the drop-down menu.
+. Click **Rotate Certificates**.
 . Click the *Operations* tab and monitor the certificate rotation operation.
-. After the operation succeeds, verify that the cluster, nodes, and workloads are active.
+. After the operation succeeds:
+** The CA remains unchanged.
+** Rancher restarts the runtime agent on affected worker-only nodes.
+** Explicitly configured scheduler and controller-manager TLS certificate and key pairs are preserved.
+** Verify that the cluster, nodes, and workloads are active.
 
 [#_encryption_key_rotation]
 === Encryption Key Rotation
