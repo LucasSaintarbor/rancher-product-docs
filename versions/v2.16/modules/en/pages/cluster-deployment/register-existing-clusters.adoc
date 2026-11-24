@@ -261,14 +261,13 @@ Before you perform a Day 2 operation, ensure that the following prerequisites ar
 * *Rancher Version:* {rancher-product-name} v2.15 or later.
 * *Feature Flag:* The `imported-day-2-ops` feature flag is active by default.
 * *Cluster Enablement:* Day 2 operations are enabled for the cluster. See <<_configuring_day_2_operations,Configuring Day 2 Operations>>.
-* *Cluster Health:* The cluster is in the *Active* state, its Kubernetes API is reachable, and the {xref-about-rancher-agents}#_rancher_system_agent[`rancher-system-agent`] has registered on every cluster node.
-// NOTE: Reconcile this version-management prerequisite with the restore UI's behavior when version management is disabled before publishing.
+* *Cluster Health:* For non-restore operations, the cluster must be in the *Active* state, and its Kubernetes API is reachable. All operations require the {xref-about-rancher-agents}#_rancher_system_agent[`rancher-system-agent`] to be registered on every cluster node as a prerequisite.
 * *Version Management:* For clusters imported using the *Generic* option, version management is enabled so Rancher can install or update the required `rancher-system-agent` support. See <<_configuring_version_management_for_rke2_and_k3s_clusters,Configuring Version Management for RKE2 and K3s Clusters>>.
-* *Installation Layout:* Clusters imported using the *Generic* option use the standard RKE2 or K3s installation layout, including the default data and configuration directories and systemd service names. Custom data directories, custom configuration paths, and IPv6-only server networking aren't supported.
+* *Installation Layout:* Clusters imported using the *Generic* option use the standard RKE2 or K3s installation layout, including the default data and configuration directories and systemd service names. Custom data directories and custom configuration paths aren't supported.
 * *Datastore:* For snapshot and restore operations, the cluster uses embedded `etcd`. K3s clusters that use SQLite or an external datastore aren't supported for these operations.
-* *Snapshot Storage:* For S3-backed snapshots, configure an accessible S3-compatible target and credentials for the cluster.
-// NOTE: Verify the exact complete list of supported token sources before publishing.
-* *Server Token:* For snapshot and restore operations, every applicable `etcd` server node has a configured server token.
+* *Node Configuration:* For clusters imported using the *Generic* option, configure RKE2 or K3s through `/etc/rancher/rke2/config.yaml` and `/etc/rancher/rke2/config.yaml.d/`, or `/etc/rancher/k3s/config.yaml` and `/etc/rancher/k3s/config.yaml.d/`. Rancher writes its settings to a drop-in file in the `config.yaml.d` directory. Command-line flags and environment variables take precedence over these settings.
+* *Server Token:* For restore operations, every `etcd` server node has a non-empty server token file at `/var/lib/rancher/rke2/server/token` or `/var/lib/rancher/k3s/server/token`. The token must match the token that the cluster used when the snapshot was taken. Rancher verifies the token before the restore starts and cancels the restore if the token doesn't match.
+* *Server Networking:* For restore operations, server nodes can reach each other on the first internal IP address of each node. If a node has no internal IP address, its first external IP address is used instead. IPv4, IPv6, and dual-stack networking are supported.
 * *Secrets Encryption:* For encryption-key rotation, secrets encryption is enabled in the RKE2 or K3s configuration.
 * *Permissions:* Your Rancher account is a global administrator, a *Cluster Owner*, or has an equivalent custom role with access to the `operation.cattle.io` resources.
 
