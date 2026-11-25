@@ -342,7 +342,7 @@ Certificate rotation can restart cluster components and temporarily affect avail
 . Locate the cluster and click *⋮ > Rotate Certificates*.
 . Select one of the following:
 ** **All services** - Rotate certificates for all supported services on the applicable nodes.
-** **Selected services** - Choose one or more services. Each service must be available on at least one node. For example, selecting `etcd` on a K3s cluster without an `etcd` node fails validation```
+** **Selected services** - Choose one or more services. Each service must be available on at least one node. For example, selecting `etcd` on a K3s cluster without an `etcd` node fails validation.
 . Click **Rotate Certificates**.
 . Click the *Operations* tab and monitor the certificate rotation operation.
 . After the operation succeeds:
