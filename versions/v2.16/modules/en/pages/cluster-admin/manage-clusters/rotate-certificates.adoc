@@ -65,8 +65,6 @@ For K3s, the service names include `k3s-controller` and `k3s-server` instead of 
 
 If rotation fails or does not progress, review the operation's status and conditions, and check the affected nodes' system-agent and RKE2/K3s logs.
 
-// NOTE: Check the final button label before publishing; the current dialog supports all services or a selection of services.
-
 [#_additional_notes]
 == Additional Notes
 
