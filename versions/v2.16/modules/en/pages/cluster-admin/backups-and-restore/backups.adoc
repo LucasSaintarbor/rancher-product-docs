@@ -49,7 +49,7 @@ Rancher delegates snapshot creation to the downstream Kubernetes engine. When th
 * The Kubernetes version
 * Supported cluster configuration
 
-Because the Kubernetes version and cluster configuration can be included in the snapshot, it is possible to restore a cluster to a prior Kubernetes version and configuration while also restoring an etcd snapshot. Note that not every snapshot contains all restorable configuration, especially for imported clusters.
+Because the Kubernetes version and cluster configuration can be included in the snapshot, it is possible to restore a cluster to a prior Kubernetes version and configuration while also restoring an etcd snapshot. Note that not every snapshot contains all restorable configuration fields, especially for imported clusters.
 --
 ======
 

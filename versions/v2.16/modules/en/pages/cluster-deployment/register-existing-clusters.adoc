@@ -265,7 +265,7 @@ Before you perform a Day 2 operation, ensure that the following prerequisites ar
 * *Cluster Enablement:* Day 2 operations are enabled for the cluster. See <<_configuring_day_2_operations,Configuring Day 2 Operations>>.
 * *Cluster Health:* For non-restore operations, the cluster must be in the *Active* state, and its Kubernetes API is reachable. All operations require the {xref-about-rancher-agents}#_rancher_system_agent[`rancher-system-agent`] to be registered on every cluster node as a prerequisite.
 * *Version Management:* For clusters imported using the *Generic* option, version management is enabled so Rancher can install or update the required `rancher-system-agent` support. See <<_configuring_version_management_for_rke2_and_k3s_clusters,Configuring Version Management for RKE2 and K3s Clusters>>.
-* *Installation Layout:* Clusters imported using the *Generic* option use the standard RKE2 or K3s installation layout, including the default data and configuration directories and systemd service names. Custom data directories and custom configuration paths aren't supported.
+* *Installation Layout:* Clusters imported using the *Generic* option require the standard configuration paths and systemd service names. For certificate rotation, Rancher recognizes `data-dir` in the standard runtime configuration, the `--data-dir` flag, and the applicable `RKE2_DATA_DIR` or `K3S_DATA_DIR` environment variable
 * *Datastore:* For snapshot and restore operations, the cluster uses embedded `etcd`. K3s clusters that use SQLite or an external datastore aren't supported for these operations.
 * *Node Configuration:* For clusters imported using the *Generic* option, configure RKE2 or K3s through `/etc/rancher/rke2/config.yaml` and `/etc/rancher/rke2/config.yaml.d/`, or `/etc/rancher/k3s/config.yaml` and `/etc/rancher/k3s/config.yaml.d/`. Rancher writes its settings to a drop-in file in the `config.yaml.d` directory. Command-line flags and environment variables take precedence over these settings.
 * *Server Token:* For restore operations, every `etcd` server node has a non-empty server token file at `/var/lib/rancher/rke2/server/token` or `/var/lib/rancher/k3s/server/token`. The token must match the token that the cluster used when the snapshot was taken. Rancher verifies the token before the restore starts and cancels the restore if the token doesn't match.
@@ -341,8 +341,8 @@ Certificate rotation can restart cluster components and temporarily affect avail
 . Click *☰ > Cluster Management*.
 . Locate the cluster and click *⋮ > Rotate Certificates*.
 . Select one of the following:
-** **All services** - Rotate certificates for all services on all nodes.
-** **Selected services** - Rotate an individual service and choose one of the services from the drop-down menu.
+** **All services** - Rotate certificates for all supported services on the applicable nodes.
+** **Selected services** - Choose one or more services. Each service must be available on at least one node. For example, selecting `etcd` on a K3s cluster without an `etcd` node fails validation```
 . Click **Rotate Certificates**.
 . Click the *Operations* tab and monitor the certificate rotation operation.
 . After the operation succeeds:
